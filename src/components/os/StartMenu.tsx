@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import { Zap, MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder } from 'lucide-react';
+import { Zap, MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench } from 'lucide-react';
 import { useOS } from './OSContext';
 import { APP_DEFINITIONS } from './types';
 import { cn } from '@/lib/utils';
@@ -19,6 +19,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Settings: <Settings className="w-6 h-6" />,
   Info: <Info className="w-6 h-6" />,
   Folder: <Folder className="w-6 h-6" />,
+  Wrench: <Wrench className="w-6 h-6" />,
 };
 
 const CATEGORY_LABELS: Record<string, string> = {

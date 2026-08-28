@@ -38,6 +38,7 @@ export const APP_DEFINITIONS: AppDefinition[] = [
   { id: 'music', title: 'Gerador de Música', iconName: 'Music', color: 'neon-yellow', defaultWidth: 600, defaultHeight: 550, minWidth: 400, minHeight: 350, desktopIcon: true, category: 'ai' },
   { id: 'tts', title: 'Text-to-Speech', iconName: 'Mic', color: 'cyan-400', defaultWidth: 600, defaultHeight: 500, minWidth: 400, minHeight: 300, desktopIcon: true, category: 'ai' },
   { id: 'audio', title: 'Efeitos Sonoros', iconName: 'AudioLines', color: 'orange-400', defaultWidth: 600, defaultHeight: 500, minWidth: 400, minHeight: 300, desktopIcon: false, category: 'ai' },
+  { id: 'tools', title: 'AI Tools', iconName: 'Wrench', color: 'neon-green', defaultWidth: 1000, defaultHeight: 700, minWidth: 600, minHeight: 450, desktopIcon: true, category: 'system' },
   { id: 'fileexplorer', title: 'Explorador', iconName: 'Folder', color: 'neon-yellow', defaultWidth: 900, defaultHeight: 600, minWidth: 500, minHeight: 400, desktopIcon: true, category: 'system' },
   { id: 'terminal', title: 'Terminal', iconName: 'Terminal', color: 'neon-green', defaultWidth: 700, defaultHeight: 450, minWidth: 400, minHeight: 250, desktopIcon: true, category: 'system' },
   { id: 'balance', title: 'Saldo & Uso', iconName: 'Wallet', color: 'emerald-400', defaultWidth: 700, defaultHeight: 500, minWidth: 400, minHeight: 300, desktopIcon: false, category: 'tools' },
