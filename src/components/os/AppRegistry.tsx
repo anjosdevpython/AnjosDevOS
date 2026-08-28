@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks } from 'lucide-react';
 
 // Import existing page components as app contents
-import { ChatInterface } from '@/components/ChatInterface';
+import { ChatInterface } from '@/components/features/chat/ChatInterface';
 import { TerminalApp } from './apps/TerminalApp';
 import { AboutApp } from './apps/AboutApp';
 import { FileExplorerApp } from './apps/FileExplorerApp';

@@ -39,10 +39,10 @@ import {
   getSkillsByCategory,
   CATEGORY_LABELS,
   CATEGORY_COLORS,
-} from '@/lib/tools';
-import { PROVIDERS, ProviderId } from '@/lib/providers';
-import { loadProviderSettings, getAvailableModels } from '@/lib/provider-config';
-import { chatCompletionStream } from '@/lib/api-client';
+} from '@/lib/tools/tools';
+import { PROVIDERS, ProviderId } from '@/lib/ai/providers';
+import { loadProviderSettings, getAvailableModels } from '@/lib/ai/provider-config';
+import { chatCompletionStream } from '@/lib/ai/api-client';
 
 type TabId = 'skills' | 'gsd' | 'mcp' | 'executions';
 

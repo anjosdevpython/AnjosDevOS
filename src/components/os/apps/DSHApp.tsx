@@ -39,7 +39,7 @@ import {
   getProfilePlugins,
   DSH_CATEGORY_LABELS,
   DSH_CATEGORY_COLORS,
-} from '@/lib/deepseek-harness';
+} from '@/lib/integrations/deepseek-harness';
 
 type TabId = 'plugins' | 'agents' | 'profiles' | 'logs';
 

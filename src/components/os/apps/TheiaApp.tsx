@@ -31,7 +31,7 @@ import {
   THEIA_CATEGORY_LABELS,
   THEIA_CATEGORY_COLORS,
   formatDownloads,
-} from '@/lib/theia';
+} from '@/lib/integrations/theia';
 
 type TabId = 'extensions' | 'workspaces' | 'settings';
 

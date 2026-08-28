@@ -27,7 +27,7 @@ import {
   DEVTOOL_CATEGORY_LABELS,
   DEVTOOL_CATEGORY_COLORS,
   formatStars,
-} from '@/lib/devtools';
+} from '@/lib/tools/devtools';
 
 type ViewMode = 'grid' | 'list';
 

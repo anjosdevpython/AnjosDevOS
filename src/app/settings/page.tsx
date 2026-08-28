@@ -19,13 +19,13 @@ import {
   Copy,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { PROVIDERS, ProviderId, ProviderConfig } from '@/lib/providers';
+import { PROVIDERS, ProviderId, ProviderConfig } from '@/lib/ai/providers';
 import {
   loadProviderSettings,
   saveProviderSettings,
   ProviderSettings,
   ProviderKeyConfig,
-} from '@/lib/provider-config';
+} from '@/lib/ai/provider-config';
 
 interface ProviderCardProps {
   provider: ProviderConfig;

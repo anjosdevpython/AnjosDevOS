@@ -38,7 +38,7 @@ import {
   AgentBackend,
   BACKEND_LABELS,
   BACKEND_COLORS,
-} from '@/lib/openhands';
+} from '@/lib/integrations/openhands';
 
 type TabId = 'canvas' | 'agents' | 'automations' | 'settings';
 
