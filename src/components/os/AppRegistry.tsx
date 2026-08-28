@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond } from 'lucide-react';
+import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks } from 'lucide-react';
 
 // Import existing page components as app contents
 import { ChatInterface } from '@/components/ChatInterface';
@@ -13,6 +13,7 @@ import { CodeEditorApp } from './apps/CodeEditorApp';
 import { DSHApp } from './apps/DSHApp';
 import { OpenHandsApp } from './apps/OpenHandsApp';
 import { TheiaApp } from './apps/TheiaApp';
+import { DevToolsHubApp } from './apps/DevToolsHubApp';
 
 // Lazy-load heavy page components to avoid importing all at once
 import dynamic from 'next/dynamic';
@@ -43,6 +44,7 @@ export const ICON_COMPONENTS: Record<string, ReactNode> = {
   Sparkles: <Sparkles className="w-4 h-4" />,
   Hand: <Hand className="w-4 h-4" />,
   Diamond: <Diamond className="w-4 h-4" />,
+  Blocks: <Blocks className="w-4 h-4" />,
 };
 
 export function getAppContent(appId: string): ReactNode {
@@ -71,6 +73,8 @@ export function getAppContent(appId: string): ReactNode {
       return <div className="overflow-auto h-full"><SettingsApp /></div>;
     case 'terminal':
       return <TerminalApp />;
+    case 'devtools-hub':
+      return <DevToolsHubApp />;
     case 'openhands':
       return <OpenHandsApp />;
     case 'theia':

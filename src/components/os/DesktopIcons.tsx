@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MessageSquare, Image, Paintbrush, Video, Music, Mic, Terminal, Folder, Wrench, FileCode, Sparkles, Hand, Diamond } from 'lucide-react';
+import { MessageSquare, Image, Paintbrush, Video, Music, Mic, Terminal, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks } from 'lucide-react';
 import { useOS } from './OSContext';
 import { APP_DEFINITIONS } from './types';
 import { cn } from '@/lib/utils';
@@ -20,6 +20,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Sparkles: <Sparkles className="w-8 h-8" />,
   Hand: <Hand className="w-8 h-8" />,
   Diamond: <Diamond className="w-8 h-8" />,
+  Blocks: <Blocks className="w-8 h-8" />,
 };
 
 export function DesktopIcons() {

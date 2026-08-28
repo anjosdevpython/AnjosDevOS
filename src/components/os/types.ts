@@ -38,6 +38,7 @@ export const APP_DEFINITIONS: AppDefinition[] = [
   { id: 'music', title: 'Gerador de Música', iconName: 'Music', color: 'neon-yellow', defaultWidth: 600, defaultHeight: 550, minWidth: 400, minHeight: 350, desktopIcon: true, category: 'ai' },
   { id: 'tts', title: 'Text-to-Speech', iconName: 'Mic', color: 'cyan-400', defaultWidth: 600, defaultHeight: 500, minWidth: 400, minHeight: 300, desktopIcon: true, category: 'ai' },
   { id: 'audio', title: 'Efeitos Sonoros', iconName: 'AudioLines', color: 'orange-400', defaultWidth: 600, defaultHeight: 500, minWidth: 400, minHeight: 300, desktopIcon: false, category: 'ai' },
+  { id: 'devtools-hub', title: 'DevTools Hub', iconName: 'Blocks', color: 'neon-purple', defaultWidth: 1200, defaultHeight: 800, minWidth: 800, minHeight: 500, desktopIcon: true, category: 'system' },
   { id: 'openhands', title: 'OpenHands', iconName: 'Hand', color: 'neon-orange', defaultWidth: 1100, defaultHeight: 700, minWidth: 600, minHeight: 450, desktopIcon: true, category: 'system' },
   { id: 'theia', title: 'Theia IDE', iconName: 'Diamond', color: 'neon-blue', defaultWidth: 1200, defaultHeight: 800, minWidth: 800, minHeight: 500, desktopIcon: true, category: 'system' },
   { id: 'deepseek-harness', title: 'DeepSeek Harness', iconName: 'Sparkles', color: 'neon-blue', defaultWidth: 1100, defaultHeight: 700, minWidth: 600, minHeight: 450, desktopIcon: true, category: 'system' },
