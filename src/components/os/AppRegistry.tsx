@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench } from 'lucide-react';
+import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode } from 'lucide-react';
 
 // Import existing page components as app contents
 import { ChatInterface } from '@/components/ChatInterface';
@@ -9,6 +9,7 @@ import { TerminalApp } from './apps/TerminalApp';
 import { AboutApp } from './apps/AboutApp';
 import { FileExplorerApp } from './apps/FileExplorerApp';
 import { ToolsApp } from './apps/ToolsApp';
+import { CodeEditorApp } from './apps/CodeEditorApp';
 
 // Lazy-load heavy page components to avoid importing all at once
 import dynamic from 'next/dynamic';
@@ -35,6 +36,7 @@ export const ICON_COMPONENTS: Record<string, ReactNode> = {
   Info: <Info className="w-4 h-4" />,
   Folder: <Folder className="w-4 h-4" />,
   Wrench: <Wrench className="w-4 h-4" />,
+  FileCode: <FileCode className="w-4 h-4" />,
 };
 
 export function getAppContent(appId: string): ReactNode {
@@ -63,6 +65,8 @@ export function getAppContent(appId: string): ReactNode {
       return <div className="overflow-auto h-full"><SettingsApp /></div>;
     case 'terminal':
       return <TerminalApp />;
+    case 'codeeditor':
+      return <CodeEditorApp />;
     case 'tools':
       return <ToolsApp />;
     case 'fileexplorer':
