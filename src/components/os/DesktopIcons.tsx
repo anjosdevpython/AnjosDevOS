@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MessageSquare, Image, Paintbrush, Video, Music, Mic, Terminal, Folder, Wrench, FileCode } from 'lucide-react';
+import { MessageSquare, Image, Paintbrush, Video, Music, Mic, Terminal, Folder, Wrench, FileCode, Sparkles } from 'lucide-react';
 import { useOS } from './OSContext';
 import { APP_DEFINITIONS } from './types';
 import { cn } from '@/lib/utils';
@@ -17,6 +17,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Folder: <Folder className="w-8 h-8" />,
   Wrench: <Wrench className="w-8 h-8" />,
   FileCode: <FileCode className="w-8 h-8" />,
+  Sparkles: <Sparkles className="w-8 h-8" />,
 };
 
 export function DesktopIcons() {
