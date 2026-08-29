@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks, Globe, FileText, Workflow, Users, Brain, Radio, Zap } from 'lucide-react';
+import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks, Globe, FileText, Workflow, Users, Brain, Radio, Zap, Network } from 'lucide-react';
 
 // Import existing page components as app contents
 import { ChatInterface } from '@/components/features/chat/ChatInterface';
@@ -21,6 +21,7 @@ import { AgentTeamsApp } from './apps/AgentTeamsApp';
 import { MemorySystemApp } from './apps/MemorySystemApp';
 import { ChannelGatewayApp } from './apps/ChannelGatewayApp';
 import { FreebuffApp } from './apps/FreebuffApp';
+import { AgentOrchestratorApp } from './apps/AgentOrchestratorApp';
 
 // Lazy-load heavy page components to avoid importing all at once
 import dynamic from 'next/dynamic';
@@ -59,6 +60,7 @@ export const ICON_COMPONENTS: Record<string, ReactNode> = {
   Brain: <Brain className="w-4 h-4" />,
   Radio: <Radio className="w-4 h-4" />,
   Zap: <Zap className="w-4 h-4" />,
+  Network: <Network className="w-4 h-4" />,
 };
 
 export function getAppContent(appId: string): ReactNode {
@@ -115,6 +117,8 @@ export function getAppContent(appId: string): ReactNode {
       return <ChannelGatewayApp />;
     case 'freebuff':
       return <FreebuffApp />;
+    case 'orchestrator':
+      return <AgentOrchestratorApp />;
     case 'about':
       return <AboutApp />;
     default:
