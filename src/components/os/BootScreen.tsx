@@ -60,7 +60,7 @@ export function BootScreen() {
       </div>
 
       <h1 className="text-2xl font-bold gradient-text mb-2">AnjosDevOS</h1>
-      <p className="text-xs text-text-muted font-mono mb-8">AI Operating System v1.0</p>
+      <p className="text-xs text-text-muted font-mono mb-8">Sistema Operacional de IA v1.0</p>
       <p className="text-[10px] text-neon-green/60 font-mono mb-4">by Allan Anjos</p>
 
       {/* Progress Bar */}

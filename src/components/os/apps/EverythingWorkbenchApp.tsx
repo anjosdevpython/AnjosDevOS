@@ -15,8 +15,7 @@ const INITIAL_DOCS: DocFile[] = [
 ];
 
 const INITIAL_SHEETS: SheetData[] = [
-  { id: '1', name: 'Orçamento', headers: ['Item', 'Qtd', 'Preço Unit.', 'Total'], rows: [['Servidor', '1', '$50', '$50'], ['API Key OpenAI', '1', '$20', '$20'], ['Domínio', '1', '$12', '$12']] },
-  { id: '2', name: 'Task Tracker', headers: ['Task', 'Assignee', 'Status', 'Priority'], rows: [['Implementar Auth', 'Allan', 'In Progress', 'High'], ['Criar Dashboard', 'AI Agent', 'Todo', 'Medium'], ['Deploy', 'Allan', 'Done', 'Low']] },
+  { id: '1', name: 'Orçamento', headers: ['Item', 'Qtd', 'Preço Unit.', 'Total'], rows: [['Servidor', '1', '$50', '$50'], ['API Key OpenAI', '1', '$20', '$20'], ['Domínio', '1', '$12', '$12']] },    { id: '2', name: 'Acompanhamento de Tarefas', headers: ['Tarefa', 'Responsável', 'Status', 'Prioridade'], rows: [['Implementar Auth', 'Allan', 'Em Progresso', 'Alta'], ['Criar Dashboard', 'Agente IA', 'A Fazer', 'Média'], ['Deploy', 'Allan', 'Concluído', 'Baixa']] },
 ];
 
 const INITIAL_SLIDES: Slide[] = [
@@ -47,12 +46,12 @@ export function EverythingWorkbenchApp() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const TABS: { id: WorkbenchTab; label: string; icon: string }[] = [
-    { id: 'docs', label: 'Docs', icon: '📄' },
-    { id: 'sheets', label: 'Sheets', icon: '📊' },
-    { id: 'slides', label: 'Slides', icon: '🎞️' },
-    { id: 'whiteboard', label: 'Whiteboard', icon: '🎨' },
+    { id: 'docs', label: 'Documentos', icon: '📄' },
+    { id: 'sheets', label: 'Planilhas', icon: '📊' },
+    { id: 'slides', label: 'Apresentações', icon: '🎞️' },
+    { id: 'whiteboard', label: 'Quadro', icon: '🎨' },
     { id: 'kanban', label: 'Kanban', icon: '📋' },
-    { id: 'charts', label: 'Charts', icon: '📈' },
+    { id: 'charts', label: 'Gráficos', icon: '📈' },
   ];
 
   const filteredDocs = docs.filter(d => d.name.toLowerCase().includes(searchQuery.toLowerCase()));
@@ -185,7 +184,7 @@ export function EverythingWorkbenchApp() {
 
   const renderKanban = () => {
     const columns = ['backlog', 'todo', 'doing', 'done'] as const;
-    const colLabels = { backlog: '📦 Backlog', todo: '📝 To Do', doing: '🔄 Doing', done: '✅ Done' };
+    const colLabels = { backlog: '📦 Backlog', todo: '📝 A Fazer', doing: '🔄 Fazendo', done: '✅ Concluído' };
     const colColors = { backlog: 'text-text-muted', todo: 'text-neon-yellow', doing: 'text-neon-blue', done: 'text-neon-green' };
 
     return (
@@ -274,7 +273,7 @@ export function EverythingWorkbenchApp() {
       <div className="px-3 py-1.5 border-t border-border bg-surface/30 flex items-center gap-4 text-[10px] text-text-muted">
         <span>📋 {activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}</span>
         <span>{activeTab === 'docs' ? `${docs.length} documentos` : activeTab === 'sheets' ? `${sheets.length} planilhas` : activeTab === 'kanban' ? `${kanban.length} tasks` : activeTab === 'slides' ? `${slides.length} slides` : 'Canvas'}</span>
-        <span className="ml-auto">CoWork Workbench v0.5.52</span>
+        <span className="ml-auto">Bancada de Trabalho v0.5.52</span>
       </div>
     </div>
   );

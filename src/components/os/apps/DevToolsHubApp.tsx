@@ -139,7 +139,7 @@ export function DevToolsHubApp() {
                   : 'text-text-muted hover:bg-cyber-hover'
               )}
             >
-              All Tools ({ALL_DEVTOOLS.length})
+              Todas as Ferramentas ({ALL_DEVTOOLS.length})
             </button>
             {Object.entries(DEVTOOL_CATEGORY_LABELS)
               .filter(([key]) => ALL_DEVTOOLS.some((t) => t.category === key))
@@ -244,7 +244,7 @@ export function DevToolsHubApp() {
                       </span>
                       {tool.status === 'installed' && (
                         <span className="px-1.5 py-0.5 text-[8px] rounded bg-neon-green/10 text-neon-green border border-neon-green/20">
-                          Installed
+                          Instalado
                         </span>
                       )}
                     </div>
@@ -296,7 +296,7 @@ export function DevToolsHubApp() {
                   <p className="text-sm font-bold text-neon-yellow">
                     {formatStars(selectedTool.stars)}
                   </p>
-                  <p className="text-[9px] text-text-muted">Stars</p>
+                  <p className="text-[9px] text-text-muted">Estrelas</p>
                 </div>
                 <div className="text-center p-2 rounded-lg bg-cyber-bg border border-cyber-border">
                   <p className="text-sm font-bold text-text-primary">
@@ -308,14 +308,14 @@ export function DevToolsHubApp() {
                   <p className="text-sm font-bold text-text-primary">
                     {selectedTool.license}
                   </p>
-                  <p className="text-[9px] text-text-muted">License</p>
+                  <p className="text-[9px] text-text-muted">Licença</p>
                 </div>
               </div>
 
               {/* Features */}
               <div className="mb-4">
                 <h3 className="text-[10px] text-text-muted uppercase tracking-wider mb-2">
-                  Features
+                  Funcionalidades
                 </h3>
                 <div className="flex flex-wrap gap-1">
                   {selectedTool.features.map((feature) => (
@@ -332,7 +332,7 @@ export function DevToolsHubApp() {
               {/* Platforms */}
               <div className="mb-4">
                 <h3 className="text-[10px] text-text-muted uppercase tracking-wider mb-2">
-                  Platforms
+                  Plataformas
                 </h3>
                 <div className="flex flex-wrap gap-1">
                   {selectedTool.platforms.map((platform) => (
@@ -349,7 +349,7 @@ export function DevToolsHubApp() {
               {/* Models */}
               <div className="mb-4">
                 <h3 className="text-[10px] text-text-muted uppercase tracking-wider mb-2">
-                  Supported Models
+                  Modelos Suportados
                 </h3>
                 <div className="flex flex-wrap gap-1">
                   {selectedTool.models.map((model) => (
@@ -366,7 +366,7 @@ export function DevToolsHubApp() {
               {/* Tags */}
               <div className="mb-4">
                 <h3 className="text-[10px] text-text-muted uppercase tracking-wider mb-2">
-                  Tags
+                  Etiquetas
                 </h3>
                 <div className="flex flex-wrap gap-1">
                   {selectedTool.tags.map((tag) => (
@@ -389,7 +389,7 @@ export function DevToolsHubApp() {
                   className="flex items-center justify-center gap-2 py-2 text-xs text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors"
                 >
                   <Globe className="w-3.5 h-3.5" />
-                  Website
+                  Site
                 </a>
                 <a
                   href={selectedTool.repository}
@@ -398,7 +398,7 @@ export function DevToolsHubApp() {
                   className="flex items-center justify-center gap-2 py-2 text-xs text-text-primary bg-cyber-bg border border-cyber-border rounded-lg hover:bg-cyber-hover transition-colors"
                 >
                   <Code className="w-3.5 h-3.5" />
-                  Repository
+                  Repositório
                 </a>
               </div>
             </div>

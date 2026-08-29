@@ -41,17 +41,17 @@ interface TeamMessage {
 }
 
 const ALL_AGENTS: Agent[] = [
-  { id: 'a1', name: 'Architect', role: 'Tech Lead', icon: '🏗️', status: 'active', model: 'claude-4-opus', skills: ['architecture', 'code-review', 'planning'], tasksCompleted: 23 },
-  { id: 'a2', name: 'Developer', role: 'Senior Dev', icon: '👨‍💻', status: 'active', model: 'gpt-4o', skills: ['typescript', 'react', 'node'], tasksCompleted: 45, currentTask: 'Implementing auth flow' },
-  { id: 'a3', name: 'Tester', role: 'QA Engineer', icon: '🧪', status: 'idle', model: 'claude-3.5-sonnet', skills: ['testing', 'debugging', 'e2e'], tasksCompleted: 18 },
-  { id: 'a4', name: 'DevOps', role: 'Infrastructure', icon: '🔧', status: 'active', model: 'deepseek-v3', skills: ['docker', 'k8s', 'ci-cd', 'monitoring'], tasksCompleted: 12 },
+  { id: 'a1', name: 'Arquiteto', role: 'Líder Técnico', icon: '🏗️', status: 'active', model: 'claude-4-opus', skills: ['architecture', 'code-review', 'planning'], tasksCompleted: 23 },
+  { id: 'a2', name: 'Desenvolvedor', role: 'Dev Sênior', icon: '👨‍💻', status: 'active', model: 'gpt-4o', skills: ['typescript', 'react', 'node'], tasksCompleted: 45, currentTask: 'Implementando autenticação' },
+  { id: 'a3', name: 'Testador', role: 'Engenheiro QA', icon: '🧪', status: 'idle', model: 'claude-3.5-sonnet', skills: ['testing', 'debugging', 'e2e'], tasksCompleted: 18 },
+  { id: 'a4', name: 'DevOps', role: 'Infraestrutura', icon: '🔧', status: 'active', model: 'deepseek-v3', skills: ['docker', 'k8s', 'ci-cd', 'monitoring'], tasksCompleted: 12 },
   { id: 'a5', name: 'Designer', role: 'UI/UX', icon: '🎨', status: 'idle', model: 'gpt-4o', skills: ['ui-design', 'css', 'figma'], tasksCompleted: 8 },
-  { id: 'a6', name: 'Scribe', role: 'Documentation', icon: '📝', status: 'active', model: 'claude-3.5-haiku', skills: ['documentation', 'markdown', 'api-docs'], tasksCompleted: 31, currentTask: 'Updating API docs' },
+  { id: 'a6', name: 'Escritor', role: 'Documentação', icon: '📝', status: 'active', model: 'claude-3.5-haiku', skills: ['documentation', 'markdown', 'api-docs'], tasksCompleted: 31, currentTask: 'Atualizando docs da API' },
 ];
 
 const INITIAL_TEAMS: Team[] = [
   {
-    id: 't1', name: 'Core Team', description: 'Time principal de desenvolvimento', status: 'active',
+    id: 't1', name: 'Time Principal', description: 'Time principal de desenvolvimento', status: 'active',
     agents: ['a1', 'a2', 'a3', 'a6'],
     tasks: [
       { id: 'tk1', title: 'Implementar auth system', assignee: 'a2', status: 'in-progress', priority: 'high' },
@@ -67,11 +67,11 @@ const INITIAL_TEAMS: Team[] = [
     ],
   },
   {
-    id: 't2', name: 'DevOps Squad', description: 'Infraestrutura e deploy', status: 'paused',
+    id: 't2', name: 'Equipe DevOps', description: 'Infraestrutura e deploy', status: 'paused',
     agents: ['a4'],
     tasks: [
       { id: 'tk5', title: 'Configurar pipeline CI/CD', assignee: 'a4', status: 'done', priority: 'high' },
-      { id: 'tk6', title: 'Setup monitoring', assignee: 'a4', status: 'pending', priority: 'medium' },
+      { id: 'tk6', title: 'Configurar monitoramento', assignee: 'a4', status: 'pending', priority: 'medium' },
     ],
     messages: [
       { id: 'm5', from: 'a4', content: 'Pipeline configurado. Deploy automático ativo na branch main.', timestamp: '12:45', type: 'status' },
@@ -181,13 +181,13 @@ export function AgentTeamsApp() {
     if (!selectedTeam) return <div className="flex-1 flex items-center justify-center text-text-muted text-xs">Selecione um time</div>;
 
     const taskColumns = ['pending', 'in-progress', 'review', 'done'] as const;
-    const colLabels = { pending: '📝 Pending', 'in-progress': '🔄 In Progress', review: '👀 Review', done: '✅ Done' };
+    const colLabels = { pending: '📝 Pendente', 'in-progress': '🔄 Em Progresso', review: '👀 Revisão', done: '✅ Concluído' };
 
     return (
       <div className="flex-1 flex overflow-hidden">
         {/* Tasks Panel */}
         <div className="w-72 border-r border-border overflow-y-auto p-3 bg-surface/20">
-          <div className="text-[10px] font-semibold text-text mb-3">📋 Tasks ({selectedTeam.tasks.length})</div>
+          <div className="text-[10px] font-semibold text-text mb-3">📋 Tarefas ({selectedTeam.tasks.length})</div>
           <div className="space-y-3">
             {taskColumns.map(col => {
               const tasks = selectedTeam.tasks.filter(t => t.status === col);
@@ -267,7 +267,7 @@ export function AgentTeamsApp() {
                 : 'text-text-muted border-transparent hover:text-text hover:bg-surface/50'
             }`}
           >
-            {tab === 'teams' ? '👥 Times' : tab === 'agents' ? '🤖 Agents' : '💬 Chat'}
+            {tab === 'teams' ? '👥 Times' : tab === 'agents' ? '🤖 Agentes' : '💬 Chat'}
           </button>
         ))}
       </div>
@@ -281,7 +281,7 @@ export function AgentTeamsApp() {
         <span>👥 {teams.length} times</span>
         <span>🤖 {agents.length} agents</span>
         <span>🟢 {agents.filter(a => a.status === 'active').length} ativos</span>
-        <span className="ml-auto">Agent Teams v0.5.52</span>
+        <span className="ml-auto">Times de Agentes v0.5.52</span>
       </div>
     </div>
   );

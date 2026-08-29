@@ -9,12 +9,12 @@ export function AboutApp() {
         <Zap className="w-8 h-8 text-neon-green" />
       </div>
       <h1 className="text-xl font-bold gradient-text mb-1">AnjosDevOS</h1>
-      <p className="text-sm text-text-muted font-mono mb-4">AI Operating System v1.0</p>
+      <p className="text-sm text-text-muted font-mono mb-4">Sistema Operacional de IA v1.0</p>
       <p className="text-xs text-neon-green mb-2">by <a href="https://allananjos.dev.br" target="_blank" rel="noopener noreferrer" className="underline hover:text-neon-blue">Allan Anjos</a></p>
       
       <div className="space-y-2 text-xs text-text-secondary mb-6">
         <p>Plataforma de IA baseada em navegador</p>
-        <p>Powered by <span className="text-neon-green">NetworkTools API</span></p>
+        <p>Alimentado por <span className="text-neon-green">NetworkTools API</span></p>
         <p className="font-mono text-text-muted">Next.js 15.5 · React 19 · Tailwind CSS</p>
       </div>
 

@@ -89,7 +89,7 @@ export function ChannelGatewayApp() {
                   channel.status === 'error' ? 'bg-neon-red/20 text-neon-red' :
                   'bg-surface text-text-muted'
                 }`}>
-                  {channel.status === 'connected' ? '🟢' : channel.status === 'error' ? '🔴' : '⚪'} {channel.status}
+                  {channel.status === 'connected' ? '🟢 Conectado' : channel.status === 'error' ? '🔴 Erro' : '⚪ Desconectado'}
                 </span>
               </div>
               {channel.lastMessage && (
@@ -129,8 +129,8 @@ export function ChannelGatewayApp() {
               }`}>{selectedChannel.status}</span>
             </div>
             <div className="ml-auto flex gap-2">
-              <button className="px-2 py-1 text-[9px] bg-surface border border-border rounded hover:bg-surface/80">⚙️ Config</button>
-              <button className="px-2 py-1 text-[9px] bg-neon-green/20 text-neon-green border border-neon-green/30 rounded">🤖 AI Auto-reply</button>
+              <button className="px-2 py-1 text-[9px] bg-surface border border-border rounded hover:bg-surface/80">⚙️ Configurar</button>
+              <button className="px-2 py-1 text-[9px] bg-neon-green/20 text-neon-green border border-neon-green/30 rounded">🤖 Resposta Automática IA</button>
             </div>
           </div>
         )}
@@ -248,7 +248,7 @@ export function ChannelGatewayApp() {
                 : 'text-text-muted border-transparent hover:text-text hover:bg-surface/50'
             }`}
           >
-            {tab === 'channels' ? '🌐 Canais' : tab === 'messages' ? '💬 Mensagens' : '📊 Analytics'}
+            {tab === 'channels' ? '🌐 Canais' : tab === 'messages' ? '💬 Mensagens' : '📊 Análises'}
           </button>
         ))}
       </div>
@@ -260,7 +260,7 @@ export function ChannelGatewayApp() {
       <div className="px-3 py-1.5 border-t border-border bg-surface/30 flex items-center gap-4 text-[10px] text-text-muted">
         <span>🌐 {channels.filter(c => c.status === 'connected').length} canais ativos</span>
         <span>💬 {channels.reduce((s, c) => s + c.messagesCount, 0)} mensagens</span>
-        <span className="ml-auto">Channel Gateway v0.5.52</span>
+        <span className="ml-auto">Gateway de Canais v0.5.52</span>
       </div>
     </div>
   );

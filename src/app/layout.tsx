@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'AnjosDevOS — AI Operating System',
+  title: 'AnjosDevOS — Sistema Operacional de IA',
   description: 'Sistema Operacional de IA baseado em navegador',
   manifest: '/manifest.json',
   appleWebApp: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: 'AnjosDevOS — AI Operating System',
+    title: 'AnjosDevOS — Sistema Operacional de IA',
     description: 'Sistema Operacional de IA baseado em navegador',
     type: 'website',
   },

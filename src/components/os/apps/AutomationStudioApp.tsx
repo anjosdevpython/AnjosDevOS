@@ -32,27 +32,27 @@ interface Flow {
 }
 
 const TRIGGER_TEMPLATES = [
-  { label: 'Schedule', icon: '⏰', desc: 'Executar em horário definido' },
-  { label: 'Webhook', icon: '🔗', desc: 'Quando receber HTTP request' },
-  { label: 'File Change', icon: '📁', desc: 'Quando arquivo mudar' },
+  { label: 'Agendamento', icon: '⏰', desc: 'Executar em horário definido' },
+  { label: 'Webhook', icon: '🔗', desc: 'Quando receber requisição HTTP' },
+  { label: 'Mudança de Arquivo', icon: '📁', desc: 'Quando arquivo mudar' },
   { label: 'Git Push', icon: '🔀', desc: 'Quando fazer push' },
-  { label: 'PR Created', icon: '📋', desc: 'Quando criar PR' },
-  { label: 'Issue Created', icon: '🐛', desc: 'Quando issue for criada' },
-  { label: 'Chat Command', icon: '💬', desc: 'Comando no chat' },
+  { label: 'PR Criado', icon: '📋', desc: 'Quando PR for criado' },
+  { label: 'Issue Criada', icon: '🐛', desc: 'Quando issue for criada' },
+  { label: 'Comando no Chat', icon: '💬', desc: 'Comando no chat' },
   { label: 'Manual', icon: '▶️', desc: 'Executar manualmente' },
 ];
 
 const ACTION_TEMPLATES = [
-  { label: 'Run Code', icon: '💻', desc: 'Executar código' },
-  { label: 'API Call', icon: '🌐', desc: 'Fazer requisição HTTP' },
-  { label: 'AI Agent', icon: '🤖', desc: 'Chamar agente de IA' },
-  { label: 'Send Email', icon: '📧', desc: 'Enviar email' },
-  { label: 'File Operation', icon: '📂', desc: 'Ler/escrever arquivo' },
+  { label: 'Executar Código', icon: '💻', desc: 'Executar código' },
+  { label: 'Chamada API', icon: '🌐', desc: 'Fazer requisição HTTP' },
+  { label: 'Agente IA', icon: '🤖', desc: 'Chamar agente de IA' },
+  { label: 'Enviar Email', icon: '📧', desc: 'Enviar email' },
+  { label: 'Operação de Arquivo', icon: '📂', desc: 'Ler/escrever arquivo' },
   { label: 'Git Commit', icon: '📝', desc: 'Fazer commit' },
   { label: 'Deploy', icon: '🚀', desc: 'Deploy da aplicação' },
-  { label: 'Database', icon: '🗄️', desc: 'Query no banco' },
-  { label: 'Slack Message', icon: '💬', desc: 'Enviar mensagem Slack' },
-  { label: 'GitHub Action', icon: '⚡', desc: 'Trigger GitHub Action' },
+  { label: 'Banco de Dados', icon: '🗄️', desc: 'Query no banco' },
+  { label: 'Mensagem Slack', icon: '💬', desc: 'Enviar mensagem Slack' },
+  { label: 'GitHub Action', icon: '⚡', desc: 'Acionar GitHub Action' },
 ];
 
 const INITIAL_FLOWS: Flow[] = [
@@ -62,9 +62,9 @@ const INITIAL_FLOWS: Flow[] = [
     nodes: [
       { id: 'n1', type: 'trigger', label: 'Git Push (main)', icon: '🔀', x: 50, y: 150, config: {} },
       { id: 'n2', type: 'condition', label: 'Build OK?', icon: '❓', x: 250, y: 150, config: {} },
-      { id: 'n3', type: 'action', label: 'Run Tests', icon: '🧪', x: 450, y: 100, config: {} },
-      { id: 'n4', type: 'action', label: 'Deploy to Prod', icon: '🚀', x: 450, y: 200, config: {} },
-      { id: 'n5', type: 'output', label: 'Notify Team', icon: '📢', x: 650, y: 150, config: {} },
+      { id: 'n3', type: 'action', label: 'Rodar Testes', icon: '🧪', x: 450, y: 100, config: {} },
+      { id: 'n4', type: 'action', label: 'Deploy em Produção', icon: '🚀', x: 450, y: 200, config: {} },
+      { id: 'n5', type: 'output', label: 'Notificar Time', icon: '📢', x: 650, y: 150, config: {} },
     ],
     connections: [
       { id: 'c1', from: 'n1', to: 'n2', fromPort: 'out', toPort: 'in' },
@@ -74,13 +74,13 @@ const INITIAL_FLOWS: Flow[] = [
     ],
   },
   {
-    id: 'f2', name: 'Daily Report', description: 'Gerar relatório diário com IA',
+    id: 'f2', name: 'Relatório Diário', description: 'Gerar relatório diário com IA',
     active: true, runs: 30, lastRun: '2026-08-28 08:00',
     nodes: [
       { id: 'n1', type: 'trigger', label: 'Schedule (8:00)', icon: '⏰', x: 50, y: 150, config: {} },
-      { id: 'n2', type: 'action', label: 'Collect Metrics', icon: '📊', x: 250, y: 150, config: {} },
-      { id: 'n3', type: 'action', label: 'AI Analysis', icon: '🤖', x: 450, y: 150, config: {} },
-      { id: 'n4', type: 'output', label: 'Send Report', icon: '📧', x: 650, y: 150, config: {} },
+      { id: 'n2', type: 'action', label: 'Coletar Métricas', icon: '📊', x: 250, y: 150, config: {} },
+      { id: 'n3', type: 'action', label: 'Análise com IA', icon: '🤖', x: 450, y: 150, config: {} },
+      { id: 'n4', type: 'output', label: 'Enviar Relatório', icon: '📧', x: 650, y: 150, config: {} },
     ],
     connections: [
       { id: 'c1', from: 'n1', to: 'n2', fromPort: 'out', toPort: 'in' },
@@ -89,12 +89,12 @@ const INITIAL_FLOWS: Flow[] = [
     ],
   },
   {
-    id: 'f3', name: 'PR Review Bot', description: 'Review automático de PRs com IA',
+    id: 'f3', name: 'Bot de Revisão de PR', description: 'Revisão automática de PRs com IA',
     active: false, runs: 12, lastRun: '2026-08-25 16:45',
     nodes: [
       { id: 'n1', type: 'trigger', label: 'PR Created', icon: '📋', x: 50, y: 150, config: {} },
-      { id: 'n2', type: 'action', label: 'AI Code Review', icon: '🤖', x: 250, y: 150, config: {} },
-      { id: 'n3', type: 'output', label: 'Post Comments', icon: '💬', x: 450, y: 150, config: {} },
+      { id: 'n2', type: 'action', label: 'Revisão de Código IA', icon: '🤖', x: 250, y: 150, config: {} },
+      { id: 'n3', type: 'output', label: 'Postar Comentários', icon: '💬', x: 450, y: 150, config: {} },
     ],
     connections: [
       { id: 'c1', from: 'n1', to: 'n2', fromPort: 'out', toPort: 'in' },

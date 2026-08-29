@@ -19,7 +19,7 @@ const VIEWPORT_ICONS: Record<ViewportSize, string> = {
 };
 
 export function BrowserWorkbenchApp() {
-  const [workspace, setWorkspace] = useState<BrowserWorkspace>(() => createBrowserWorkspace('My Workspace'));
+  const [workspace, setWorkspace] = useState<BrowserWorkspace>(() => createBrowserWorkspace('Meu Espaço de Trabalho'));
   const [activeTabId, setActiveTabId] = useState<string>(workspace.tabs[0]?.id || '');
   const [urlInput, setUrlInput] = useState('https://');
   const [showReport, setShowReport] = useState(false);
@@ -149,10 +149,10 @@ export function BrowserWorkbenchApp() {
               onChange={e => setUrlInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleNavigate()}
               className="flex-1 bg-white/10 rounded px-3 py-1 text-sm border border-white/20 focus:border-green-500 outline-none"
-              placeholder="Enter URL..."
+              placeholder="Digite a URL..."
             />
-            <button onClick={handleNavigate} className="px-3 py-1 bg-blue-600 rounded text-sm hover:bg-blue-700">Go</button>
-            <button onClick={takeScreenshot} className="px-3 py-1 bg-purple-600 rounded text-sm hover:bg-purple-700">📸 Screenshot</button>
+            <button onClick={handleNavigate} className="px-3 py-1 bg-blue-600 rounded text-sm hover:bg-blue-700">Ir</button>
+            <button onClick={takeScreenshot} className="px-3 py-1 bg-purple-600 rounded text-sm hover:bg-purple-700">📸 Captura</button>
           </div>
 
           {/* Browser Content */}
@@ -165,21 +165,21 @@ export function BrowserWorkbenchApp() {
                   <div className="text-lg font-bold mb-2">{activeTab.title}</div>
                   <div className="text-white/60 text-sm mb-4">{activeTab.url}</div>
                   {activeTab.isLoading && (
-                    <div className="text-blue-400 text-sm">Loading...</div>
+                    <div className="text-blue-400 text-sm">Carregando...</div>
                   )}
                   <div className="text-white/40 text-xs mt-4">
                     Viewport: {VIEWPORT_ICONS[activeTab.viewport]} {activeTab.viewport}
                   </div>
                 </div>
               ) : (
-                <div className="text-white/40">No active tab</div>
+                <div className="text-white/40">Nenhuma aba ativa</div>
               )}
             </div>
 
             {/* Right Panel - Screenshots */}
             {activeTab && activeTab.screenshots.length > 0 && (
               <div className="w-48 bg-black/20 border-l border-white/10 p-2 overflow-y-auto">
-                <div className="text-xs font-bold mb-2 text-white/60">Screenshots</div>
+                <div className="text-xs font-bold mb-2 text-white/60">Capturas</div>
                 {activeTab.screenshots.map(ss => (
                   <div key={ss.id} className="mb-2 p-2 bg-white/5 rounded text-xs">
                     <div>{VIEWPORT_ICONS[ss.viewport]} {ss.viewport}</div>
@@ -194,34 +194,34 @@ export function BrowserWorkbenchApp() {
 
       {view === 'diagnostics' && (
         <div className="flex-1 p-4 overflow-y-auto">
-          <h3 className="font-bold mb-4">Diagnostics</h3>
+          <h3 className="font-bold mb-4">Diagnósticos</h3>
           <div className="grid grid-cols-2 gap-4">
             <div className="bg-white/5 p-4 rounded">
               <div className="text-sm font-bold mb-2">Console</div>
-              <div className="text-2xl text-green-400">0 errors</div>
-              <div className="text-sm text-white/60">0 warnings</div>
+              <div className="text-2xl text-green-400">0 erros</div>
+              <div className="text-sm text-white/60">0 avisos</div>
             </div>
             <div className="bg-white/5 p-4 rounded">
-              <div className="text-sm font-bold mb-2">Network</div>
-              <div className="text-2xl text-green-400">0 failed</div>
-              <div className="text-sm text-white/60">0 slow requests</div>
+              <div className="text-sm font-bold mb-2">Rede</div>
+              <div className="text-2xl text-green-400">0 falhas</div>
+              <div className="text-sm text-white/60">0 requisições lentas</div>
             </div>
             <div className="bg-white/5 p-4 rounded">
               <div className="text-sm font-bold mb-2">Performance</div>
-              <div className="text-2xl text-green-400">Good</div>
-              <div className="text-sm text-white/60">No issues detected</div>
+              <div className="text-2xl text-green-400">Boa</div>
+              <div className="text-sm text-white/60">Nenhum problema detectado</div>
             </div>
             <div className="bg-white/5 p-4 rounded">
-              <div className="text-sm font-bold mb-2">Screenshots</div>
+              <div className="text-sm font-bold mb-2">Capturas</div>
               <div className="text-2xl text-blue-400">{activeTab?.screenshots.length || 0}</div>
-              <div className="text-sm text-white/60">Captured</div>
+              <div className="text-sm text-white/60">Capturadas</div>
             </div>
           </div>
           <button
             onClick={() => setShowReport(!showReport)}
             className="mt-4 px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
           >
-            {showReport ? 'Hide Report' : 'Generate Report'}
+            {showReport ? 'Ocultar Relatório' : 'Gerar Relatório'}
           </button>
           {showReport && (
             <pre className="mt-4 p-4 bg-black/30 rounded text-xs overflow-auto max-h-64">
@@ -233,7 +233,7 @@ export function BrowserWorkbenchApp() {
 
       {view === 'profiles' && (
         <div className="flex-1 p-4 overflow-y-auto">
-          <h3 className="font-bold mb-4">Browser Profiles</h3>
+          <h3 className="font-bold mb-4">Perfis do Navegador</h3>
           <div className="grid grid-cols-2 gap-3">
             {BROWSER_PROFILES.map(profile => (
               <div
@@ -255,8 +255,8 @@ export function BrowserWorkbenchApp() {
                 <div className="text-sm text-white/60">{profile.description}</div>
                 <div className="flex gap-2 mt-2 text-xs">
                   {profile.enableConsoleCapture && <span className="bg-blue-500/20 px-2 py-0.5 rounded">Console</span>}
-                  {profile.enableNetworkCapture && <span className="bg-purple-500/20 px-2 py-0.5 rounded">Network</span>}
-                  {profile.autoScreenshot && <span className="bg-green-500/20 px-2 py-0.5 rounded">Screenshots</span>}
+                  {profile.enableNetworkCapture && <span className="bg-purple-500/20 px-2 py-0.5 rounded">Rede</span>}
+                  {profile.autoScreenshot && <span className="bg-green-500/20 px-2 py-0.5 rounded">Capturas</span>}
                 </div>
               </div>
             ))}
