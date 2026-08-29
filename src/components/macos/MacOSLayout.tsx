@@ -12,7 +12,12 @@ import { MacOSAppIcon } from './MacOSAppIcons';
 import { APP_DEFINITIONS, type AppDefinition, type WindowState } from '@/components/os/types';
 import { getAppContent } from '@/components/os/AppRegistry';
 
-export function MacOSLayout() {
+interface MacOSLayoutProps {
+  uiMode?: 'macos' | 'cyber' | 'mobile';
+  onChangeUiMode?: (mode: 'macos' | 'cyber' | 'mobile') => void;
+}
+
+export function MacOSLayout({ uiMode = 'macos', onChangeUiMode = () => {} }: MacOSLayoutProps) {
   const { windows, activeWindowId, focusWindow, closeWindow, minimizeWindow, toggleMaximize, openApp } = useOS();
   const [isSpotlightOpen, setIsSpotlightOpen] = useState(false);
   const [isControlCenterOpen, setIsControlCenterOpen] = useState(false);
@@ -39,23 +44,29 @@ export function MacOSLayout() {
       onClick={() => setSelectedDesktopId(null)}
       className="fixed inset-0 overflow-hidden select-none font-sans bg-[#050711]"
     >
-      {/* macOS Sonoma / Sequoia Dynamic Gradient Wallpaper */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0c1427] via-[#070b16] to-[#04060d]" />
-        <div className="absolute -top-[10%] -left-[10%] w-[800px] h-[800px] rounded-full bg-gradient-to-br from-blue-600/30 via-indigo-600/20 to-transparent blur-[140px]" />
-        <div className="absolute top-[30%] -right-[10%] w-[700px] h-[700px] rounded-full bg-gradient-to-bl from-purple-600/25 via-pink-600/15 to-transparent blur-[150px]" />
-        <div className="absolute -bottom-[20%] left-[20%] w-[900px] h-[900px] rounded-full bg-gradient-to-tr from-cyan-600/25 via-teal-600/15 to-transparent blur-[160px]" />
+      {/* Authentic macOS Sonoma / Sequoia Dynamic Wallpaper */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Base dark canvas */}
+        <div className="absolute inset-0 bg-[#060913]" />
+
+        {/* Sonoma Graphic Waves with Blur Filters */}
+        <div className="absolute -top-[20%] -left-[15%] w-[850px] h-[850px] rounded-full bg-gradient-to-br from-[#1d4ed8]/35 via-[#3b82f6]/20 to-transparent blur-[130px]" />
+        <div className="absolute top-[15%] -right-[15%] w-[750px] h-[750px] rounded-full bg-gradient-to-bl from-[#7c3aed]/30 via-[#a855f7]/20 to-transparent blur-[140px]" />
+        <div className="absolute -bottom-[25%] left-[25%] w-[950px] h-[950px] rounded-full bg-gradient-to-tr from-[#0284c7]/30 via-[#06b6d4]/15 to-transparent blur-[150px]" />
+        <div className="absolute bottom-[10%] -left-[10%] w-[500px] h-[500px] rounded-full bg-gradient-to-tr from-[#ea580c]/15 via-transparent to-transparent blur-[120px]" />
       </div>
 
-      {/* Top Apple Menu Bar */}
+      {/* Top Apple Menu Bar (No collisions) */}
       <MacOSMenuBar
         onOpenSpotlight={() => setIsSpotlightOpen(true)}
         onToggleControlCenter={() => setIsControlCenterOpen((prev) => !prev)}
         onOpenLaunchpad={() => setIsLaunchpadOpen(true)}
+        uiMode={uiMode}
+        onChangeUiMode={onChangeUiMode}
       />
 
-      {/* Desktop Pinned Files / Shortcuts (Top Right Column - classic macOS style) */}
-      <div className="absolute top-12 right-6 flex flex-col gap-5 z-0">
+      {/* Desktop Shortcuts (Compact Apple Grid Top Right) */}
+      <div className="absolute top-10 right-4 flex flex-col gap-3 z-0 max-h-[calc(100vh-120px)] flex-wrap">
         {desktopPinnedApps.map((app: AppDefinition) => {
           const isSelected = selectedDesktopId === app.id;
           return (
@@ -69,17 +80,17 @@ export function MacOSLayout() {
                 e.stopPropagation();
                 openApp(app.id);
               }}
-              className="flex flex-col items-center gap-1.5 p-2 rounded-xl cursor-pointer group transition-all"
+              className="flex flex-col items-center gap-1 p-1.5 rounded-xl cursor-pointer group transition-all w-[76px]"
             >
               <div
                 className={`p-1 rounded-2xl transition-all ${
                   isSelected ? 'bg-blue-600/30 ring-2 ring-blue-400' : 'group-hover:scale-105'
                 }`}
               >
-                <MacOSAppIcon appId={app.id} size={50} />
+                <MacOSAppIcon appId={app.id} size={44} />
               </div>
               <span
-                className={`text-[11px] font-medium text-center px-1.5 py-0.5 rounded-md truncate max-w-[85px] drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] ${
+                className={`text-[10px] font-sans font-medium text-center px-1.5 py-0.5 rounded truncate w-full drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] ${
                   isSelected ? 'bg-blue-600 text-white' : 'text-white/90'
                 }`}
               >

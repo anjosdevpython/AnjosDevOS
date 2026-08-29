@@ -5,12 +5,15 @@ import {
   Wifi,
   Search,
   Sliders,
-  Sparkles,
   Battery,
   Layers,
   Power,
   RotateCcw,
   Info,
+  Monitor,
+  Smartphone,
+  Check,
+  ChevronDown,
 } from 'lucide-react';
 import { useOS } from '@/components/os/OSContext';
 import { APP_DEFINITIONS, type AppDefinition, type WindowState } from '@/components/os/types';
@@ -20,12 +23,16 @@ interface MacOSMenuBarProps {
   onOpenSpotlight: () => void;
   onToggleControlCenter: () => void;
   onOpenLaunchpad: () => void;
+  uiMode: 'macos' | 'cyber' | 'mobile';
+  onChangeUiMode: (mode: 'macos' | 'cyber' | 'mobile') => void;
 }
 
 export function MacOSMenuBar({
   onOpenSpotlight,
   onToggleControlCenter,
   onOpenLaunchpad,
+  uiMode,
+  onChangeUiMode,
 }: MacOSMenuBarProps) {
   const { openApp, windows, activeWindowId } = useOS();
   const [timeStr, setTimeStr] = useState('');
@@ -35,7 +42,7 @@ export function MacOSMenuBar({
 
   const activeWindow = windows.find((w: WindowState) => w.id === activeWindowId);
   const activeAppDef = activeWindow ? APP_DEFINITIONS.find((a: AppDefinition) => a.id === activeWindow.appId) : null;
-  const currentAppName = activeAppDef?.title || 'AnjosDevOS';
+  const currentAppName = activeAppDef?.title || 'Finder';
 
   useEffect(() => {
     const updateTime = () => {
@@ -61,10 +68,10 @@ export function MacOSMenuBar({
   return (
     <div
       ref={menuRef}
-      className="fixed top-0 left-0 right-0 h-[28px] bg-black/40 backdrop-blur-2xl border-b border-white/10 text-slate-100 text-[13px] flex items-center justify-between px-3 z-[99990] select-none font-sans shadow-sm"
+      className="fixed top-0 left-0 right-0 h-[28px] bg-[#12151e]/75 backdrop-blur-3xl border-b border-white/10 text-slate-100 text-[13px] flex items-center justify-between px-3 z-[99990] select-none font-sans shadow-sm"
     >
       {/* Left Menu Items */}
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-0.5">
         {/* Apple Logo Dropdown */}
         <div className="relative">
           <button
@@ -80,7 +87,7 @@ export function MacOSMenuBar({
           </button>
 
           {openDropdown === 'apple' && (
-            <div className="absolute top-full left-0 mt-1 w-56 bg-[#181c27]/90 backdrop-blur-2xl border border-white/15 rounded-xl shadow-2xl p-1.5 space-y-0.5 z-[99999] animate-slide-in">
+            <div className="absolute top-full left-0 mt-1 w-60 bg-[#161a25]/95 backdrop-blur-3xl border border-white/15 rounded-xl shadow-2xl p-1.5 space-y-0.5 z-[99999] animate-slide-in">
               <button
                 onClick={() => {
                   openApp('about');
@@ -102,22 +109,12 @@ export function MacOSMenuBar({
               </button>
               <button
                 onClick={() => {
-                  openApp('warmwind');
-                  setOpenDropdown(null);
-                }}
-                className="w-full text-left px-3 py-1.5 rounded-lg text-xs hover:bg-blue-600 hover:text-white flex items-center gap-2 transition-colors"
-              >
-                <Sparkles className="w-3.5 h-3.5" /> App Store & IA Employees
-              </button>
-              <div className="h-px bg-white/10 my-1" />
-              <button
-                onClick={() => {
                   onOpenLaunchpad();
                   setOpenDropdown(null);
                 }}
                 className="w-full text-left px-3 py-1.5 rounded-lg text-xs hover:bg-blue-600 hover:text-white flex items-center gap-2 transition-colors"
               >
-                <Layers className="w-3.5 h-3.5" /> Abrir Launchpad
+                <Layers className="w-3.5 h-3.5" /> Launchpad
               </button>
               <div className="h-px bg-white/10 my-1" />
               <button
@@ -136,10 +133,12 @@ export function MacOSMenuBar({
           )}
         </div>
 
+        {/* Current Active App Name */}
         <span className="font-bold text-xs px-2 py-0.5 rounded hover:bg-white/10 cursor-default">
           {currentAppName}
         </span>
 
+        {/* Menu Bar Headers */}
         {['Arquivo', 'Editar', 'Visualizar', 'Janela', 'Ajuda'].map((menu) => (
           <button
             key={menu}
@@ -155,16 +154,72 @@ export function MacOSMenuBar({
       </div>
 
       {/* Right Status Items */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1.5">
+        {/* Switch Skin / UI Mode Dropdown (Integrated into macOS MenuBar) */}
+        <div className="relative">
+          <button
+            onClick={() => setOpenDropdown(openDropdown === 'skin' ? null : 'skin')}
+            className={cn(
+              'flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium transition-colors',
+              openDropdown === 'skin' ? 'bg-white/20' : 'hover:bg-white/10 text-slate-300'
+            )}
+            title="Alternar Tema / Interface"
+          >
+            <span>macOS</span>
+            <ChevronDown className="w-3 h-3 text-slate-400" />
+          </button>
+
+          {openDropdown === 'skin' && (
+            <div className="absolute top-full right-0 mt-1 w-44 bg-[#161a25]/95 backdrop-blur-3xl border border-white/15 rounded-xl shadow-2xl p-1.5 space-y-0.5 z-[99999] animate-slide-in">
+              <div className="px-2 py-1 text-[10px] text-slate-500 font-mono uppercase tracking-wider">
+                Interface do OS
+              </div>
+              <button
+                onClick={() => {
+                  onChangeUiMode('macos');
+                  setOpenDropdown(null);
+                }}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs hover:bg-blue-600 hover:text-white flex items-center justify-between transition-colors text-white font-medium"
+              >
+                <span>🍎 macOS Sonoma</span>
+                <Check className="w-3.5 h-3.5 text-blue-400" />
+              </button>
+              <button
+                onClick={() => {
+                  onChangeUiMode('cyber');
+                  setOpenDropdown(null);
+                }}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs hover:bg-blue-600 hover:text-white flex items-center justify-between transition-colors text-slate-300"
+              >
+                <span>⚡ CyberOS</span>
+              </button>
+              <button
+                onClick={() => {
+                  onChangeUiMode('mobile');
+                  setOpenDropdown(null);
+                }}
+                className="w-full text-left px-2.5 py-1.5 rounded-lg text-xs hover:bg-blue-600 hover:text-white flex items-center justify-between transition-colors text-slate-300"
+              >
+                <span>📱 Mobile Mode</span>
+              </button>
+            </div>
+          )}
+        </div>
+
+        <div className="w-px h-3.5 bg-white/15 mx-0.5" />
+
+        {/* Battery */}
         <div className="flex items-center gap-1 px-1.5 py-0.5 rounded hover:bg-white/10 cursor-default text-xs">
           <Battery className="w-3.5 h-3.5 text-emerald-400" />
           <span className="text-[11px] text-slate-300 hidden md:inline">100%</span>
         </div>
 
+        {/* Wi-Fi */}
         <div className="p-1 rounded hover:bg-white/10 cursor-pointer" title="Wi-Fi: Conectado">
           <Wifi className="w-3.5 h-3.5 text-slate-200" />
         </div>
 
+        {/* Spotlight Search (Magnifying Glass) */}
         <button
           onClick={onOpenSpotlight}
           className="p-1 rounded hover:bg-white/10 cursor-pointer transition-colors"
@@ -173,6 +228,7 @@ export function MacOSMenuBar({
           <Search className="w-3.5 h-3.5 text-slate-200" />
         </button>
 
+        {/* Siri / AI Orb */}
         <button
           onClick={() => openApp('chat')}
           className="p-1 rounded hover:bg-white/10 cursor-pointer transition-colors group"
@@ -181,6 +237,7 @@ export function MacOSMenuBar({
           <div className="w-3.5 h-3.5 rounded-full bg-gradient-to-tr from-cyan-400 via-fuchsia-500 to-amber-300 group-hover:scale-110 transition-transform" />
         </button>
 
+        {/* Control Center Toggle */}
         <button
           onClick={onToggleControlCenter}
           className="p-1 rounded hover:bg-white/10 cursor-pointer transition-colors"
@@ -189,6 +246,7 @@ export function MacOSMenuBar({
           <Sliders className="w-3.5 h-3.5 text-slate-200" />
         </button>
 
+        {/* Clock & Date */}
         <button className="px-2 py-0.5 rounded hover:bg-white/10 text-xs font-mono font-medium text-slate-200 flex items-center gap-1.5">
           <span className="text-slate-400 hidden lg:inline">{dateStr}</span>
           <span>{timeStr}</span>
