@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks, Globe, FileText, Workflow, Users, Brain, Radio, Zap, Network } from 'lucide-react';
+import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks, Globe, FileText, Workflow, Users, Brain, Radio, Zap, Network, Bot } from 'lucide-react';
 import { AppErrorBoundary } from './AppErrorBoundary';
 
 // Direct imports for frequently used apps
@@ -26,6 +26,7 @@ const MemorySystemApp = dynamic(() => import('./apps/MemorySystemApp').then(m =>
 const ChannelGatewayApp = dynamic(() => import('./apps/ChannelGatewayApp').then(m => ({ default: m.ChannelGatewayApp })), { ssr: false });
 const FreebuffApp = dynamic(() => import('./apps/FreebuffApp').then(m => ({ default: m.FreebuffApp })), { ssr: false });
 const AgentOrchestratorApp = dynamic(() => import('./apps/AgentOrchestratorApp').then(m => ({ default: m.AgentOrchestratorApp })), { ssr: false });
+const WarmwindApp = dynamic(() => import('./apps/WarmwindApp').then(m => ({ default: m.WarmwindApp })), { ssr: false });
 
 // Dynamic page imports
 const ImagesApp = dynamic(() => import('@/app/images/page'), { ssr: false });
@@ -64,6 +65,7 @@ export const ICON_COMPONENTS: Record<string, ReactNode> = {
   Radio: <Radio className="w-4 h-4" />,
   Zap: <Zap className="w-4 h-4" />,
   Network: <Network className="w-4 h-4" />,
+  Bot: <Bot className="w-4 h-4" />,
 };
 
 function wrapInBoundary(app: ReactNode, name: string): ReactNode {
@@ -127,6 +129,8 @@ export function getAppContent(appId: string): ReactNode {
       return wrapInBoundary(<FreebuffApp />, 'Freebuff');
     case 'orchestrator':
       return wrapInBoundary(<AgentOrchestratorApp />, 'Orquestrador');
+    case 'warmwind':
+      return wrapInBoundary(<WarmwindApp />, 'Funcionários IA');
     case 'about':
       return wrapInBoundary(<AboutApp />, 'Sobre');
     default:

@@ -55,6 +55,7 @@ export const APP_DEFINITIONS: AppDefinition[] = [
   { id: 'channel-gateway', title: 'Canais', iconName: 'Radio', color: 'neon-green', defaultWidth: 1100, defaultHeight: 700, minWidth: 600, minHeight: 450, desktopIcon: true, category: 'tools' },
   { id: 'freebuff', title: 'Freebuff', iconName: 'Zap', color: 'neon-green', defaultWidth: 1100, defaultHeight: 700, minWidth: 600, minHeight: 450, desktopIcon: true, category: 'ai' },
   { id: 'orchestrator', title: 'Orquestrador', iconName: 'Network', color: 'neon-purple', defaultWidth: 1200, defaultHeight: 800, minWidth: 700, minHeight: 500, desktopIcon: true, category: 'system' },
+  { id: 'warmwind', title: 'Funcionários IA', iconName: 'Bot', color: 'neon-cyan', defaultWidth: 1200, defaultHeight: 800, minWidth: 700, minHeight: 500, desktopIcon: true, category: 'ai' },
   { id: 'settings', title: 'Configurações', iconName: 'Settings', color: 'text-secondary', defaultWidth: 550, defaultHeight: 500, minWidth: 400, minHeight: 350, desktopIcon: false, category: 'system' },
   { id: 'about', title: 'Sobre o Sistema', iconName: 'Info', color: 'neon-blue', defaultWidth: 450, defaultHeight: 350, minWidth: 350, minHeight: 250, desktopIcon: false, category: 'system' },
 ];

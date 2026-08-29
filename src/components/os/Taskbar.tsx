@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Zap, Wifi, Battery, MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks, Globe, FileText, Workflow, Users, Brain, Radio, Network } from 'lucide-react';
+import { Zap, Wifi, Battery, MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks, Globe, FileText, Workflow, Users, Brain, Radio, Network, Bot } from 'lucide-react';
 import { useOS } from './OSContext';
 import { APP_DEFINITIONS } from './types';
 import { cn } from '@/lib/utils';
@@ -33,6 +33,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Radio: <Radio className="w-4 h-4" />,
   Zap: <Zap className="w-4 h-4" />,
   Network: <Network className="w-4 h-4" />,
+  Bot: <Bot className="w-4 h-4" />,
 };
 
 export function Taskbar() {
