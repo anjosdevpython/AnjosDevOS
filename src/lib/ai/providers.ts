@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Multi-Provider AI System
  * Supports: OpenAI, Anthropic, Google, DeepSeek, xAI, Mistral, Groq, Together, OpenRouter, Cohere, NetworkTools, and Custom providers
  */
@@ -14,6 +14,7 @@ export type ProviderId =
   | 'together'
   | 'openrouter'
   | 'cohere'
+  | 'aimlapi'
   | 'networktools'
   | 'custom';
 
@@ -256,6 +257,34 @@ export const PROVIDERS: Record<ProviderId, ProviderConfig> = {
       { id: 'command-r-plus-08-2024', name: 'Command R+', category: 'chat', maxTokens: 128000, supportsStreaming: true, description: 'Especialista em RAG e tool use avançado' },
       { id: 'command-r-08-2024', name: 'Command R', category: 'chat', maxTokens: 128000, supportsStreaming: true },
       { id: 'command-light', name: 'Command Light', category: 'chat', maxTokens: 4096, supportsStreaming: true },
+    ],
+  },
+
+  aimlapi: {
+    id: 'aimlapi',
+    name: 'AIML API',
+    icon: '⚡',
+    color: '#8b5cf6',
+    baseUrl: 'https://api.aimlapi.com/v1',
+    apiKeyEnv: 'AIMLAPI_API_KEY',
+    apiKeyPlaceholder: '4d551bf6...',
+    supportsStreaming: true,
+    supportsImages: true,
+    maxTokens: 128000,
+    apiFormat: 'openai',
+    models: [
+      { id: 'openai/gpt-5-5', name: 'GPT-5.5 (AIML)', category: 'chat', maxTokens: 128000, supportsStreaming: true, description: 'Próxima geração OpenAI via AIML API' },
+      { id: 'openai/gpt-4o', name: 'GPT-4o (AIML)', category: 'chat', maxTokens: 128000, supportsStreaming: true },
+      { id: 'openai/o3-mini', name: 'o3-mini (AIML)', category: 'chat', maxTokens: 128000, supportsStreaming: true },
+      { id: 'anthropic/claude-3-5-sonnet', name: 'Claude 3.5 Sonnet (AIML)', category: 'chat', maxTokens: 200000, supportsStreaming: true },
+      { id: 'anthropic/claude-3-7-sonnet', name: 'Claude 3.7 Sonnet (AIML)', category: 'chat', maxTokens: 200000, supportsStreaming: true },
+      { id: 'deepseek/deepseek-r1', name: 'DeepSeek R1 (AIML)', category: 'chat', maxTokens: 128000, supportsStreaming: true },
+      { id: 'deepseek/deepseek-chat', name: 'DeepSeek V3 (AIML)', category: 'chat', maxTokens: 128000, supportsStreaming: true },
+      { id: 'meta-llama/llama-3.3-70b-instruct', name: 'Llama 3.3 70B (AIML)', category: 'chat', maxTokens: 128000, supportsStreaming: true },
+      { id: 'google/gemini-2.0-flash-exp', name: 'Gemini 2.0 Flash (AIML)', category: 'chat', maxTokens: 1000000, supportsStreaming: true },
+      { id: 'x-ai/grok-2-1212', name: 'Grok 2 (AIML)', category: 'chat', maxTokens: 128000, supportsStreaming: true },
+      { id: 'mistralai/mistral-large-2407', name: 'Mistral Large (AIML)', category: 'chat', maxTokens: 128000, supportsStreaming: true },
+      { id: 'qwen/qwen-2.5-72b-instruct', name: 'Qwen 2.5 72B (AIML)', category: 'chat', maxTokens: 128000, supportsStreaming: true },
     ],
   },
 

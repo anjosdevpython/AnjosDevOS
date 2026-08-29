@@ -1,10 +1,10 @@
-﻿import { describe, it, expect } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { PROVIDERS, getAllModels, getModelsByCategory } from '@/lib/ai/providers';
 import { SKILL_DEFINITIONS } from '@/lib/tools/skills-executor';
 import { DevToolRunner } from '@/lib/tools/devtool-runner';
 
 describe('AI Providers Registry (v1.2)', () => {
-  it('should include all 11 providers including OpenRouter and Cohere', () => {
+  it('should include all 12 providers including AIML API, OpenRouter and Cohere', () => {
     const providerIds = Object.keys(PROVIDERS);
     expect(providerIds).toContain('openai');
     expect(providerIds).toContain('anthropic');
@@ -16,13 +16,15 @@ describe('AI Providers Registry (v1.2)', () => {
     expect(providerIds).toContain('together');
     expect(providerIds).toContain('openrouter');
     expect(providerIds).toContain('cohere');
+    expect(providerIds).toContain('aimlapi');
     expect(providerIds).toContain('networktools');
   });
 
-  it('should have updated model versions across providers', () => {
+  it('should have updated model versions across providers including AIML API', () => {
     const models = getAllModels();
     const modelIds = models.map((m) => m.id);
 
+    expect(modelIds).toContain('openai/gpt-5-5');
     expect(modelIds).toContain('claude-opus-4-20250514');
     expect(modelIds).toContain('grok-4-0709');
     expect(modelIds).toContain('deepseek-coder-v2');

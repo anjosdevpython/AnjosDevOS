@@ -17,6 +17,7 @@ export class SecurityVault {
     together: process.env.TOGETHER_API_KEY,
     openrouter: process.env.OPENROUTER_API_KEY,
     cohere: process.env.COHERE_API_KEY,
+    aimlapi: process.env.AIMLAPI_API_KEY || '4d551bf61623df07ae345d23afb78f44',
     custom: process.env.CUSTOM_API_KEY,
   };
 

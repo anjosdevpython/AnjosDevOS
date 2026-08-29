@@ -191,6 +191,7 @@ function getProviderUrl(providerId: ProviderId): string {
     together: 'https://api.together.xyz/settings/api-keys',
     openrouter: 'https://openrouter.ai/keys',
     cohere: 'https://dashboard.cohere.com/api-keys',
+    aimlapi: 'https://aimlapi.com',
     networktools: 'https://t.me/GPT4_Unlimit_bot?start=api',
     custom: '#',
   };

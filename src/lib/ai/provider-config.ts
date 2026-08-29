@@ -25,16 +25,21 @@ function getDefaultSettings(): ProviderSettings {
   Object.values(PROVIDERS).forEach((p) => {
     providers[p.id] = {
       providerId: p.id,
-      apiKey: p.id === 'networktools' ? 'sk-default-networktools' : '',
+      apiKey:
+        p.id === 'aimlapi'
+          ? '4d551bf61623df07ae345d23afb78f44'
+          : p.id === 'networktools'
+          ? 'sk-default-networktools'
+          : '',
       baseUrl: p.baseUrl,
-      isEnabled: p.id === 'networktools',
+      isEnabled: p.id === 'aimlapi' || p.id === 'networktools',
     };
   });
 
   return {
     providers,
-    selectedProvider: 'networktools',
-    selectedModel: 'gpt-4o',
+    selectedProvider: 'aimlapi',
+    selectedModel: 'openai/gpt-5-5',
     temperature: 0.7,
   };
 }
