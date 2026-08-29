@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks } from 'lucide-react';
+import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks, Globe, FileText, Workflow, Users, Brain, Radio } from 'lucide-react';
 
 // Import existing page components as app contents
 import { ChatInterface } from '@/components/features/chat/ChatInterface';
@@ -14,6 +14,12 @@ import { DSHApp } from './apps/DSHApp';
 import { OpenHandsApp } from './apps/OpenHandsApp';
 import { TheiaApp } from './apps/TheiaApp';
 import { DevToolsHubApp } from './apps/DevToolsHubApp';
+import { BrowserWorkbenchApp } from './apps/BrowserWorkbenchApp';
+import { EverythingWorkbenchApp } from './apps/EverythingWorkbenchApp';
+import { AutomationStudioApp } from './apps/AutomationStudioApp';
+import { AgentTeamsApp } from './apps/AgentTeamsApp';
+import { MemorySystemApp } from './apps/MemorySystemApp';
+import { ChannelGatewayApp } from './apps/ChannelGatewayApp';
 
 // Lazy-load heavy page components to avoid importing all at once
 import dynamic from 'next/dynamic';
@@ -45,6 +51,12 @@ export const ICON_COMPONENTS: Record<string, ReactNode> = {
   Hand: <Hand className="w-4 h-4" />,
   Diamond: <Diamond className="w-4 h-4" />,
   Blocks: <Blocks className="w-4 h-4" />,
+  Globe: <Globe className="w-4 h-4" />,
+  FileText: <FileText className="w-4 h-4" />,
+  Workflow: <Workflow className="w-4 h-4" />,
+  Users: <Users className="w-4 h-4" />,
+  Brain: <Brain className="w-4 h-4" />,
+  Radio: <Radio className="w-4 h-4" />,
 };
 
 export function getAppContent(appId: string): ReactNode {
@@ -87,6 +99,18 @@ export function getAppContent(appId: string): ReactNode {
       return <ToolsApp />;
     case 'fileexplorer':
       return <FileExplorerApp />;
+    case 'browser-workbench':
+      return <BrowserWorkbenchApp />;
+    case 'everything-workbench':
+      return <EverythingWorkbenchApp />;
+    case 'automation-studio':
+      return <AutomationStudioApp />;
+    case 'agent-teams':
+      return <AgentTeamsApp />;
+    case 'memory-system':
+      return <MemorySystemApp />;
+    case 'channel-gateway':
+      return <ChannelGatewayApp />;
     case 'about':
       return <AboutApp />;
     default:
