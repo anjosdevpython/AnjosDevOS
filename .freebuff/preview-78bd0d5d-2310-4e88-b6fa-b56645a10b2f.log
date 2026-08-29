@@ -251,3 +251,10 @@ mpiling / ...
 
  ✓ Starting...
  ✓ Ready in 3.6s
+   ▲ Next.js 15.5.24
+   - Local:        http://localhost:47789
+   - Network:      http://192.168.56.1:47789
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 4.1s
