@@ -558,6 +558,69 @@ export function IOSAppIcon({ appId, size = 60, className = '' }: IOSAppIconProps
     );
   }
 
+  // 21. DASHBOARD (Métricas e Uso) - Apple Activity Bars
+  if (id === 'dashboard') {
+    return (
+      <div
+        className={className}
+        style={{
+          ...baseStyle,
+          background: 'linear-gradient(180deg, #34d399 0%, #059669 60%, #047857 100%)',
+        }}
+      >
+        {GlossOverlay}
+        <svg width={size * 0.62} height={size * 0.62} viewBox="0 0 40 40" fill="none">
+          <rect x="8" y="22" width="6" height="12" rx="2" fill="white" fillOpacity="0.85" />
+          <rect x="17" y="14" width="6" height="20" rx="2" fill="white" />
+          <rect x="26" y="8" width="6" height="26" rx="2" fill="white" />
+          <path d="M7 16L16 9L23 15L33 6" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+    );
+  }
+
+  // 22. AUTOMATION STUDIO (Fluxos e DAGs) - Apple Shortcuts / Workflow
+  if (id === 'automation-studio' || id === 'automation') {
+    return (
+      <div
+        className={className}
+        style={{
+          ...baseStyle,
+          background: 'linear-gradient(180deg, #fb923c 0%, #ea580c 60%, #c2410c 100%)',
+        }}
+      >
+        {GlossOverlay}
+        <svg width={size * 0.65} height={size * 0.65} viewBox="0 0 40 40" fill="none">
+          <circle cx="12" cy="12" r="4" fill="white" />
+          <circle cx="28" cy="12" r="4" fill="white" />
+          <circle cx="20" cy="28" r="4" fill="white" />
+          <path d="M12 16L20 24L28 16" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+    );
+  }
+
+  // 23. MCP SERVERS (Conectores e Extensões) - Apple Plug Connector
+  if (id === 'mcp-servers') {
+    return (
+      <div
+        className={className}
+        style={{
+          ...baseStyle,
+          background: 'linear-gradient(180deg, #a855f7 0%, #7e22ce 60%, #581c87 100%)',
+        }}
+      >
+        {GlossOverlay}
+        <svg width={size * 0.62} height={size * 0.62} viewBox="0 0 40 40" fill="none">
+          <rect x="14" y="6" width="3" height="7" rx="1.5" fill="white" />
+          <rect x="23" y="6" width="3" height="7" rx="1.5" fill="white" />
+          <rect x="11" y="13" width="18" height="12" rx="4" fill="white" />
+          <path d="M20 25V34" stroke="white" strokeWidth="3" strokeLinecap="round" />
+        </svg>
+      </div>
+    );
+  }
+
   // DEFAULT / FALLBACK (Clean Apple Cyan App Tile)
   return (
     <div

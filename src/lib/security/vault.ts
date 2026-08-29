@@ -15,6 +15,8 @@ export class SecurityVault {
     mistral: process.env.MISTRAL_API_KEY,
     groq: process.env.GROQ_API_KEY,
     together: process.env.TOGETHER_API_KEY,
+    openrouter: process.env.OPENROUTER_API_KEY,
+    cohere: process.env.COHERE_API_KEY,
     custom: process.env.CUSTOM_API_KEY,
   };
 

@@ -189,6 +189,8 @@ function getProviderUrl(providerId: ProviderId): string {
     mistral: 'https://console.mistral.ai/api-keys',
     groq: 'https://console.groq.com/keys',
     together: 'https://api.together.xyz/settings/api-keys',
+    openrouter: 'https://openrouter.ai/keys',
+    cohere: 'https://dashboard.cohere.com/api-keys',
     networktools: 'https://t.me/GPT4_Unlimit_bot?start=api',
     custom: '#',
   };

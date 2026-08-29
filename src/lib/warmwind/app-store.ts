@@ -45,8 +45,14 @@ class AppStoreManager {
   private integrations: Map<string, AppIntegration> = new Map();
 
   constructor() {
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('warmwind_connected_apps') : null;
+    const connectedIds: string[] = saved ? JSON.parse(saved) : [];
+
     APP_INTEGRATIONS.forEach(app => {
-      this.integrations.set(app.id, { ...app });
+      this.integrations.set(app.id, {
+        ...app,
+        connected: connectedIds.includes(app.id),
+      });
     });
   }
 
@@ -75,11 +81,19 @@ class AppStoreManager {
     );
   }
 
+  private saveToStorage(): void {
+    if (typeof window !== 'undefined') {
+      const connectedIds = this.getConnected().map(a => a.id);
+      localStorage.setItem('warmwind_connected_apps', JSON.stringify(connectedIds));
+    }
+  }
+
   connect(appId: string): boolean {
     const app = this.integrations.get(appId);
     if (app) {
       app.connected = true;
       this.integrations.set(appId, app);
+      this.saveToStorage();
       return true;
     }
     return false;
@@ -90,6 +104,7 @@ class AppStoreManager {
     if (app) {
       app.connected = false;
       this.integrations.set(appId, app);
+      this.saveToStorage();
       return true;
     }
     return false;
