@@ -1,559 +1,307 @@
 # ⚡ AnjosDevOS
 
-> **AI Operating System** — Um sistema operacional de IA completo para desenvolvedores, com desktop interface, multi-provider AI, ferramentas de desenvolvimento e integrações externas.
+### Sistema Operacional de IA para Desenvolvedores
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript)
-![Tailwind](https://img.shields.io/badge/Tailwind-3.4-38bdf8?logo=tailwindcss)
-![License](https://img.shields.io/badge/License-MIT-green)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6)](https://typescriptlang.org/)
+[![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06B6D4)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/Licença-MIT-green)](LICENSE)
 
----
+> Um sistema operacional completo baseado em navegador com **27 apps**, **9 provedores de IA**, **5 agentes inteligentes**, **20+ integrações**, automação de navegador, modo de ensino e interface iOS.
 
-## 📋 Índice
-
-- [Visão Geral](#-visão-geral)
-- [Funcionalidades](#-funcionalidades)
-- [Arquitetura](#-arquitetura)
-- [Setup](#-setup)
-- [Providers de IA](#-providers-de-ia)
-- [Sistema de Apps](#-sistema-de-apps)
-- [AI Tools & Skills](#-ai-tools--skills)
-- [MCP Integrations](#-mcp-integrations)
-- [Integrações Externas](#-integrações-externas)
-- [Sistema Mobile](#-sistema-mobile)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Guia de Contribuição](#-guia-de-contribuição)
-- [Roadmap](#-roadmap)
-- [Licença](#-licença)
+🔗 **https://github.com/anjosdevpython/AnjosDevOS**
+🌐 **https://allananjos.dev.br**
 
 ---
 
-## 🎯 Visão Geral
-
-AnjosDevOS é uma plataforma web que simula um sistema operacional voltado para desenvolvedores, onde:
-
-- **Apps rodam como janelas** em um desktop interativo
-- **Múltiplos providers de IA** estão integrados (OpenAI, Anthropic, Google, DeepSeek, etc.)
-- **Ferramentas de desenvolvimento** estão disponíveis como apps nativos
-- **Integrações externas** permitem conectar-se a outros sistemas
-- **Funciona em mobile** com layout adaptativo e PWA
-
-### Conceito
+## 📸 Visão Geral
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  🖥️ AnjosDevOS — Desktop Interface                              │
-├─────────────┬───────────────────────┬───────────────────────────┤
-│  File       │   Code Editor         │   AI Tools & Skills       │
-│  Explorer   │   (Monaco Editor)     │   (21+ skills, GSD)       │
-├─────────────┼───────────────────────┼───────────────────────────┤
-│  DevTools   │   Terminal            │   Integrations            │
-│  Hub        │   (xterm.js)          │   (DSH, OpenHands, etc.)  │
-└─────────────┴───────────────────────┴───────────────────────────┘
+│  ⚡ AnjosDevOS — Sistema Operacional de IA                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐          │
+│  │ 💬 Chat  │ │ 🎨 Imagens│ │ 💻 Editor│ │ 📁 Arquivos│          │
+│  │    IA    │ │   IA     │ │  Código  │ │ Explorer │          │
+│  └──────────┘ └──────────┘ └──────────┘ └──────────┘          │
+│                                                                 │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐          │
+│  │ 🧠 Hermes│ │ 🌐 Browser│ │ 👥 Agent │ │ 🤖 Warmwind│          │
+│  │Raciocínio│ │ Automat. │ │  Teams   │ │Funcionári│          │
+│  └──────────┘ └──────────┘ └──────────┘ └──────────┘          │
+│                                                                 │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐          │
+│  │ ⚡ Auto- │ │ 🧩 Dev-  │ │ 🔮 Deep- │ │ ⚡ Freebuff│          │
+│  │  mação   │ │  Tools   │ │  Seek    │ │  Agent   │          │
+│  └──────────┘ └──────────┘ └──────────┘ └──────────┘          │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│ [INICIO] │ 💬 Chat │ 💻 Editor │ 📁 Arquivos │ 12:00 │ 📶🔋   │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🚀 Funcionalidades
-
-### 🖥️ Sistema Operacional
-
-| Componente | Descrição |
-|------------|-----------|
-| **Desktop** | Interface com ícones arrastáveis, fundo animado |
-| **Windows** | Sistema de janelas com mover, redimensionar, minimizar, maximizar |
-| **Taskbar** | Barra de tarefas com apps abertos e relógio |
-| **Start Menu** | Menu iniciar com lista de todos os apps |
-| **Boot Screen** | Tela de inicialização animada |
-
-### 🤖 Apps de IA
-
-| App | Descrição | Modelos |
-|-----|-----------|---------|
-| **Chat IA** | Chat com streaming e histórico | GPT-4o, Claude, Gemini, DeepSeek, Grok |
-| **Gerador de Imagens** | Geração por texto | DALL-E 3, Flux, Imagen 3 |
-| **Editor de Imagens** | Remove fundo, inpaint, upscale | Recraft V3, Stable Diffusion |
-| **Gerador de Vídeo** | Vídeo com áudio | Kling 3 |
-| **Gerador de Música** | Criar, cover, estender | Suno V5, V4.5, V4 |
-| **Text-to-Speech** | Voz natural | Model V3 |
-| **Efeitos Sonoros** | Áudio por prompt | Stable Audio |
-
-### 💻 Ferramentas de Desenvolvimento
-
-| App | Descrição |
-|-----|-----------|
-| **Code Editor** | Monaco Editor com IntelliSense, 40+ linguagens |
-| **File Explorer** | Navegação de arquivos com tree view e grid |
-| **Terminal** | Terminal simulado com comandos |
-| **AI Tools** | 21+ skills inspiradas no AI Hero |
-| **DevTools Hub** | 18+ ferramentas de dev (Cursor, Windsurf, Cline, etc.) |
-
-### 🔌 Integrações
-
-| App | Descrição |
-|-----|-----------|
-| **DeepSeek Harness** | Sistema de plugins com 24+ plugins |
-| **OpenHands** | Agent canvas com automações |
-| **Theia IDE** | IDE extensível com 16 extensões |
-
----
-
-## 🏗️ Arquitetura
-
-### Stack Técnico
-
-```
-Frontend:     Next.js 15 + React 19 + Tailwind CSS 3.4
-Editor:       @monaco-editor/react
-State:        React Context (OSContext)
-Backend:      Next.js API Routes
-AI:           Multi-provider (OpenAI, Anthropic, Google, etc.)
-Storage:      localStorage + IndexedDB
-PWA:          manifest.json + service worker
-```
-
-### Diagrama de Componentes
-
-```
-src/
-├── app/                          # Next.js App Router
-│   ├── api/                      # API Routes
-│   │   ├── chat/                 # Chat streaming endpoint
-│   │   ├── models/               # List available models
-│   │   ├── images/               # Image generation
-│   │   ├── video/                # Video generation
-│   │   ├── music/                # Music generation
-│   │   ├── tts/                  # Text-to-speech
-│   │   ├── audio/                # Audio effects
-│   │   ├── editor/               # Image editing
-│   │   └── balance/              # Credit balance
-│   ├── chat/                     # Chat page
-│   ├── settings/                 # Settings page
-│   └── page.tsx                  # Home (device detection)
-│
-├── components/
-│   ├── os/                       # OS Core
-│   │   ├── OSContext.tsx          # Window management state
-│   │   ├── Desktop.tsx           # Desktop background + icons
-│   │   ├── Window.tsx            # Draggable/resizable window
-│   │   ├── Taskbar.tsx           # Bottom taskbar
-│   │   ├── StartMenu.tsx         # Start menu overlay
-│   │   ├── BootScreen.tsx        # Boot animation
-│   │   ├── DesktopIcons.tsx      # Desktop icon grid
-│   │   ├── AppRegistry.tsx       # App content mapping
-│   │   ├── types.ts              # Window & App types
-│   │   └── apps/                 # Individual app components
-│   │       ├── ChatApp.tsx
-│   │       ├── FileExplorerApp.tsx
-│   │       ├── CodeEditorApp.tsx
-│   │       ├── TerminalApp.tsx
-│   │       ├── ToolsApp.tsx
-│   │       ├── DevToolsHubApp.tsx
-│   │       ├── DSHApp.tsx
-│   │       ├── OpenHandsApp.tsx
-│   │       ├── TheiaApp.tsx
-│   │       └── AboutApp.tsx
-│   ├── features/
-│   │   └── chat/
-│   │       └── ChatInterface.tsx
-│   └── mobile/
-│       └── MobileLayout.tsx
-│
-├── lib/
-│   ├── ai/                       # AI Providers
-│   │   ├── providers.ts          # 9 provider definitions
-│   │   ├── provider-config.ts    # Config manager
-│   │   ├── models.ts             # Model registry
-│   │   └── api-client.ts         # Multi-format API client
-│   ├── integrations/             # External integrations
-│   │   ├── deepseek-harness.ts
-│   │   ├── openhands.ts
-│   │   └── theia.ts
-│   ├── tools/                    # Developer tools
-│   │   ├── tools.ts              # 21 skills + MCP servers
-│   │   └── devtools.ts           # 18+ dev tools registry
-│   └── utils.ts
-│
-├── hooks/
-│   └── useDevice.ts              # Device detection hook
-│
-├── config/
-│   └── app.ts                    # App configuration
-│
-└── types/
-    └── index.ts                  # Centralized types
-```
-
----
-
-## 📦 Setup
+## 🚀 Início Rápido
 
 ### Pré-requisitos
 
 - Node.js 18+
-- npm, yarn ou pnpm
+- npm ou yarn
 
 ### Instalação
 
 ```bash
-# 1. Clone o repositório
+# Clonar o repositório
 git clone https://github.com/anjosdevpython/AnjosDevOS.git
 cd AnjosDevOS
 
-# 2. Instale dependências
+# Instalar dependências
 npm install
 
-# 3. Configure as API keys (opcional)
-cp .env.example .env.local
-# Edite .env.local com suas chaves
-
-# 4. Inicie o servidor
+# Iniciar servidor de desenvolvimento
 npm run dev
+
+# Acessar no navegador
+open http://localhost:3000
 ```
 
-Abra **http://localhost:3000** no navegador.
-
-### Scripts Disponíveis
+### Build para Produção
 
 ```bash
-npm run dev      # Servidor de desenvolvimento
-npm run build    # Build de produção
-npm run start    # Iniciar servidor de produção
-npm run lint     # Verificação de código
-```
-
-### Configuração de API Keys
-
-Crie um arquivo `.env.local`:
-
-```env
-# NetworkTools (padrão)
-NETWORK_TOOLS_API_KEY=sua_chave_aqui
-
-# OpenAI (opcional)
-OPENAI_API_KEY=sk-...
-
-# Anthropic (opcional)
-ANTHROPIC_API_KEY=sk-ant-...
-
-# Google AI (opcional)
-GOOGLE_AI_API_KEY=AIza...
-
-# DeepSeek (opcional)
-DEEPSEEK_API_KEY=sk-...
-
-# xAI/Grok (opcional)
-XAI_API_KEY=xai-...
-
-# Mistral (opcional)
-MISTRAL_API_KEY=...
-
-# Groq (opcional)
-GROQ_API_KEY=gsk_...
-
-# Together AI (opcional)
-TOGETHER_API_KEY=...
-```
-
-> 💡 Você pode configurar as keys diretamente na interface de Settings
-
----
-
-## 🤖 Providers de IA
-
-AnjosDevOS suporta **9 provedores de IA** independentes:
-
-| Provider | Icone | Formato API | Modelos Principais |
-|----------|-------|-------------|-------------------|
-| **OpenAI** | 🤖 | OpenAI | GPT-4o, GPT-4, o1, o3, DALL-E 3 |
-| **Anthropic** | 🧠 | Anthropic | Claude Sonnet 4, Claude 3.5, Claude 3 |
-| **Google AI** | 💎 | Google | Gemini 2.5 Pro, Gemini 2.0, Imagen 3 |
-| **DeepSeek** | 🔮 | OpenAI | DeepSeek V3, DeepSeek R1 |
-| **xAI (Grok)** | ⚡ | OpenAI | Grok 3, Grok 2 |
-| **Mistral AI** | 🌊 | OpenAI | Mistral Large, Codestral, Mixtral |
-| **Groq** | 🚀 | OpenAI | Llama 3.3, Gemma 2, Mixtral |
-| **Together AI** | 🤝 | OpenAI | Llama 3.1 405B, Qwen 2.5 |
-| **NetworkTools** | 🌐 | OpenAI | GPT-5, Claude 5, DeepSeek V4 |
-
-### Formatos de API
-
-```typescript
-// OpenAI format (usado por maioria dos providers)
-{
-  model: 'gpt-4o',
-  messages: [{ role: 'user', content: 'Hello' }],
-  stream: true
-}
-
-// Anthropic format
-{
-  model: 'claude-sonnet-4-20250514',
-  messages: [{ role: 'user', content: 'Hello' }],
-  max_tokens: 4096
-}
-
-// Google format
-{
-  contents: [{ parts: [{ text: 'Hello' }] }]
-}
-```
-
-### Configuração de Providers
-
-Acesse **http://localhost:3000/settings** para:
-
-1. Expandir um provider
-2. Inserir a API key
-3. Ativar/desativar o provider
-4. Salvar as configurações
-
----
-
-## 📱 Sistema de Apps
-
-### Registrar um Novo App
-
-1. **Crie o componente** em `src/components/os/apps/MeuApp.tsx`:
-
-```tsx
-'use client';
-
-export function MeuApp() {
-  return (
-    <div className="h-full p-4">
-      <h1>Meu App</h1>
-      {/* Conteúdo */}
-    </div>
-  );
-}
-```
-
-2. **Registre em `src/components/os/types.ts`**:
-
-```typescript
-{ 
-  id: 'meuapp', 
-  title: 'Meu App', 
-  iconName: 'Star', 
-  color: 'neon-green', 
-  defaultWidth: 800, 
-  defaultHeight: 600, 
-  minWidth: 400, 
-  minHeight: 350, 
-  desktopIcon: true, 
-  category: 'tools' 
-}
-```
-
-3. **Adicione ao AppRegistry** em `src/components/os/AppRegistry.tsx`:
-
-```typescript
-case 'meuapp':
-  return <MeuApp />;
-```
-
-4. **Adicione o ícone** em:
-   - `Taskbar.tsx` (ICON_MAP)
-   - `DesktopIcons.tsx` (ICON_MAP)
-   - `StartMenu.tsx` (ICON_MAP)
-
-### Gerenciamento de Janelas
-
-O `OSContext` gerencia todas as janelas:
-
-```typescript
-const { openApp, closeWindow, minimizeWindow, toggleMaximize } = useOS();
-
-// Abrir app
-openApp('chat');
-
-// Fechar janela
-closeWindow(windowId);
-
-// Minimizar
-minimizeWindow(windowId);
-
-// Maximizar/restaurar
-toggleMaximize(windowId);
+npm run build
+npm start
 ```
 
 ---
 
-## 🛠️ AI Tools & Skills
+## 📱 Interface
 
-### Skills Disponíveis (21)
+### Modos de Visualização
 
-#### 📋 Planejamento
-| Skill | Comando | Descrição |
-|-------|---------|-----------|
-| Grill with Docs | `/grill-with-docs` | Entreviste sobre um plano |
-| To Spec | `/to-spec` | Converta conversa em spec |
-| To Tickets | `/to-tickets` | Divida spec em tickets |
-| Wayfinder | `/wayfinder` | Mapeie decisões |
-| Research | `/research` | Pesquisa fundamentada |
+| Modo | Descrição | Atalho |
+|------|-----------|--------|
+| 🖥️ **Cyberpunk** | Tema neon cyberpunk com efeitos de glow | Botão 🖥️ no canto superior |
+| 📱 **iOS** | Interface estilo iOS com Dynamic Island | Botão 📱 no canto superior |
+| 📱 **Mobile** | Layout responsivo para celulares | Automático em dispositivos móveis |
 
-#### ⚡ Desenvolvimento
-| Skill | Comando | Descrição |
-|-------|---------|-----------|
-| Implement | `/implement` | Construa spec completa |
-| Prototype | `/prototype` | Código descartável |
-| TDD | `/tdd` | Ciclo red-green-refactor |
-| Diagnosing Bugs | `/diagnosing-bugs` | Diagnostique bugs |
-| Improve Codebase | `/improve-codebase-architecture` | Refatore código |
+### iOS Interface
 
-#### 👁️ Revisão
-| Skill | Comando | Descrição |
-|-------|---------|-----------|
-| Code Review | `/code-review` | Revise diff |
-| Resolve Conflicts | `/resolving-merge-conflicts` | Resolva conflitos git |
-| Triage | `/triage` | Classifique issues |
-
-#### 🚀 Produtividade
-| Skill | Comando | Descrição |
-|-------|---------|-----------|
-| Grill Me | `/grill-me` | Alinhe ideias |
-| Handoff | `/handoff` | Documente sessão |
-| Teach | `/teach` | Aprenda tópicos |
-| Wait What | `/wait-what` | Explique novamente |
-
-#### 🎯 GSD Workflow
-| Skill | Comando | Descrição |
-|-------|---------|-----------|
-| GSD: Plan | `/gsd-plan` | Fase 1: Planeje |
-| GSD: Execute | `/gsd-execute` | Fase 2: Execute |
-| GSD: Verify | `/gsd-verify` | Fase 3: Verifique |
-
-### Uso
-
-```typescript
-import { SKILLS, searchSkills, getSkillsByCategory } from '@/lib/tools/tools';
-
-// Buscar skills
-const planningSkills = getSkillsByCategory('planning');
-
-// Buscar por texto
-const results = searchSkills('implement');
-```
+- **Dynamic Island** com hora e indicadores
+- **Dock** com 4 apps favoritos
+- **Home Screen** com grid de apps e busca
+- **Notificações** puxando da esquerda
+- **Control Center** puxando da direita
+- **Traffic Lights** (verde/amarelo/vermelho) nas janelas
 
 ---
 
-## 🔌 MCP Integrations
+## 🖥️ Apps (27)
 
-### MCP Servers Disponíveis
+### 🤖 Inteligência Artificial
 
-| Server | Tools | Status |
-|--------|-------|--------|
-| 📁 **Filesystem** | read_file, write_file, list_directory, search_files | ✅ Conectado |
-| 🔀 **Git** | git_status, git_diff, git_log, git_commit | ✅ Conectado |
-| 🌐 **Browser** | navigate, screenshot, click, type_text | ⏸️ Desconectado |
-| 🗄️ **Database** | query, list_tables, describe_table | ⏸️ Desconectado |
-| 🔌 **API Tester** | http_request, graphql | ✅ Conectado |
-| 🔎 **Code Search** | search_code, find_definitions, find_references | ✅ Conectado |
+| App | Descrição |
+|-----|-----------|
+| 💬 **Chat IA** | Chat com múltiplos providers de IA |
+| 🎨 **Gerador de Imagens** | Geração de imagens com DALL-E, Flux, Stable Diffusion |
+| 🖌️ **Editor de Imagens** | Edição de imagens com IA |
+| 🎬 **Gerador de Vídeo** | Geração de vídeos com Kling |
+| 🎵 **Gerador de Música** | Geração de músicas com Suno |
+| 🗣️ **Text-to-Speech** | Conversão de texto para fala |
+| 🔊 **Efeitos Sonoros** | Geração de efeitos sonoros |
 
-### Uso
+### 🛠️ Ferramentas
 
-```typescript
-import { MCP_SERVERS, getConnectedMCPServers, getEnabledMCPTools } from '@/lib/tools/tools';
+| App | Descrição |
+|-----|-----------|
+| 🌐 **Browser** | Navegador in-app com automação |
+| 📋 **Workbench** | Docs, planilhas, apresentações, kanban, gráficos |
+| ⚡ **Automação** | Builder visual de fluxos com triggers e actions |
+| 📡 **Canais** | Hub de mensagens (WhatsApp, Telegram, Discord, Slack) |
+| 💰 **Saldo & Uso** | Monitoramento de uso de APIs e créditos |
 
-// Obter servers conectados
-const connected = getConnectedMCPServers();
+### 🧠 Agentes IA
 
-// Obter tools habilitadas
-const tools = getEnabledMCPTools();
+| App | Descrição |
+|-----|-----------|
+| 🧠 **Hermes** | Raciocínio profundo com chain-of-thought |
+| 👥 **Agent Teams** | Times de agentes com tarefas e comunicação |
+| 🕸️ **Orquestrador** | Coordenação de agentes e workflows |
+| 🧠 **Memória** | Sistema de memória persistente e knowledge graph |
+| 🤖 **Funcionários IA** | Funcionários virtuais (Warmwind style) |
+
+### 💻 Desenvolvimento
+
+| App | Descrição |
+|-----|-----------|
+| 💻 **Code Editor** | Monaco Editor com syntax highlighting e IntelliSense |
+| 📁 **Explorador** | File explorer com árvore de navegação |
+| ⌨️ **Terminal** | Terminal interativo com comandos |
+| 🛠️ **AI Tools** | 21 skills e 6 MCP servers |
+
+### 🔗 Integrações
+
+| App | Descrição |
+|-----|-----------|
+| 🧩 **DevTools Hub** | 18+ ferramentas (Cursor, Windsurf, Cline, Aider, etc.) |
+| 🙌 **OpenHands** | Agent canvas com automações |
+| 💎 **Theia IDE** | IDE com 16 extensões |
+| 🔮 **DeepSeek Harness** | Sistema de plugins (24 plugins) |
+| ⚡ **Freebuff** | Agente de IA gratuito (5 produtos, 7 modelos) |
+
+### ⚙️ Sistema
+
+| App | Descrição |
+|-----|-----------|
+| ⚙️ **Configurações** | Configuração de providers e preferências |
+| ℹ️ **Sobre** | Informações do sistema |
+
+---
+
+## 🤖 9 Provedores de IA
+
+| Provedor | Modelos | Formato API |
+|----------|---------|-------------|
+| **OpenAI** | GPT-4o, GPT-4, GPT-3.5, o1, o3, DALL-E, TTS, Whisper | OpenAI |
+| **Anthropic** | Claude 4, Claude 3.5, Claude 3 | Anthropic |
+| **Google AI** | Gemini 2.5, Gemini 2.0, Imagen 3 | Google |
+| **DeepSeek** | V3, R1 | OpenAI |
+| **xAI (Grok)** | Grok 3, Grok 2 | OpenAI |
+| **Mistral AI** | Large, Medium, Small, Mixtral, Codestral | OpenAI |
+| **Groq** | Llama 3.3, Llama 3.1, Gemma 2 | OpenAI |
+| **Together AI** | Llama 3.1 405B/70B, Mixtral, Qwen | OpenAI |
+| **NetworkTools** | GPT-5, Claude 5, DeepSeek V4, etc. | OpenAI |
+
+### Configuração
+
+1. Acesse **Configurações**
+2. Clique em um provider para expandir
+3. Adicione sua API key
+4. Ative o provider
+5. Salve as configurações
+
+---
+
+## 🧠 Sistema de Agentes
+
+### 5 Agentes Interconectados
+
 ```
+┌─────────────────────────────────────────────────┐
+│              Orquestrador Central                │
+│         (Comunicação inter-agentes)             │
+├─────────┬─────────┬─────────┬─────────┬─────────┤
+│  🧠     │  🌐     │  💻     │  📚     │  🔎     │
+│ Hermes  │Browser  │Dev      │Pesquis. │Revisor  │
+│Raciocínio│Automação│Código   │Dados    │QA       │
+└─────────┴─────────┴─────────┴─────────┴─────────┘
+```
+
+### Hermes Agent (Raciocínio Profundo)
+
+- **Chain-of-Thought**: Observação → Raciocínio → Hipótese → Conclusão
+- **Decisões**: Avalia opções com scoring automático
+- **Árvore de Pensamentos**: Visualização completa do raciocínio
+
+### Browser Agent (Automação)
+
+- **Sessões**: Múltiplas abas simultâneas
+- **Ações**: navigate, click, type, extract, screenshot, scroll
+- **Gravação**: Grave ações do usuário para criar workflows
+- **Percepção**: Detecta elementos na tela (botões, inputs, menus)
+
+### Workflow Learner (Aprendizado)
+
+- **Observação**: Observa ações do usuário em tempo real
+- **Padrões**: Detecta processos recorrentes automaticamente
+- **Perguntas**: Pergunta ao usuário quando não tem certeza
+- **Criação**: Cria workflows reutilizáveis a partir de padrões
+
+---
+
+## 🏪 20+ Integrações (App Store)
+
+| Categoria | Apps |
+|-----------|------|
+| 📧 **Email** | Gmail, Outlook |
+| 💼 **CRM** | HubSpot, Salesforce, Pipedrive |
+| 📱 **Social** | Instagram, LinkedIn, Twitter, TikTok |
+| 🛒 **E-commerce** | Shopify, Mercado Livre, Magalu |
+| 📝 **Produtividade** | Google Sheets, Notion |
+| 💬 **Comunicação** | Slack, WhatsApp Business |
+| 📦 **ERP** | Bling, Tiny |
+| 📈 **Analytics** | Google Analytics, Meta Ads |
+
+---
+
+## 🤖 Funcionários IA (Warmwind Style)
+
+### 8 Funcionários Pré-configurados
+
+| Nome | Função | Habilidades |
+|------|--------|-------------|
+| 👩‍💼 Ana | Atendente | Email, Chat, WhatsApp, Resolução |
+| 📱 Marcos | Social Media | Instagram, LinkedIn, Twitter, Conteúdo |
+| 💰 Julia | Vendas | CRM, Prospecção, Follow-up, Negociação |
+| 📊 Pedro | Financeiro | Planilhas, Faturas, Relatórios, Orçamento |
+| 🔧 Carlos | Suporte Técnico | Debug, Documentação, Triagem, Remoto |
+| 🔍 Laura | Pesquisador | Web, Dados, Análise, Relatórios |
+| 📋 Maria | Assistente | Agenda, E-mails, Organização, Lembretes |
+| 💻 Rafael | Desenvolvedor | Código, API, Automação, Deploy |
+
+### Modo Ensino
+
+1. Clique em **"Iniciar Gravação"**
+2. Execute os passos da tarefa
+3. O sistema grava cada ação
+4. Pare a gravação quando terminar
+5. O funcionário aprende o padrão
+
+---
+
+## 🛠️ 21 Skills (AI Tools)
+
+### Planejamento
+- Grill with Docs · To Spec · To Tickets · Wayfinder · Research
+
+### Desenvolvimento
+- Implement · Prototype · TDD · Diagnosing Bugs · Improve Codebase
+
+### Revisão
+- Code Review · Resolve Conflicts · Triage
+
+### Produtividade
+- Grill Me · Handoff · Teach · Wait What
+
+### GSD Workflow
+- Plan · Execute · Verify
+
+---
+
+## 🌐 6 MCP Servers
+
+| Server | Ferramentas |
+|--------|-------------|
+| 📁 **Filesystem** | read_file, write_file, list_directory, search_files |
+| 🔀 **Git** | git_status, git_diff, git_log, git_commit |
+| 🌐 **Browser** | navigate, screenshot, click, type_text |
+| 🗄️ **Database** | query, list_tables, describe_table |
+| 🔌 **API Tester** | http_request, graphql |
+| 🔎 **Code Search** | search_code, find_definitions, find_references |
 
 ---
 
 ## 🔗 Integrações Externas
 
-### DeepSeek Harness (DSH)
-
-Sistema de agentes com arquitetura "Everything is a Plugin":
-
-| Categoria | Plugins |
-|-----------|---------|
-| 🤖 Modelos | DeepSeek, OpenAI, Anthropic, Google |
-| 🔧 Ferramentas | Filesystem, Terminal, Browser, Git |
-| ⚡ Skills | Planning, Coding, Review, Debug |
-| 📦 Sandboxes | Node.js, Python, Docker |
-| 🔌 Integrações | GitHub, Slack, MCP Bridge |
-
-**Perfis Pré-configurados:**
-- Default (8 plugins)
-- Full Stack (18 plugins)
-- Research (10 plugins)
-
-### OpenHands
-
-Agent canvas com automações:
-
-| Agent | Descrição |
-|-------|-----------|
-| OpenHands | Agent principal |
-| Claude Code | Coding agent |
-| Codex | OpenAI agent |
-| Gemini | Google agent |
-
-**Automações:**
-- Daily Report
-- Issue Decomposer
-- PR Reviewer
-- Dependency Updater
-
-### Theia IDE
-
-IDE extensível com 16 extensões:
-
-| Categoria | Extensões |
-|-----------|-----------|
-| Languages | Python, Java, Go, Rust, C++ |
-| AI | Copilot, Codeium |
-| Themes | Dark+, Monokai, Dracula |
-| Git | Git Integration |
-| Debug | Node.js, Python |
-
----
-
-## 📱 Sistema Mobile
-
-### Device Detection
-
-```typescript
-import { useDevice, useIsMobile } from '@/hooks/useDevice';
-
-const { type, isMobile, isTablet, isDesktop } = useDevice();
-```
-
-### Layout Adaptativo
-
-| Dispositivo | Layout |
-|-------------|--------|
-| **Mobile** (< 768px) | MobileLayout com bottom nav |
-| **Tablet** (768-1023px) | Desktop com ajustes |
-| **Desktop** (≥ 1024px) | Desktop completo |
-
-### Mobile Layout
-
-- **Bottom Navigation**: Início, Apps, Chat, Config
-- **Quick Access Grid**: Acesso rápido aos apps
-- **Search**: Busca por todos os apps
-- **Touch Targets**: Botões de 44px
-- **Safe Areas**: Suporte para notch
-
-### PWA
-
-O app pode ser instalado como PWA:
-
-```json
-{
-  "name": "AnjosDevOS",
-  "short_name": "AnjosDevOS",
-  "display": "standalone",
-  "background_color": "#0a0a0f",
-  "theme_color": "#00ff88"
-}
-```
+| Integração | Descrição |
+|------------|-----------|
+| 🔮 **DeepSeek Harness** | 24 plugins com arquitetura "Everything is a Plugin" |
+| 🙌 **OpenHands** | Agent canvas com 4 automações |
+| 💎 **Theia IDE** | IDE com 16 extensões do Open VSX |
+| 🧩 **DevTools Hub** | 18+ ferramentas de desenvolvimento |
+| ⚡ **Freebuff** | 5 produtos gratuitos, 7 modelos, 5 agentes |
 
 ---
 
@@ -561,156 +309,244 @@ O app pode ser instalado como PWA:
 
 ```
 src/
-├── app/                    # Next.js App Router pages
+├── app/                          # Páginas Next.js
+│   ├── api/                      # API Routes
+│   │   ├── chat/route.ts         # Chat com providers
+│   │   ├── images/route.ts       # Geração de imagens
+│   │   ├── models/route.ts       # Lista de modelos
+│   │   └── health/route.ts       # Health check
+│   ├── settings/page.tsx         # Configurações
+│   └── page.tsx                  # Página principal (iOS/Cyber toggle)
+│
 ├── components/
-│   ├── features/           # Feature components
-│   ├── mobile/             # Mobile layout
-│   ├── os/                 # OS core + apps
-│   ├── ui/                 # Reusable UI
-│   └── layout/             # Layout components
-├── config/                 # Configuration
-├── hooks/                  # Custom hooks
+│   ├── features/
+│   │   └── chat/ChatInterface.tsx  # Interface do chat
+│   ├── ios/                      # 🆕 Interface iOS
+│   │   ├── IOSLayout.tsx         # Layout principal iOS
+│   │   ├── IOSStatusBar.tsx      # Barra de status + Dynamic Island
+│   │   ├── IOSDock.tsx           # Dock inferior
+│   │   ├── IOSHomeScreen.tsx     # Tela inicial com grid de apps
+│   │   ├── IOSWindow.tsx         # Janelas estilo macOS
+│   │   ├── IOSNotificationCenter.tsx  # Central de notificações
+│   │   └── IOSControlCenter.tsx  # Central de controle
+│   ├── mobile/MobileLayout.tsx   # Layout mobile
+│   ├── os/                       # Componentes do OS
+│   │   ├── apps/                 # 18 componentes de apps
+│   │   ├── AppRegistry.tsx       # Registro de todos os apps
+│   │   ├── AppErrorBoundary.tsx  # Error boundary por app
+│   │   ├── OSContext.tsx          # Estado global do OS
+│   │   ├── Desktop.tsx           # Desktop principal
+│   │   ├── Window.tsx            # Gerenciador de janelas
+│   │   ├── Taskbar.tsx           # Barra de tarefas
+│   │   ├── StartMenu.tsx         # Menu iniciar
+│   │   ├── DesktopIcons.tsx      # Ícones do desktop
+│   │   ├── BootScreen.tsx        # Tela de boot
+│   │   └── types.ts              # Tipos e definições de apps
+│   └── Sidebar.tsx               # Sidebar (modo desktop)
+│
+├── config/app.ts                 # Configuração centralizada
+├── hooks/useDevice.ts            # Detecção de dispositivo
+│
 ├── lib/
-│   ├── ai/                 # AI providers
-│   ├── integrations/       # External integrations
-│   └── tools/              # Developer tools
-├── types/                  # TypeScript types
-└── STRUCTURE.md            # Detailed structure docs
-```
-
-### Import Paths
-
-```typescript
-// Use path aliases
-import { providers } from '@/lib/ai/providers';
-import { useDevice } from '@/hooks/useDevice';
-import { APP_CONFIG } from '@/config/app';
+│   ├── ai/                       # 🤖 Sistema de IA
+│   │   ├── providers.ts          # 9 provedores de IA
+│   │   ├── provider-config.ts    # Configuração de providers
+│   │   ├── models.ts             # Modelos disponíveis
+│   │   └── api-client.ts         # Cliente multi-provider
+│   │
+│   ├── agent-orchestration/      # 🕸️ Orquestração de Agentes
+│   │   ├── orchestrator.ts       # Motor central
+│   │   ├── browser-engine.ts     # Automação de navegador
+│   │   ├── hermes-agent.ts       # Agente de raciocínio
+│   │   ├── workflow-learner.ts   # Aprendizado de workflows
+│   │   └── types.ts              # Tipos de orquestração
+│   │
+│   ├── integrations/             # 🔗 Integrações externas
+│   │   ├── deepseek-harness.ts   # DeepSeek Harness (24 plugins)
+│   │   ├── openhands.ts          # OpenHands (agent canvas)
+│   │   ├── theia.ts              # Theia IDE (16 extensões)
+│   │   ├── freebuff.ts           # Freebuff (5 produtos, 7 modelos)
+│   │   ├── cowork-*.ts           # CoWork-OS (6 módulos)
+│   │
+│   ├── tools/                    # 🛠️ Ferramentas
+│   │   ├── tools.ts              # 21 skills + 6 MCP servers
+│   │   └── devtools.ts           # 18+ dev tools
+│   │
+│   ├── warmwind/                 # 🤖 Warmwind Style
+│   │   ├── ai-employees.ts       # Sistema de funcionários IA
+│   │   ├── app-store.ts          # 20+ integrações
+│   │   └── types.ts              # Tipos Warmwind
+│   │
+│   └── utils.ts                  # Utilitários
+│
+├── types/index.ts                # Tipos centralizados
+└── STRUCTURE.md                  # Documentação da estrutura
 ```
 
 ---
 
-## 🤝 Guia de Contribuição
+## 🏗️ Arquitetura
+
+### Fluxo de Comunicação
+
+```
+┌─────────────────────────────────────────────────────┐
+│                    Usuário                           │
+│                      │                               │
+│              ┌───────▼───────┐                       │
+│              │  iOS / Cyber   │                       │
+│              │   Interface    │                       │
+│              └───────┬───────┘                       │
+│                      │                               │
+│              ┌───────▼───────┐                       │
+│              │  OSContext     │                       │
+│              │  (Estado)     │                       │
+│              └───────┬───────┘                       │
+│                      │                               │
+│    ┌─────────────────┼─────────────────┐             │
+│    │                 │                 │             │
+│    ▼                 ▼                 ▼             │
+│ ┌──────────┐  ┌──────────────┐  ┌──────────┐        │
+│ │   Apps   │  │ Orquestrador │  │ Warmwind │        │
+│ │  (27)    │  │  de Agentes  │  │Employees │        │
+│ └────┬─────┘  └──────┬───────┘  └────┬─────┘        │
+│      │               │               │              │
+│      ▼               ▼               ▼              │
+│ ┌──────────┐  ┌──────────────┐  ┌──────────┐        │
+│ │Providers │  │   Hermes     │  │ App Store│        │
+│ │ IA (9)   │  │  Browser     │  │  (20+)   │        │
+│ └──────────┘  │  Workflow    │  └──────────┘        │
+│               └──────────────┘                       │
+└─────────────────────────────────────────────────────┘
+```
+
+### Orquestração de Agentes
+
+```typescript
+// Criar funcionário IA
+const manager = getAIEmployeesManager();
+const employee = manager.createEmployee(0); // Ana - Atendente
+
+// Atribuir tarefa
+manager.assignTask(employee.id, 'Responder e-mails', 'Verificar inbox', [
+  { action: 'navigate', description: 'Abrir Gmail' },
+  { action: 'click', description: 'Clicar em responder' },
+  { action: 'type', description: 'Escrever resposta' },
+]);
+
+// Hermes raciocinar
+const hermes = getHermesAgent();
+const result = await hermes.solveProblem('Como otimizar o deploy?');
+
+// Browser aprender workflow
+const learner = getWorkflowLearner();
+learner.observeAction(action, url);
+const workflow = learner.createWorkflowFromActions('Login', 'Fazer login', actions, url);
+```
+
+---
+
+## 📊 API Routes
+
+| Rota | Método | Descrição |
+|------|--------|-----------|
+| `/api/chat` | POST | Chat com providers de IA |
+| `/api/images` | POST | Geração de imagens |
+| `/api/models` | GET | Lista de modelos disponíveis |
+| `/api/health` | GET | Health check do sistema |
+
+---
+
+## 🎨 Customização
+
+### Adicionar Novo App
+
+1. Criar componente em `src/components/os/apps/MeuApp.tsx`
+2. Adicionar definição em `src/components/os/types.ts`
+3. Registrar em `src/components/os/AppRegistry.tsx`
+4. Adicionar ícone em todos os ICON_MAPs
 
 ### Adicionar Novo Provider
 
-1. Edite `src/lib/ai/providers.ts`
-2. Adicione a definição do provider
-3. Adicione os modelos disponíveis
-4. Atualize `src/app/settings/page.tsx` se necessário
-
-### Adicionar Nova Skill
-
-1. Edite `src/lib/tools/tools.ts`
-2. Adicione o objeto Skill ao array `SKILLS`
-3. Defina inputs, outputs e modelo recomendado
-
-### Adicionar Novo MCP Server
-
-1. Edite `src/lib/tools/tools.ts`
-2. Adicione o objeto MCPServer ao array `MCP_SERVERS`
-3. Defina as tools disponíveis
-
-### Adicionar Nova Integração
-
-1. Crie arquivo em `src/lib/integrations/minha-integracao.ts`
-2. Crie o componente em `src/components/os/apps/MinhaIntegracaoApp.tsx`
-3. Registre em `types.ts` e `AppRegistry.tsx`
-
-### Padrões de Código
-
-- **Componentes**: Use `'use client'` para components interativos
-- **Imports**: Sempre use path aliases (`@/...`)
-- **Types**: Importe de `@/types` quando possível
-- **Config**: Use valores de `@/config/app`
-- **Naming**: Componentes em PascalCase, utils em camelCase
+1. Adicionar definição em `src/lib/ai/providers.ts`
+2. Implementar formatação em `src/lib/ai/api-client.ts`
+3. Adicionar modelos em `src/lib/ai/models.ts`
 
 ---
 
-## 🗺️ Roadmap
+## 🚀 Roadmap
 
-### ✅ Concluído
+### ✅ v1.0 (Atual)
+- [x] 27 apps funcionais
+- [x] 9 provedores de IA
+- [x] 5 agentes interconectados
+- [x] Automação de navegador
+- [x] Modo de ensino
+- [x] Interface iOS
+- [x] 20+ integrações
+- [x] Dashboard em tempo real
+- [x] Suporte mobile com PWA
+- [x] Documentação completa
 
-- [x] Desktop OS interface
-- [x] Window management (drag, resize, minimize, maximize)
-- [x] Taskbar & Start Menu
-- [x] Boot screen animation
-- [x] Multi-provider AI (9 providers)
-- [x] Chat interface com streaming
-- [x] Image generation
-- [x] Video generation
-- [x] Music generation
-- [x] Text-to-Speech
-- [x] File Explorer
-- [x] Code Editor (Monaco)
-- [x] Terminal
-- [x] AI Tools & Skills (21 skills)
-- [x] GSD Workflow
-- [x] MCP Integrations (6 servers)
-- [x] DeepSeek Harness integration
-- [x] OpenHands integration
-- [x] Theia IDE integration
-- [x] DevTools Hub (18+ tools)
-- [x] Mobile responsive layout
-- [x] PWA support
+### 🔜 v1.1
+- [ ] Backend real para funcionários IA
+- [ ] Integração real com Gmail/WhatsApp
+- [ ] Automação de navegador real (Playwright)
+- [ ] Marketplace de workflows
+- [ ] Colaboração em tempo real
 
-### 🔜 Próximo
-
-- [ ] Autenticação de usuários
-- [ ] Backend persistente (banco de dados)
-- [ ] Sistema de permissões
-- [ ] Multi-tenancy
-- [ ] Plugin system extensível
-- [ ] Real-time collaboration
-- [ ] Mobile app (React Native)
+### 🔮 v2.0
 - [ ] Desktop app (Electron/Tauri)
-- [ ] Offline support
-- [ ] Analytics dashboard
+- [ ] Suporte a múltiplos usuários
+- [ ] API pública para extensões
+- [ ] Marketplace de agentes
 
-### 🚀 Futuro
+---
 
-- [ ] AI Agent orchestration
-- [ ] Custom model fine-tuning
-- [ ] Enterprise features
-- [ ] API para terceiros
-- [ ] Marketplace de plugins
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie uma branch (`git checkout -b feature/nova-feature`)
+3. Faça commit (`git commit -m 'Adicionar nova feature'`)
+4. Push para a branch (`git push origin feature/nova-feature`)
+5. Abra um Pull Request
+
+### Padrões de Código
+
+- TypeScript estrito
+- Componentes funcionais com hooks
+- Tailwind CSS para estilos
+- Convencional Commits para mensagens
 
 ---
 
 ## 📄 Licença
 
-MIT License
-
-```
-Copyright (c) 2024 AnjosDev
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
+MIT License - veja [LICENSE](LICENSE) para detalhes.
 
 ---
 
-## 🔗 Links
+## 👨‍💻 Desenvolvedor
 
-- **Desenvolvedor**: [Allan Anjos](https://allananjos.dev.br)
-- **Repositório**: https://github.com/anjosdevpython/AnjosDevOS
-- **Demo**: http://localhost:3000
-- **Issues**: https://github.com/anjosdevpython/AnjosDevOS/issues
+**Allan Anjos**
+- 🌐 [allananjos.dev.br](https://allananjos.dev.br)
+- 🐙 [GitHub](https://github.com/anjosdevpython)
+- 📧 allan@allananjos.dev.br
 
 ---
 
-Feito com ❤️ por [Allan Anjos](https://allananjos.dev.br)
+## 🙏 Agradecimentos
+
+- [Next.js](https://nextjs.org/) - Framework React
+- [Tailwind CSS](https://tailwindcss.com/) - Utilitários CSS
+- [Lucide React](https://lucide.dev/) - Ícones
+- [Monaco Editor](https://microsoft.github.io/monaco-editor/) - Editor de código
+- [Warmwind OS](https://warmwind.com/) - Inspiração para funcionários IA
+- [CoWork-OS](https://github.com/CoWork-OS/CoWork-OS) - Inspiração para workbench
+- [Freebuff](https://github.com/CodebuffAI/freebuff) - Framework de agentes
+- [OpenHands](https://github.com/OpenHands/OpenHands) - Agent canvas
+- [Theia IDE](https://theia-ide.org/) - IDE extensível
+
+---
+
+> Feito com ❤️ por [Allan Anjos](https://allananjos.dev.br)
