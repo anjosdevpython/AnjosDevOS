@@ -2,29 +2,32 @@
 
 import { ReactNode } from 'react';
 import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks, Globe, FileText, Workflow, Users, Brain, Radio, Zap, Network } from 'lucide-react';
+import { AppErrorBoundary } from './AppErrorBoundary';
 
-// Import existing page components as app contents
+// Direct imports for frequently used apps
 import { ChatInterface } from '@/components/features/chat/ChatInterface';
 import { TerminalApp } from './apps/TerminalApp';
 import { AboutApp } from './apps/AboutApp';
-import { FileExplorerApp } from './apps/FileExplorerApp';
-import { ToolsApp } from './apps/ToolsApp';
-import { CodeEditorApp } from './apps/CodeEditorApp';
-import { DSHApp } from './apps/DSHApp';
-import { OpenHandsApp } from './apps/OpenHandsApp';
-import { TheiaApp } from './apps/TheiaApp';
-import { DevToolsHubApp } from './apps/DevToolsHubApp';
-import { BrowserWorkbenchApp } from './apps/BrowserWorkbenchApp';
-import { EverythingWorkbenchApp } from './apps/EverythingWorkbenchApp';
-import { AutomationStudioApp } from './apps/AutomationStudioApp';
-import { AgentTeamsApp } from './apps/AgentTeamsApp';
-import { MemorySystemApp } from './apps/MemorySystemApp';
-import { ChannelGatewayApp } from './apps/ChannelGatewayApp';
-import { FreebuffApp } from './apps/FreebuffApp';
-import { AgentOrchestratorApp } from './apps/AgentOrchestratorApp';
 
-// Lazy-load heavy page components to avoid importing all at once
+// Lazy-loaded apps for better performance
 import dynamic from 'next/dynamic';
+const FileExplorerApp = dynamic(() => import('./apps/FileExplorerApp').then(m => ({ default: m.FileExplorerApp })), { ssr: false });
+const ToolsApp = dynamic(() => import('./apps/ToolsApp').then(m => ({ default: m.ToolsApp })), { ssr: false });
+const CodeEditorApp = dynamic(() => import('./apps/CodeEditorApp').then(m => ({ default: m.CodeEditorApp })), { ssr: false });
+const DSHApp = dynamic(() => import('./apps/DSHApp').then(m => ({ default: m.DSHApp })), { ssr: false });
+const OpenHandsApp = dynamic(() => import('./apps/OpenHandsApp').then(m => ({ default: m.OpenHandsApp })), { ssr: false });
+const TheiaApp = dynamic(() => import('./apps/TheiaApp').then(m => ({ default: m.TheiaApp })), { ssr: false });
+const DevToolsHubApp = dynamic(() => import('./apps/DevToolsHubApp').then(m => ({ default: m.DevToolsHubApp })), { ssr: false });
+const BrowserWorkbenchApp = dynamic(() => import('./apps/BrowserWorkbenchApp').then(m => ({ default: m.BrowserWorkbenchApp })), { ssr: false });
+const EverythingWorkbenchApp = dynamic(() => import('./apps/EverythingWorkbenchApp').then(m => ({ default: m.EverythingWorkbenchApp })), { ssr: false });
+const AutomationStudioApp = dynamic(() => import('./apps/AutomationStudioApp').then(m => ({ default: m.AutomationStudioApp })), { ssr: false });
+const AgentTeamsApp = dynamic(() => import('./apps/AgentTeamsApp').then(m => ({ default: m.AgentTeamsApp })), { ssr: false });
+const MemorySystemApp = dynamic(() => import('./apps/MemorySystemApp').then(m => ({ default: m.MemorySystemApp })), { ssr: false });
+const ChannelGatewayApp = dynamic(() => import('./apps/ChannelGatewayApp').then(m => ({ default: m.ChannelGatewayApp })), { ssr: false });
+const FreebuffApp = dynamic(() => import('./apps/FreebuffApp').then(m => ({ default: m.FreebuffApp })), { ssr: false });
+const AgentOrchestratorApp = dynamic(() => import('./apps/AgentOrchestratorApp').then(m => ({ default: m.AgentOrchestratorApp })), { ssr: false });
+
+// Dynamic page imports
 const ImagesApp = dynamic(() => import('@/app/images/page'), { ssr: false });
 const EditorApp = dynamic(() => import('@/app/editor/page'), { ssr: false });
 const VideoApp = dynamic(() => import('@/app/video/page'), { ssr: false });
@@ -63,64 +66,69 @@ export const ICON_COMPONENTS: Record<string, ReactNode> = {
   Network: <Network className="w-4 h-4" />,
 };
 
+function wrapInBoundary(app: ReactNode, name: string): ReactNode {
+  return <AppErrorBoundary appName={name}>{app}</AppErrorBoundary>;
+}
+
 export function getAppContent(appId: string): ReactNode {
   switch (appId) {
     case 'chat':
-      return (
+      return wrapInBoundary(
         <div className="flex flex-col h-full">
           <ChatInterface />
-        </div>
+        </div>,
+        'Chat IA'
       );
     case 'images':
-      return <div className="overflow-auto h-full"><ImagesApp /></div>;
+      return wrapInBoundary(<div className="overflow-auto h-full"><ImagesApp /></div>, 'Gerador de Imagens');
     case 'editor':
-      return <div className="overflow-auto h-full"><EditorApp /></div>;
+      return wrapInBoundary(<div className="overflow-auto h-full"><EditorApp /></div>, 'Editor de Imagens');
     case 'video':
-      return <div className="overflow-auto h-full"><VideoApp /></div>;
+      return wrapInBoundary(<div className="overflow-auto h-full"><VideoApp /></div>, 'Gerador de Vídeo');
     case 'music':
-      return <div className="overflow-auto h-full"><MusicApp /></div>;
+      return wrapInBoundary(<div className="overflow-auto h-full"><MusicApp /></div>, 'Gerador de Música');
     case 'tts':
-      return <div className="overflow-auto h-full"><TtsApp /></div>;
+      return wrapInBoundary(<div className="overflow-auto h-full"><TtsApp /></div>, 'Text-to-Speech');
     case 'audio':
-      return <div className="overflow-auto h-full"><AudioApp /></div>;
+      return wrapInBoundary(<div className="overflow-auto h-full"><AudioApp /></div>, 'Efeitos Sonoros');
     case 'balance':
-      return <div className="overflow-auto h-full"><BalanceApp /></div>;
+      return wrapInBoundary(<div className="overflow-auto h-full"><BalanceApp /></div>, 'Saldo & Uso');
     case 'settings':
-      return <div className="overflow-auto h-full"><SettingsApp /></div>;
+      return wrapInBoundary(<div className="overflow-auto h-full"><SettingsApp /></div>, 'Configurações');
     case 'terminal':
-      return <TerminalApp />;
+      return wrapInBoundary(<TerminalApp />, 'Terminal');
     case 'devtools-hub':
-      return <DevToolsHubApp />;
+      return wrapInBoundary(<DevToolsHubApp />, 'DevTools Hub');
     case 'openhands':
-      return <OpenHandsApp />;
+      return wrapInBoundary(<OpenHandsApp />, 'OpenHands');
     case 'theia':
-      return <TheiaApp />;
+      return wrapInBoundary(<TheiaApp />, 'Theia IDE');
     case 'deepseek-harness':
-      return <DSHApp />;
+      return wrapInBoundary(<DSHApp />, 'DeepSeek Harness');
     case 'codeeditor':
-      return <CodeEditorApp />;
+      return wrapInBoundary(<CodeEditorApp />, 'Code Editor');
     case 'tools':
-      return <ToolsApp />;
+      return wrapInBoundary(<ToolsApp />, 'AI Tools');
     case 'fileexplorer':
-      return <FileExplorerApp />;
+      return wrapInBoundary(<FileExplorerApp />, 'Explorador');
     case 'browser-workbench':
-      return <BrowserWorkbenchApp />;
+      return wrapInBoundary(<BrowserWorkbenchApp />, 'Browser');
     case 'everything-workbench':
-      return <EverythingWorkbenchApp />;
+      return wrapInBoundary(<EverythingWorkbenchApp />, 'Workbench');
     case 'automation-studio':
-      return <AutomationStudioApp />;
+      return wrapInBoundary(<AutomationStudioApp />, 'Automação');
     case 'agent-teams':
-      return <AgentTeamsApp />;
+      return wrapInBoundary(<AgentTeamsApp />, 'Agent Teams');
     case 'memory-system':
-      return <MemorySystemApp />;
+      return wrapInBoundary(<MemorySystemApp />, 'Memória');
     case 'channel-gateway':
-      return <ChannelGatewayApp />;
+      return wrapInBoundary(<ChannelGatewayApp />, 'Canais');
     case 'freebuff':
-      return <FreebuffApp />;
+      return wrapInBoundary(<FreebuffApp />, 'Freebuff');
     case 'orchestrator':
-      return <AgentOrchestratorApp />;
+      return wrapInBoundary(<AgentOrchestratorApp />, 'Orquestrador');
     case 'about':
-      return <AboutApp />;
+      return wrapInBoundary(<AboutApp />, 'Sobre');
     default:
       return <div className="flex items-center justify-center h-full text-text-muted">App não encontrado</div>;
   }
