@@ -99,6 +99,11 @@ body {
            hover:bg-neon-purple/25 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]
            active:scale-95 flex items-center justify-center gap-2;
   }
+
+  .input-cyber {
+    @apply w-full flex-1 px-4 py-3 rounded-xl bg-[#0b0e18] border border-white/10 text-white placeholder:text-slate-500
+           focus:outline-none focus:border-cyan-500/50 focus:ring-1 focus:ring-cyan-500/50 transition-all font-sans;
+  }
 }
 
 /* Background Micro-Dot Grid Pattern */

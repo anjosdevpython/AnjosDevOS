@@ -266,42 +266,26 @@ export function ChatInterface() {
   const hasProviders = Object.values(settings.providers).some((p) => p.isEnabled && p.apiKey);
 
   return (
-    <div className="flex-1 flex flex-col min-h-0">
+    <div className="flex-1 flex flex-col min-h-0 w-full bg-[#07090e]">
       {/* Messages Area */}
       <div className="flex-1 overflow-y-auto px-4 py-6">
         {messages.length === 0 ? (
           /* Empty State */
-          <div className="flex flex-col items-center justify-center h-full text-center px-4">
-            <div className="w-16 h-16 rounded-2xl bg-neon-green/10 border border-neon-green/20 flex items-center justify-center mb-4 animate-pulse-slow">
-              <Sparkles className="w-8 h-8 text-neon-green" />
+          <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-3xl mx-auto">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-500/20 to-emerald-500/20 border border-cyan-500/30 flex items-center justify-center mb-3 animate-pulse-slow">
+              <Sparkles className="w-7 h-7 text-cyan-400" />
             </div>
-            <h2 className="text-xl font-semibold text-text-primary mb-2">Comece uma conversa</h2>
-            <p className="text-sm text-text-muted mb-6 max-w-md">
-              Selecione um provedor e modelo, e comece a conversar.
+            <h2 className="text-xl font-bold text-white mb-1.5 font-sans">Comece uma conversa</h2>
+            <p className="text-xs text-slate-400 mb-6 max-w-md">
+              Selecione um provedor e modelo, e comece a conversar em tempo real.
             </p>
 
-            {!hasProviders && (
-              <div className="mb-6 p-4 rounded-xl bg-neon-yellow/5 border border-neon-yellow/20 max-w-md">
-                <div className="flex items-center gap-2 text-neon-yellow mb-2">
-                  <AlertCircle className="w-4 h-4" />
-                  <span className="text-sm font-medium">Nenhum provedor configurado</span>
-                </div>
-                <p className="text-xs text-text-muted">
-                  Vá em{' '}
-                  <a href="/settings" className="text-neon-blue hover:underline">
-                    Configurações
-                  </a>{' '}
-                  para adicionar suas API keys.
-                </p>
-              </div>
-            )}
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-w-lg w-full">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 w-full">
               {SUGGESTED_PROMPTS.map((prompt) => (
                 <button
                   key={prompt}
                   onClick={() => setInput(prompt)}
-                  className="text-left text-xs p-3 rounded-lg bg-cyber-card/60 border border-cyber-border hover:border-neon-green/30 hover:bg-cyber-hover text-text-muted hover:text-text-secondary transition-all duration-200"
+                  className="text-left text-xs p-3.5 rounded-xl bg-[#0e121d]/80 border border-white/10 hover:border-cyan-500/40 hover:bg-[#141a29] text-slate-300 hover:text-white transition-all duration-200 shadow-sm"
                 >
                   {prompt}
                 </button>
@@ -310,7 +294,7 @@ export function ChatInterface() {
           </div>
         ) : (
           /* Messages */
-          <div className="max-w-4xl mx-auto space-y-4">
+          <div className="max-w-4xl mx-auto space-y-4 w-full">
             {messages.map((message) => (
               <div
                 key={message.id}
@@ -320,20 +304,20 @@ export function ChatInterface() {
                 )}
               >
                 {message.role === 'assistant' && (
-                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-neon-green/10 border border-neon-green/30 flex items-center justify-center">
-                    <Bot className="w-4 h-4 text-neon-green" />
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
+                    <Bot className="w-4 h-4 text-emerald-400" />
                   </div>
                 )}
                 <div
                   className={cn(
-                    'max-w-[80%] rounded-xl px-4 py-3 group relative',
+                    'max-w-[85%] rounded-2xl px-4 py-3 group relative shadow-md leading-relaxed',
                     message.role === 'user'
-                      ? 'bg-neon-blue/10 border border-neon-blue/20 text-text-primary'
-                      : 'bg-cyber-card border border-cyber-border text-text-primary'
+                      ? 'bg-blue-600 text-white font-sans'
+                      : 'bg-[#0f1422] border border-white/10 text-slate-100'
                   )}
                 >
                   {message.model && (
-                    <div className="flex items-center gap-2 text-[10px] text-text-muted font-mono mb-1">
+                    <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono mb-1">
                       <span
                         className="w-1.5 h-1.5 rounded-full"
                         style={{
@@ -358,10 +342,10 @@ export function ChatInterface() {
                   {message.content && (
                     <button
                       onClick={() => copyMessage(message.id, message.content)}
-                      className="absolute top-2 right-2 p-1 rounded opacity-0 group-hover:opacity-100 text-text-muted hover:text-text-secondary transition-all"
+                      className="absolute top-2 right-2 p-1 rounded opacity-0 group-hover:opacity-100 text-slate-400 hover:text-white transition-all bg-black/40"
                     >
                       {copiedId === message.id ? (
-                        <Check className="w-3 h-3 text-neon-green" />
+                        <Check className="w-3 h-3 text-emerald-400" />
                       ) : (
                         <Copy className="w-3 h-3" />
                       )}
@@ -369,8 +353,8 @@ export function ChatInterface() {
                   )}
                 </div>
                 {message.role === 'user' && (
-                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-neon-blue/10 border border-neon-blue/30 flex items-center justify-center">
-                    <User className="w-4 h-4 text-neon-blue" />
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center">
+                    <User className="w-4 h-4 text-blue-400" />
                   </div>
                 )}
               </div>
@@ -380,51 +364,51 @@ export function ChatInterface() {
         )}
       </div>
 
-      {/* Input Area */}
-      <div className="border-t border-cyber-border bg-cyber-card/80 backdrop-blur-sm px-4 py-3">
-        <div className="max-w-4xl mx-auto">
-          {/* Controls */}
-          <div className="flex items-center gap-3 mb-3">
+      {/* Input Area (Full-width, 100% responsive) */}
+      <div className="border-t border-white/10 bg-[#0c101d]/90 backdrop-blur-md px-4 py-3 flex-shrink-0 w-full">
+        <div className="max-w-4xl mx-auto w-full flex flex-col gap-2.5">
+          {/* Controls Bar */}
+          <div className="flex flex-wrap items-center justify-between gap-2.5 w-full">
             {/* Model Selector */}
             <div className="relative" ref={modelSelectRef}>
               <button
                 onClick={() => setShowModelSelect(!showModelSelect)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-cyber-bg border border-cyber-border hover:border-neon-green/30 text-xs text-text-secondary transition-all"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#141a29] border border-white/10 hover:border-cyan-500/40 text-xs text-slate-200 transition-all font-sans font-medium"
               >
                 <span
-                  className="w-2 h-2 rounded-full"
+                  className="w-2 h-2 rounded-full flex-shrink-0"
                   style={{
-                    backgroundColor: currentModelInfo?.providerColor || PROVIDERS[selectedProvider]?.color || '#6b7280',
+                    backgroundColor: currentModelInfo?.providerColor || PROVIDERS[selectedProvider]?.color || '#06b6d4',
                   }}
                 />
-                <span className="font-mono">
+                <span className="font-mono text-[11px] truncate max-w-[200px]">
                   {currentModelInfo?.name || selectedModel}
                 </span>
-                <ChevronDown className="w-3 h-3" />
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
               </button>
 
               {showModelSelect && (
-                <div className="absolute bottom-full left-0 mb-2 w-72 max-h-96 overflow-y-auto rounded-xl bg-cyber-card border border-cyber-border shadow-2xl z-50">
+                <div className="absolute bottom-full left-0 mb-2 w-80 max-h-96 overflow-y-auto rounded-2xl bg-[#121624] border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.8)] z-50 p-1">
                   {Object.keys(groupedModels).length === 0 ? (
                     <div className="p-4 text-center">
-                      <AlertCircle className="w-6 h-6 text-text-muted mx-auto mb-2" />
-                      <p className="text-xs text-text-muted">
+                      <AlertCircle className="w-6 h-6 text-slate-400 mx-auto mb-2" />
+                      <p className="text-xs text-slate-400">
                         Nenhum provedor configurado
                       </p>
                       <a
                         href="/settings"
-                        className="text-xs text-neon-blue hover:underline mt-1 inline-block"
+                        className="text-xs text-cyan-400 hover:underline mt-1 inline-block"
                       >
                         Configurar provedores
                       </a>
                     </div>
                   ) : (
                     Object.entries(groupedModels).map(([providerId, group]) => (
-                      <div key={providerId}>
-                        <div className="px-3 py-2 text-[10px] font-mono text-text-muted uppercase tracking-wider bg-cyber-bg/50 sticky top-0 flex items-center gap-2">
+                      <div key={providerId} className="mb-1">
+                        <div className="px-3 py-1.5 text-[10px] font-mono text-slate-400 uppercase tracking-wider bg-black/40 rounded-lg sticky top-0 flex items-center gap-2">
                           <span>{group.providerIcon}</span>
-                          <span>{group.providerName}</span>
-                          <span className="ml-auto text-text-muted/50">
+                          <span className="font-bold">{group.providerName}</span>
+                          <span className="ml-auto text-slate-500">
                             {group.models.length}
                           </span>
                         </div>
@@ -435,10 +419,10 @@ export function ChatInterface() {
                               handleModelSelect(model.id, model.providerId as ProviderId)
                             }
                             className={cn(
-                              'w-full text-left px-3 py-2 text-xs hover:bg-cyber-hover transition-colors flex items-center gap-2',
+                              'w-full text-left px-3 py-2 text-xs rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2',
                               selectedModel === model.id
-                                ? 'text-neon-green bg-neon-green/5'
-                                : 'text-text-secondary'
+                                ? 'text-cyan-400 bg-cyan-500/10 font-medium'
+                                : 'text-slate-300'
                             )}
                           >
                             <div
@@ -447,7 +431,7 @@ export function ChatInterface() {
                             />
                             <span className="truncate">{model.name}</span>
                             {model.category !== 'chat' && (
-                              <span className="ml-auto text-[10px] text-text-muted capitalize">
+                              <span className="ml-auto text-[10px] text-slate-500 capitalize">
                                 {model.category}
                               </span>
                             )}
@@ -460,63 +444,66 @@ export function ChatInterface() {
               )}
             </div>
 
-            {/* Temperature */}
-            <div className="flex items-center gap-2 text-xs text-text-muted">
-              <Thermometer className="w-3 h-3" />
-              <input
-                type="range"
-                min="0"
-                max="2"
-                step="0.1"
-                value={temperature}
-                onChange={(e) => {
-                  const val = parseFloat(e.target.value);
-                  setTemperature(val);
-                  saveTemperature(val);
-                }}
-                className="w-20 accent-neon-green"
-              />
-              <span className="font-mono w-6">{temperature}</span>
-            </div>
+            {/* Temperature & Actions */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 text-xs text-slate-400">
+                <Thermometer className="w-3.5 h-3.5 text-cyan-400" />
+                <input
+                  type="range"
+                  min="0"
+                  max="2"
+                  step="0.1"
+                  value={temperature}
+                  onChange={(e) => {
+                    const val = parseFloat(e.target.value);
+                    setTemperature(val);
+                    saveTemperature(val);
+                  }}
+                  className="w-24 accent-cyan-400"
+                />
+                <span className="font-mono text-[11px] w-6">{temperature}</span>
+              </div>
 
-            {/* Clear */}
-            {messages.length > 0 && (
-              <button
-                onClick={clearChat}
-                className="ml-auto flex items-center gap-1 px-2 py-1 rounded text-xs text-text-muted hover:text-neon-red transition-colors"
-              >
-                <Trash2 className="w-3 h-3" />
-                Limpar
-              </button>
-            )}
+              {/* Clear Button */}
+              {messages.length > 0 && (
+                <button
+                  onClick={clearChat}
+                  className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  <span>Limpar</span>
+                </button>
+              )}
+            </div>
           </div>
 
-          {/* Input */}
-          <div className="flex items-end gap-2">
+          {/* Full-width Responsive Input Textarea + Send */}
+          <div className="flex items-end gap-2.5 w-full">
             <textarea
               ref={textareaRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Digite sua mensagem... (Shift+Enter para nova linha)"
+              placeholder="Digite sua mensagem... (Shift+Enter para quebra de linha)"
               rows={1}
-              className="input-cyber resize-none text-sm min-h-[44px] max-h-[200px]"
+              className="w-full flex-1 resize-none text-sm min-h-[46px] max-h-[180px] px-4 py-3 rounded-xl bg-[#070a12] border border-white/15 focus:border-cyan-500/70 focus:ring-1 focus:ring-cyan-500/70 text-white placeholder:text-slate-500 outline-none transition-all font-sans leading-relaxed shadow-inner"
               disabled={isLoading}
             />
             <button
               onClick={sendMessage}
               disabled={!input.trim() || isLoading}
               className={cn(
-                'flex-shrink-0 p-3 rounded-lg transition-all duration-200',
+                'flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-200',
                 input.trim() && !isLoading
-                  ? 'bg-neon-green/10 text-neon-green border border-neon-green/30 hover:bg-neon-green/20 hover:shadow-neon-green'
-                  : 'bg-cyber-bg text-text-muted border border-cyber-border cursor-not-allowed'
+                  ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-black shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:scale-105 active:scale-95 cursor-pointer font-bold'
+                  : 'bg-white/5 text-slate-600 border border-white/10 cursor-not-allowed'
               )}
+              title="Enviar Mensagem (Enter)"
             >
               {isLoading ? (
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="w-5 h-5 animate-spin text-cyan-400" />
               ) : (
-                <Send className="w-5 h-5" />
+                <Send className="w-4 h-4" />
               )}
             </button>
           </div>

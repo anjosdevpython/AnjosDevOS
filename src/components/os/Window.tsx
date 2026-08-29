@@ -151,7 +151,7 @@ export function Window({ windowState, icon, iconColor, children }: WindowProps) 
       </div>
 
       {/* Window Body */}
-      <div className="flex-1 overflow-auto bg-[#07090e]/95 text-slate-100">
+      <div className="flex-1 overflow-hidden bg-[#07090e]/95 text-slate-100 flex flex-col min-h-0 w-full">
         {children}
       </div>
 

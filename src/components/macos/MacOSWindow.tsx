@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
 import type { WindowState } from '@/components/os/types';
@@ -158,7 +158,7 @@ export function MacOSWindow({
       </div>
 
       {/* Window Content */}
-      <div className="flex-1 overflow-hidden bg-[#07090e] flex flex-col">{children}</div>
+      <div className="flex-1 overflow-hidden bg-[#07090e] flex flex-col min-h-0 w-full">{children}</div>
     </div>
   );
 }
