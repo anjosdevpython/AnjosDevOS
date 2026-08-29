@@ -26,8 +26,8 @@ See: `.planning/PROJECT.md` (updated 2026-08-28)
 
 ## Continuity
 
-- **Last action:** `/gsd-new-project` completed end-to-end + scope expansion (Workspaces + Self-Contained Runtime + IDE consolidado). Generated PROJECT.md, config.json, REQUIREMENTS.md (26 v1 REQs), ROADMAP.md (4 phases, 22 plans), and the 7-document codebase map in `.planning/codebase/`.
-- **Next action:** `/gsd-plan-phase 1` to break Phase 1 (Self-Contained IDE com Swarm Real) into executable plans.
+- **Last action:** Phase 1 planned — `RESEARCH.md` + 6 `PLAN.md` files committed under `.planning/phases/01-self-contained-ide-com-swarm-real-llm-backed/`. Coverage: 13/13 Phase 1 v1 REQs (WORK-01..03, RUN-01..04, CODS-01..06); WORK-04 deliberately deferred to Phase 3 (GitHub sync needs OAuth).
+- **Next action:** `/gsd-execute-phase 1` to execute the 6 plans (or run them in waves). With the runtime caveat (no `gsd-planner`/`gsd-executor` subagents installed), the executor role will be performed inline.
 - **Blockers:** None.
 - **Open questions:**
   - Phase 1: how to handle WebContainers boot failure on iOS Safari (no COOP/COEP support)? Fallback to demo mode? Disable Phase 1 features behind a capability check?
