@@ -235,3 +235,19 @@ mpiling / ...
  ✓ Compiled in 1390ms (1356 modules)
  ✓ Compiled in 876ms (1356 modules)
  ✓ Compiled in 5.4s (1417 modules)
+ ✓ Compiled in 7.2s (1403 modules)
+ ✓ Compiled in 1947ms (1403 modules)
+   ▲ Next.js 15.5.24
+   - Local:        http://localhost:47789
+   - Network:      http://192.168.56.1:47789
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 11.6s
+   ▲ Next.js 15.5.24
+   - Local:        http://localhost:47789
+   - Network:      http://192.168.56.1:47789
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 3.6s

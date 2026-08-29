@@ -1,18 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { WorkspaceRepository, type Workspace } from '@/lib/workspaces';
+import { WorkspaceExporter } from '@/lib/workspaces/workspaceExporter';
 import { useOS } from '../OSContext';
 import {
   FolderPlus,
   Trash2,
   FolderOpen,
-  Sparkles,
   Layers,
-  Code,
   FileCode,
   CheckCircle,
   Plus,
+  Download,
+  Upload,
 } from 'lucide-react';
 
 export function WorkspacesApp() {
@@ -22,6 +23,7 @@ export function WorkspacesApp() {
   const [newWsName, setNewWsName] = useState('');
   const [selectedTemplate, setSelectedTemplate] = useState<'ai-swarm' | 'node' | 'react'>('ai-swarm');
   const [isCreating, setIsCreating] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const loadWorkspaces = async () => {
     const list = await WorkspaceRepository.getAllWorkspaces();
@@ -38,7 +40,7 @@ export function WorkspacesApp() {
     e.preventDefault();
     if (!newWsName.trim()) return;
 
-    const ws = await WorkspaceRepository.createWorkspace(
+    await WorkspaceRepository.createWorkspace(
       newWsName.trim(),
       selectedTemplate,
       `Workspace criado em ${new Date().toLocaleDateString('pt-BR')}`
@@ -63,10 +65,34 @@ export function WorkspacesApp() {
     }
   };
 
+  const handleExportZip = async (ws: Workspace, e: React.MouseEvent) => {
+    e.stopPropagation();
+    await WorkspaceExporter.downloadZip(ws);
+  };
+
+  const handleImportZip = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    await WorkspaceExporter.importFromZip(file);
+    await loadWorkspaces();
+    if (fileInputRef.current) fileInputRef.current.value = '';
+    openApp('codeeditor');
+  };
+
   return (
-    <div className="h-full flex flex-col bg-[#07090e] text-slate-100 p-6 overflow-y-auto">
+    <div className="h-full flex flex-col bg-[#07090e] text-slate-100 p-6 overflow-y-auto font-sans">
+      {/* Hidden File Input for ZIP Import */}
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".zip"
+        onChange={handleImportZip}
+        className="hidden"
+      />
+
       {/* Header */}
-      <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
+      <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6 select-none">
         <div className="flex items-center gap-3">
           <div className="p-3 rounded-2xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.3)]">
             <Layers className="w-6 h-6" />
@@ -74,17 +100,26 @@ export function WorkspacesApp() {
           <div>
             <h1 className="text-lg font-bold text-white font-mono">Gerenciador de Workspaces</h1>
             <p className="text-xs text-slate-400">
-              Ambientes de desenvolvimento isolados com persistência IndexedDB e WebContainers
+              Ambientes de desenvolvimento isolados com persistência IndexedDB, WebContainers e exportação ZIP
             </p>
           </div>
         </div>
 
-        <button
-          onClick={() => setIsCreating(true)}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold text-xs hover:opacity-90 transition-opacity font-mono shadow-md"
-        >
-          <Plus className="w-4 h-4" /> Novo Workspace
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-200 text-xs font-mono transition-colors"
+          >
+            <Upload className="w-4 h-4 text-cyan-400" /> Importar ZIP
+          </button>
+
+          <button
+            onClick={() => setIsCreating(true)}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold text-xs hover:opacity-90 transition-opacity font-mono shadow-md"
+          >
+            <Plus className="w-4 h-4" /> Novo Workspace
+          </button>
+        </div>
       </div>
 
       {/* Modal de Criação */}
@@ -104,7 +139,7 @@ export function WorkspacesApp() {
               value={newWsName}
               onChange={(e) => setNewWsName(e.target.value)}
               placeholder="ex: Minha API com IA Swarm"
-              className="w-full px-3 py-2 text-xs bg-[#05070c] border border-white/10 rounded-xl text-white outline-none focus:border-cyan-400"
+              className="w-full px-3 py-2 text-xs bg-[#05070c] border border-white/10 rounded-xl text-white outline-none focus:border-cyan-400 font-mono"
               autoFocus
               required
             />
@@ -199,13 +234,23 @@ export function WorkspacesApp() {
                   <FolderOpen className="w-3.5 h-3.5" /> Abrir no IDE
                 </button>
 
-                <button
-                  onClick={() => handleDelete(ws.id)}
-                  className="p-2 rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
-                  title="Excluir workspace"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </button>
+                <div className="flex items-center gap-1">
+                  <button
+                    onClick={(e) => handleExportZip(ws, e)}
+                    className="p-2 rounded-xl text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10 transition-colors"
+                    title="Baixar Workspace (.zip)"
+                  >
+                    <Download className="w-4 h-4" />
+                  </button>
+
+                  <button
+                    onClick={() => handleDelete(ws.id)}
+                    className="p-2 rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors"
+                    title="Excluir workspace"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
           );

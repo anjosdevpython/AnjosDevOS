@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  anjosdevos:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: anjosdevos_app
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - NETWORK_TOOLS_API_KEY=${NETWORK_TOOLS_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GOOGLE_AI_API_KEY=${GOOGLE_AI_API_KEY:-}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
