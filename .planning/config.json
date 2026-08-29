@@ -41,6 +41,5 @@
     ]
   },
   "project_mode": "mvp",
-  "response_language": "pt-BR",
-  "notes": "Project mode set after Step 5; will be confirmed in Step 7.5 (Vertical MVP vs Horizontal Layers)."
+  "response_language": "pt-BR"
 }
