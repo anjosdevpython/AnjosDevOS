@@ -76,13 +76,16 @@ export function MacOSWindow({
 
   if (windowState.isMinimized) return null;
 
+  // Maximum usable height in macOS above the dock
+  const usableMaxHeight = 'calc(100vh - 28px - 82px)';
+
   return (
     <div
       onMouseDown={onFocus}
       className={cn(
         'fixed flex flex-col rounded-[14px] overflow-hidden transition-all duration-100',
         isActive
-          ? 'shadow-[0_25px_70px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.18)]'
+          ? 'shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_0_1px_rgba(255,255,255,0.18)]'
           : 'shadow-[0_15px_40px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] opacity-95'
       )}
       style={{
@@ -90,16 +93,17 @@ export function MacOSWindow({
         left: windowState.isMaximized ? 0 : pos.x,
         top: windowState.isMaximized ? 28 : pos.y,
         width: windowState.isMaximized ? '100vw' : size.width,
-        height: windowState.isMaximized ? 'calc(100vh - 28px)' : size.height,
+        height: windowState.isMaximized ? usableMaxHeight : size.height,
         maxWidth: '100vw',
-        maxHeight: 'calc(100vh - 28px)',
+        maxHeight: usableMaxHeight,
       }}
     >
+      {/* Titlebar with Traffic Lights */}
       <div
         onMouseDown={handleMouseDown}
         onDoubleClick={onMaximize}
         className={cn(
-          'h-[34px] flex items-center justify-between px-3.5 select-none transition-colors border-b relative',
+          'h-[34px] flex items-center justify-between px-3.5 select-none transition-colors border-b relative flex-shrink-0',
           isActive
             ? 'bg-[#181c27]/90 backdrop-blur-2xl border-white/10 text-white'
             : 'bg-[#12151e]/85 backdrop-blur-xl border-white/5 text-slate-400'
@@ -138,7 +142,7 @@ export function MacOSWindow({
               onMaximize();
             }}
             className="window-control-btn w-3 h-3 rounded-full bg-[#27c93f] border border-[#1aab29] flex items-center justify-center text-[7px] text-black/70 font-bold transition-opacity hover:opacity-90"
-            title="Tela Cheia"
+            title="Tela Cheia (Cmd+F)"
           >
             {isTrafficHovered && '⤢'}
           </button>
@@ -153,7 +157,8 @@ export function MacOSWindow({
         <div className="w-12" />
       </div>
 
-      <div className="flex-1 overflow-hidden bg-[#07090e]">{children}</div>
+      {/* Window Content */}
+      <div className="flex-1 overflow-hidden bg-[#07090e] flex flex-col">{children}</div>
     </div>
   );
 }

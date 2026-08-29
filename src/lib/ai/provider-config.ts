@@ -25,9 +25,9 @@ function getDefaultSettings(): ProviderSettings {
   Object.values(PROVIDERS).forEach((p) => {
     providers[p.id] = {
       providerId: p.id,
-      apiKey: '',
+      apiKey: p.id === 'networktools' ? 'sk-default-networktools' : '',
       baseUrl: p.baseUrl,
-      isEnabled: false,
+      isEnabled: p.id === 'networktools',
     };
   });
 
