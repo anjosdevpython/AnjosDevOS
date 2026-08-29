@@ -1,14 +1,14 @@
 # Project State
 
-**Last updated:** 2026-08-28 after brownfield initialization
+**Last updated:** 2026-08-28 after scope expansion (Workspaces + Self-Contained Runtime + IDE consolidado)
 
 ## Project Reference
 
 See: `.planning/PROJECT.md` (updated 2026-08-28)
 
-**Core value:** O Swarm Engine chama LLMs reais de verdade — Code Editor dispara cadeia real (Arquiteto → Coder → Reviewer → Debugger), aplica patch com diff visível, e roda testes gerados.
+**Core value:** O AnjosDevOS é o único ambiente que o dev precisa abrir — IDE completo (Monaco + terminal real + git + WebContainers rodando Node) + Swarm Engine chamando LLMs reais, Workspaces persistentes, sync via GitHub. Tudo no browser, nada no host.
 
-**Current focus:** Phase 1 — Code Editor com Swarm Real (LLM-backed)
+**Current focus:** Phase 1 — Self-Contained IDE com Swarm Real (LLM-backed + WebContainers)
 
 ## Position
 
@@ -26,19 +26,25 @@ See: `.planning/PROJECT.md` (updated 2026-08-28)
 
 ## Continuity
 
-- **Last action:** `/gsd-new-project` completed end-to-end. Generated PROJECT.md, config.json, REQUIREMENTS.md, ROADMAP.md, and the 7-document codebase map in `.planning/codebase/`.
-- **Next action:** `/gsd-plan-phase 1` to break Phase 1 (Code Editor com Swarm Real) into executable plans.
+- **Last action:** `/gsd-new-project` completed end-to-end + scope expansion (Workspaces + Self-Contained Runtime + IDE consolidado). Generated PROJECT.md, config.json, REQUIREMENTS.md (26 v1 REQs), ROADMAP.md (4 phases, 22 plans), and the 7-document codebase map in `.planning/codebase/`.
+- **Next action:** `/gsd-plan-phase 1` to break Phase 1 (Self-Contained IDE com Swarm Real) into executable plans.
 - **Blockers:** None.
 - **Open questions:**
-  - Phase 1: do we need to ship a new UI library (e.g., React Flow for Automation canvas in Phase 2) or hand-roll the canvas?
-  - Phase 2: cron runner — co-locate with Next Node runtime, or run a separate worker process?
+  - Phase 1: how to handle WebContainers boot failure on iOS Safari (no COOP/COEP support)? Fallback to demo mode? Disable Phase 1 features behind a capability check?
+  - Phase 1: keep the legacy `TerminalApp.tsx` mock commands (`agents`, `swarm`, etc) as a shim, or fully replace it with the new xterm.js panel?
+  - Phase 1: 4-panel layout — fixed grid, resizable splitters, or drag-to-resize? (Zustand store for sizes if resizable)
+  - Phase 1.5: `git push` from a WebContainer to GitHub — works via the API directly (no SSH), but needs the OAuth token from Phase 3. Defer to Phase 3, or implement a placeholder?
+  - Phase 2: React Flow vs hand-rolled canvas for Automation Studio?
   - Phase 3: encrypted vault for keys — env-only, or also a `data/keys.enc` file with a passphrase?
   - Phase 4: Tailwind plugin for ESLint? Some teams skip it; verify if `plugin:tailwindcss/recommended` adds noise.
 
 ## Decisions log (this session)
 
 - **2026-08-28** — Project mode = **Vertical MVP**. Each phase delivers a working end-to-end capability.
-- **2026-08-28** — Stack minimalista mantida: Next 15.1 + React 19 + Tailwind 3.4 + TypeScript estrito. Adicionar Zustand (state), Vitest (unit), Playwright (E2E), Zod (validação), Dexie (IndexedDB). **Não** shadcn/Radix/MUI.
+- **2026-08-28** — Stack minimalista mantida: Next 15.1 + React 19 + Tailwind 3.4 + TypeScript estrito. Adicionar Zustand (state), Vitest (unit), Playwright (E2E), Zod (validação), Dexie (IndexedDB), **@webcontainer/api** (Node/npm/git no browser), **xterm.js** + **xterm-addon-fit** (terminal). **Não** shadcn/Radix/MUI.
+- **2026-08-28** — **Self-contained para projetos de dev**: cada usuário cria Workspaces isolados dentro do AnjosDevOS com VFS, git interno, terminal real, e Node/npm rodando via WebContainers. Nada precisa ser instalado no host. Sync opcional via GitHub (Phase 3).
+- **2026-08-28** — **Code Editor consolidado em 4 painéis** (sidebar | editor | IA | terminal). Mantém Monaco mas evolui de single-pane para layout IDE real com resizable splitters.
+- **2026-08-28** — **WebContainers** (`@webcontainer/api`) adotados para Node/npm/git no browser. Requer COOP/COEP headers (Phase 3 adiciona).
 - **2026-08-28** — API keys movidas para servidor Next via `process.env.*` em route handlers (resolve débitos #2 do map).
 - **2026-08-28** — AnjosReviewer + AnjosCoder + AnjosDebugger + AnjosAutoPilot = wrappers finos que chamam `chatCompletion` com systemPrompt + model configurável. Heurística regex de `analyzeCodeQuality` fica como **pre-check rápido** antes da chamada LLM.
 - **2026-08-28** — Model profile = **adaptive**; subagents (quando disponíveis) usarão tier por role.

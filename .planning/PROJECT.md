@@ -4,11 +4,13 @@
 
 AnjosDevOS é um **Sistema Operacional web de IA focado em desenvolvimento e automação**, executando inteiramente no navegador, com 27 apps nativos, 3 skins visuais (Cyberpunk / iOS / Mobile), 10 provedores de IA integrados, e dois barramentos de agentes (Swarm Engine + Agent Orchestrator) que coordenam 7 especialistas autônomos para planejar, codificar, auditar, corrigir, automatizar, fazer deploy e documentar software.
 
+**Self-contained para projetos de dev:** cada usuário cria **Workspaces** (pastas virtuais isoladas) dentro do AnjosDevOS, com seu próprio `.git` interno, `node_modules` rodando via **WebContainers** (Node + npm + git no browser), terminal que executa comandos reais, e Code Editor (Monaco) com painel IA Swarm que dispara LLMs reais para auditoria/patch/testes. **Nada precisa ser instalado no host** — abrir `https://anjosdevos.dev.br` é suficiente. Os Workspaces persistem em IndexedDB; sync opcional via GitHub.
+
 Pensado para uso por uma **equipe pequena (2–5 devs)** que abre o OS, escreve código no Monaco com um painel lateral de IA que de fato chama LLMs reais, dispara automações visuais que executam nó-a-nó, e mantém o trabalho persistido entre reloads sem perder o estado das janelas.
 
 ## Core Value
 
-**O Swarm Engine precisa chamar LLMs reais de verdade** — o diferencial central do produto é o painel "IA Swarm" no editor que, ao receber um objetivo do usuário, dispara uma cadeia real (Arquiteto → Coder → Reviewer → Debugger) usando os modelos configurados, aplica patch no código com diff visível, e roda testes gerados. Tudo o resto (UI, OS, automação) é meio; isso é o fim.
+**O AnjosDevOS é o único ambiente que o dev precisa abrir** — abrir `https://anjosdevos.dev.br` deve entregar um IDE de fato (Monaco + terminal real + git + WebContainers rodando Node), com o Swarm Engine chamando LLMs reais para auditar, corrigir e testar código, e Workspaces persistentes que viajam entre reloads e (opcionalmente) entre máquinas via GitHub sync. O Swarm Engine chama LLMs reais; o WebContainers roda Node real; o terminal executa comandos reais; o git é git de verdade. O "no-host-install" é o ponto — VS Code + Node + git + extensões + 7 agentes especializados, todos num único shell web. — o diferencial central do produto é o painel "IA Swarm" no editor que, ao receber um objetivo do usuário, dispara uma cadeia real (Arquiteto → Coder → Reviewer → Debugger) usando os modelos configurados, aplica patch no código com diff visível, e roda testes gerados. Tudo o resto (UI, OS, automação) é meio; isso é o fim.
 
 ## Business Context
 
@@ -51,6 +53,12 @@ Hipóteses a serem entregues no v1 (ver `REQUIREMENTS.md` para REQ-IDs):
 - [ ] CSP, headers de segurança, rate limiting em `/api/*`
 - [ ] Vitest configurado, GitHub Actions CI, ≥40% cobertura em `src/lib/`
 - [ ] Playwright E2E dos 3 fluxos: abrir OS, abrir Code Editor + patch, criar+e executar automation
+- [ ] **Workspaces virtuais isolados** dentro do AnjosDevOS — usuário cria, lista, abre, renomeia, deleta; cada workspace tem seu próprio working dir persistido em IndexedDB (via Dexie), metadata (id, name, createdAt, updatedAt, lastOpenedAt), e snapshot de arquivos.
+- [ ] **Code Editor consolidado como IDE de 4 painéis** — sidebar (file tree + search), editor central (Monaco com tabs, multi-cursor, themes), painel direito (IA Swarm), painel inferior (terminal integrado). Tudo num único app `codeeditor`.
+- [ ] **WebContainers rodando Node + npm + git no browser** — usuário pode `npm install`, `npm test`, `git init`, `git add`, `git commit`, `git push` sem instalar nada no host. Requer COOP/COEP headers (Cross-Origin-Opener-Policy: same-origin, Cross-Origin-Embedder-Policy: require-corp).
+- [ ] **Terminal real (xterm.js + WebContainers)** — aceita os comandos `agents`, `swarm`, `audit`, `flows`, `models`, `neofetch`, `clear`, `help` (já documentados) **E** qualquer comando shell real (`ls`, `cd`, `git`, `npm`, `node`). Não é mais mock.
+- [ ] **Sync opcional de Workspaces via GitHub** — push/pull de um workspace para um repo GitHub; autenticação via OAuth Phase 3.
+- [ ] **Persistência de Workspaces entre reloads** — recarregar a página restaura o último workspace aberto, suas abas no editor, posição do cursor, e histórico de comandos do terminal.
 
 ### Out of Scope
 
@@ -94,7 +102,8 @@ Hipóteses a serem entregues no v1 (ver `REQUIREMENTS.md` para REQ-IDs):
 
 ## Constraints
 
-- **Stack:** Preservar Next 15.1 + React 19 + Tailwind 3.4 + TypeScript estrito. Adicionar Zustand (state), Vitest (unit), Playwright (E2E), Zod (validação). **Não** introduzir shadcn/Radix/MUI nem framework de animação (framer-motion) — manter bundle enxuto.
+- **Stack:** Preservar Next 15.1 + React 19 + Tailwind 3.4 + TypeScript estrito. Adicionar Zustand (state), Vitest (unit), Playwright (E2E), Zod (validação), Dexie (IndexedDB), **@webcontainer/api** (Node/npm/git no browser), **xterm.js** (terminal). **Não** introduzir shadcn/Radix/MUI nem framework de animação (framer-motion) — manter bundle enxuto.
+- **Self-contained:** o AnjosDevOS entrega um IDE completo no browser. **Nada de "abra o VS Code" / "instale o Node" / "rode no terminal"** — tudo roda dentro do OS via WebContainers.
 - **Idioma:** UI e mensagens em PT-BR; código, comentários e commits em inglês (exceto quando citam o produto). Documentação em PT-BR.
 - **Licença:** MIT — sem dependência GPL/AGPL que contamine o bundle.
 - **Compatibilidade:** Chrome/Edge/Firefox/Safari últimas 2 versões; iOS Safari 16+ para skin mobile.
@@ -118,6 +127,10 @@ Hipóteses a serem entregues no v1 (ver `REQUIREMENTS.md` para REQ-IDs):
 | Project mode: **Vertical MVP** | Recomendado para brownfield com v1 MUST-HAVE definido. Cada fase entrega capacidade end-to-end. | — Pending |
 | Granulidade: **Standard** (5-8 fases, 3-5 planos cada) | Balanceado: cobre os 4 MUST-HAVE sem inflar roadmap. | — Pending |
 | AI Models: **inherit** (modelo da sessão) | Runtime atual não é Claude; herdar evita erro 404 de tier alias. | — Pending |
+| **Adotar WebContainers (`@webcontainer/api`)** para Node/npm/git no browser | É a tecnologia que torna "self-contained" real: usuário abre o AnjosDevOS e tem um ambiente de dev completo. Trade-off: bundle +3MB e exige COOP/COEP headers. StackBlitz é o caminho. | — Pending |
+| **Code Editor consolidado em 4 painéis** (sidebar | editor | IA | terminal) | É como o usuário descreveu: "tipo VS Code, mas dentro do OS". Mantém Monaco mas evolui de single-pane para layout IDE real. | — Pending |
+| **Workspaces como conceito de primeira classe** | Usuário pode ter vários projetos abertos simultaneamente, cada um com seu próprio VFS, git, terminal, sessões de IA. Persistência via Dexie. | — Pending |
+| **Não usar code-server nem Theia real** | WebContainers + Monaco custom é mais leve e mais controlável que embutir um IDE inteiro. Theia real fica para v2+. | — Pending |
 
 ## Evolution
 

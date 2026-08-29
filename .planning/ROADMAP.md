@@ -7,31 +7,35 @@
 
 ---
 
-## Phase 1: Code Editor com Swarm Real (LLM-backed)
+## Phase 1: Self-Contained IDE com Swarm Real (LLM-backed)
 
-**Goal:** Tornar o `codeeditor` um ambiente real de coding-assistido, onde cada agente do Swarm chama o LLM configurado, o patch é aplicado de verdade ao código no Monaco, e testes são gerados e executados.
+**Goal:** Transformar o AnjosDevOS em um **IDE completo self-contained** dentro do browser: Workspaces isolados (Dexie), Code Editor consolidado de 4 painéis (sidebar | editor | IA | terminal), WebContainers rodando Node/npm/git de verdade, terminal xterm.js executando comandos shell reais, e o Swarm Engine chamando LLMs reais para auditar/patch/testar código.
 
 **Mode:** mvp
 
-**Requirements covered:** CODS-01, CODS-02, CODS-03, CODS-04
+**Requirements covered:** WORK-01..04, RUN-01..04, CODS-01..06
 
 **UI hint:** yes
 
 **Success Criteria:**
 
-1. User opens `Code Editor` and sees Monaco with file tree (FileExplorer integrated) + `✨ IA Swarm` side panel showing 7 agent cards with live status.
-2. User clicks `Auditar` on `src/lib/utils.ts` and within 5s sees a structured report: score 0-100, findings with severity + line + OWASP category + suggested fix.
-3. User clicks `Auto-Patch` on a finding and the Monaco buffer shows a unified diff (red/green gutter) with the proposed change; user can accept, reject, or undo.
-4. User clicks `Gerar Testes` and a Vitest spec file appears next to the source file, runs (`vitest run`), and the side panel shows pass/fail with output.
-5. The 7 agents each use a configurable model (per-agent model setting in `src/config/app.ts` and the existing `PROVIDERS` registry) and the audit/patch/test generation actually calls the LLM via the `api-client` — not the regex heuristic.
+1. User opens AnjosDevOS, sees a `Workspaces` view, creates a new workspace, lands in the Code Editor (4-panel IDE), and the file tree shows the workspace's empty structure.
+2. User types `npm install vitest` in the bottom terminal; WebContainers installs vitest in `/node_modules` of the workspace; the file tree updates without reload.
+3. User creates `src/index.ts`, writes 5 lines of code, and `node src/index.ts` in the terminal prints the expected output.
+4. User clicks `Auditar` on `src/index.ts`; within 5s the IA Swarm panel shows a real LLM-generated report (not regex): score 0-100, findings with severity + line + OWASP category + suggested fix.
+5. User clicks `Auto-Patch`; the editor shows a unified diff (red/green gutter) with the LLM-suggested change; user accepts, the file is updated, and `git status` in the terminal shows the change.
+6. User clicks `Gerar Testes`; a Vitest spec is created next to the source; `npm test` runs in the WebContainer; the IA panel shows pass/fail with vitest's actual output.
+7. User refreshes the page; the workspace, open file, cursor position, and terminal history are restored from IndexedDB.
+8. The 7 swarm agents each use a configurable model (per-agent model setting) and the audit/patch/test generation actually calls the LLM via `chatCompletion` — not the regex heuristic.
 
 **Plans:**
 
-- **1.1 — Real LLM audit pipeline:** Replace `analyzeCodeQuality` regex with a hybrid (regex pre-check + LLM deep-audit via `chatCompletion`); define `LLMAuditRequest`/`LLMAuditResult` types; persist reports to `.planning/code-audits/{timestamp}-{file}.json`.
-- **1.2 — Swarm panel UI (CODS-01):** Build `SwarmPanel.tsx` with 7 agent cards, live status via SwarmEngine events (`agent:status_change`, `message:new`), per-agent model selector, "Ask Swarm" input that dispatches a goal to `executeCollaborativeCodingTask`.
-- **1.3 — Auto-Patch with diff (CODS-03):** Build `PatchApplier.tsx` consuming `CodeAuditResult`; integrate Monaco diff editor (`@monaco-editor/react` `DiffEditor`); accept/reject/undo via Zustand slice.
-- **1.4 — Vitest generator + runner (CODS-04):** Replace the static template in `generateUnitTestsForCode` with an LLM-driven generator; write spec to `__tests__/`; spawn `vitest run` via a Node subprocess triggered from a Next API route; stream output to the panel.
-- **1.5 — Phase 1 verification:** E2E spec (Playwright) that audits a real file, applies a patch, runs the generated test, and asserts the green state.
+- **1.1 — Workspaces (WORK-01..03):** Install Dexie; build `src/lib/workspaces/` with `db.ts` (Dexie schema for `workspaces` table: `id, name, createdAt, updatedAt, lastOpenedAt, fileTree, snapshots`), `workspaceRepository.ts` (CRUD), and `useWorkspaces()` Zustand store. Build `WorkspacesApp.tsx` (new app registered in `AppRegistry.tsx` + `types.ts` APP_DEFINITIONS) showing a list with create/open/rename/duplicate/delete. Persist + restore last-opened workspace, open editor tabs, cursor positions, terminal history on reload.
+- **1.2 — WebContainers runtime (RUN-01, RUN-02):** Install `@webcontainer/api`; add COOP/COEP headers to `next.config.ts` (`Cross-Origin-Opener-Policy: same-origin`, `Cross-Origin-Embedder-Policy: require-corp`). Build `src/lib/runtime/webcontainer.ts` singleton (boot on first use, reuse across workspaces). Build `src/components/os/panels/Terminal.tsx` using `xterm.js` + `xterm-addon-fit` wired to the WebContainer shell via a Node `Server`-like stream. Refactor `TerminalApp.tsx` to mount the new panel for the active workspace, with a fallback "demo mode" that prints mock output when WebContainers can't boot (e.g., iOS Safari).
+- **1.3 — Code Editor consolidado (CODS-01, CODS-06):** Refactor `CodeEditorApp.tsx` from single-pane into a 4-panel IDE using a CSS grid: left sidebar (`FileTreePanel.tsx` + `SearchPanel.tsx`), central editor (existing Monaco setup + tabs), right `SwarmPanel.tsx` placeholder, bottom `Terminal.tsx` from Plan 1.2. Resizable splitters between panels (zustand store for sizes). Keyboard shortcuts: Ctrl+P (file search), Ctrl+Shift+O (symbol search), Ctrl+` (toggle terminal), Ctrl+J (toggle panel).
+- **1.4 — Real LLM audit pipeline (CODS-02, CODS-05):** Build `src/lib/agent-swarm/llm-audit.ts` exposing `llmAudit({ code, fileName, model, agents })` that calls `chatCompletion` with a structured prompt derived from `AnjosReviewer.systemPrompt`; response is parsed as `{ score, issues: [{ severity, line, title, description, suggestion, fixedCode }], summary, securityAnalysis }`. Wire into `SwarmPanel.tsx`: clicking `Auditar` calls `llmAudit` and renders findings as cards. Keep the regex pre-check in `analyzeCodeQuality` as a fast first pass (≤ 100ms) before the LLM call (for cheap detection of obvious issues).
+- **1.5 — Auto-Patch with diff + real test execution (CODS-03, CODS-04, RUN-03, RUN-04):** Build `PatchApplier.tsx` using `@monaco-editor/react` `DiffEditor`; the finding's `fixedCode` is shown as the right-side buffer; user clicks `Accept` → write to WebContainer VFS via `webcontainer.fs.writeFile`; reject keeps the original. Add `git` workflow inside the WebContainer: `git init` on workspace creation, `git add` on save, `git commit` via UI button. Build `src/lib/runtime/vitest-runner.ts` that writes a generated spec to the workspace's `__tests__/`, runs `npm test` in the WebContainer, parses output (JSON reporter or stdout heuristics), streams progress to the IA panel. Wire the legacy `agents` / `swarm` / `audit` / `flows` / `models` / `neofetch` / `help` commands to real data (they should now query the engine and the registry, not return hardcoded strings).
+- **1.6 — Phase 1 verification (E2E):** Playwright spec that: creates a workspace, writes a JS file, audits it (mock LLM response in CI), applies a patch, runs `npm test`, asserts pass. Unit tests (Vitest) for `workspaceRepository` (CRUD, restore), `llm-audit` (prompt construction, response parsing), and `vitest-runner` (output parsing).
 
 ---
 
@@ -69,7 +73,7 @@
 
 **Mode:** mvp
 
-**Requirements covered:** SEC-01, SEC-02, SEC-03, SEC-04
+**Requirements covered:** SEC-01, SEC-02, SEC-03, SEC-04, WORK-04 (GitHub sync), RUN-04 (git push)
 
 **UI hint:** yes
 
@@ -78,8 +82,9 @@
 1. DevTools → Network on a chat request shows the request goes only to `/api/chat`; no `Authorization: Bearer sk-...` header anywhere in the browser.
 2. `process.env.OPENAI_API_KEY` set on the server; user configures via `/settings`; `localStorage` only stores `providerId → isEnabled` boolean; the actual key is fetched by the server from the encrypted vault.
 3. User clicks "Sign in with GitHub" in the top bar; OAuth flow completes; the user menu shows avatar + email; protected routes (`/settings/api-keys`) require auth.
-4. `curl -I http://localhost:3000/` returns headers including `Content-Security-Policy`, `Strict-Transport-Security`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`.
+4. `curl -I http://localhost:3000/` returns headers including `Content-Security-Policy` (with nonce), `Strict-Transport-Security`, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, **and** `Cross-Origin-Opener-Policy: same-origin` + `Cross-Origin-Embedder-Policy: require-corp` (required for WebContainers from Phase 1).
 5. A script that fires 100 chat requests in 1 minute to `/api/chat` gets 429 responses after the 60th request; each request writes an entry to the audit log; admin can view the log.
+6. User signs in with GitHub, opens a Workspace, clicks `Push to GitHub`; a remote is created (or pushed to existing); commit history matches local; `git pull` on a different machine restores the same workspace tree.
 
 **Plans:**
 
@@ -122,12 +127,12 @@
 
 | # | Phase | Goal | Requirements | Mode | UI |
 |---|-------|------|--------------|------|----|
-| 1 | Code Editor com Swarm Real | Painel IA Swarm chama LLM real, audit/patch/test aplicados de verdade | CODS-01..04 | mvp | yes |
-| 2 | Automation Studio com Execução Real | Prompt-to-Flow LLM, persistência IndexedDB, executor topológico, triggers | AUTO-01..04 | mvp | yes |
-| 3 | Persistência + Segurança | Server-side keys, OAuth, CSP, rate limit + audit | SEC-01..04 | mvp | yes |
-| 4 | Testes + CI | Vitest + Playwright + GH Actions + lint/format | TEST-01..04 | mvp | no |
+| 1 | Self-Contained IDE com Swarm Real | Workspaces + WebContainers + IDE 4 painéis + LLM audit/patch/test | WORK-01..04, RUN-01..04, CODS-01..06 | mvp | yes |
+| 2 | Automation Studio com Execução Real | Prompt-to-Flow + persistência IndexedDB + executor + triggers | AUTO-01..04 | mvp | yes |
+| 3 | Persistência + Segurança | Server-side keys, OAuth (GitHub sync), CSP, rate limit + audit | SEC-01..04, WORK-04, RUN-04 | mvp | yes |
+| 4 | Testes + CI | Vitest + Playwright + GH Actions + lint | TEST-01..04 | mvp | no |
 
-**Total:** 4 phases · 16 v1 requirements · 20 plans · Vertical MVP slicing
+**Total:** 4 phases · 26 v1 requirements · 22 plans · Vertical MVP slicing
 
 ---
-*Roadmap generated 2026-08-28 after greenfield-equivalent flow (brownfield + Validated requirements already in place).*
+*Roadmap generated 2026-08-28. Last updated 2026-08-28 after scope expansion (Workspaces + Self-Contained Runtime + IDE consolidado).*

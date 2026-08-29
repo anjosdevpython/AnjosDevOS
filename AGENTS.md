@@ -4,11 +4,11 @@
 
 ## Project Snapshot
 
-- **Project:** AnjosDevOS — Sistema Operacional web de IA (3 skins, 27 apps nativos, 10 provedores de IA, 2 engines de agentes).
-- **Stack:** Next.js 15.1 (App Router) · React 19 · TypeScript estrito · Tailwind 3.4 · Zustand · Vitest · Playwright · Zod · Dexie.
+- **Project:** AnjosDevOS — Sistema Operacional web de IA **self-contained** (3 skins, 27 apps nativos, 10 provedores de IA, 2 engines de agentes, WebContainers rodando Node/npm/git, Workspaces isolados, IDE de 4 painéis).
+- **Stack:** Next.js 15.1 (App Router) · React 19 · TypeScript estrito · Tailwind 3.4 · Zustand · Vitest · Playwright · Zod · Dexie (IndexedDB) · **@webcontainer/api** (Node/npm/git no browser) · **xterm.js** + xterm-addon-fit.
 - **License:** MIT.
 - **Working dir:** `C:\Users\allan.anjos\Downloads\anjosdevplataform`
-- **Core value:** O Swarm Engine chama LLMs reais — o painel IA Swarm no Code Editor dispara cadeia real (Arquiteto → Coder → Reviewer → Debugger) usando modelos configuráveis, aplica patch visível no Monaco, e roda testes gerados.
+- **Core value:** O AnjosDevOS é o único ambiente que o dev precisa abrir — IDE completo (Monaco + terminal real + git + WebContainers) + Swarm Engine chamando LLMs reais, Workspaces persistentes, sync via GitHub. Tudo no browser, nada no host.
 
 ## Build / Run
 
@@ -33,6 +33,7 @@ pnpm playwright test  # E2E (Phase 4)
 6. **Lazy-load big apps** — when adding a new app to `AppRegistry.tsx`, use `next/dynamic` with `{ ssr: false }` if the bundle is heavy.
 7. **API keys NEVER in client code** — Phase 3 enforces this. Until then, never add a `NEXT_PUBLIC_*` key for any provider.
 8. **Respect existing conventions** — `cn()` for class merging, `'use client'` for interactivity, `unknown` + type guard in catch blocks.
+9. **WebContainers require COOP/COEP** — `@webcontainer/api` only works with `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: require-corp`. Phase 1.2 adds these headers in `next.config.ts`. Until then, do not import or reference `@webcontainer/api` in code (it will silently fail). When writing files to a WebContainer, use `webcontainer.fs.writeFile(path, contents)` — never touch `localStorage` for VFS. iOS Safari has limited support; gate Phase 1 features behind a `webcontainer.boot()` capability check with a friendly "demo mode" fallback.
 
 ## Project Structure (full)
 
@@ -60,8 +61,10 @@ src/
 │   ├── agent-swarm/          # SwarmEngine + 7 agents
 │   ├── ai/                   # Multi-provider (10) client
 │   ├── integrations/         # DSH, OpenHands, Theia, Freebuff, CoWork
+│   ├── runtime/              # WebContainer + xterm.js bridge (Phase 1)
 │   ├── tools/                # Skills + DevTools registry
 │   ├── warmwind/             # AI employees
+│   ├── workspaces/           # Dexie schema + repositório (Phase 1)
 │   └── utils.ts
 ├── config/app.ts      # APP_CONFIG
 ├── hooks/useDevice.ts
@@ -78,6 +81,8 @@ src/
 | New skill | `src/lib/tools/tools.ts` (SKILLS) |
 | New dev tool | `src/lib/tools/devtools.ts` |
 | New DSH plugin | `src/lib/integrations/deepseek-harness.ts` |
+| New workspace (Dexie) | `src/lib/workspaces/db.ts` (Dexie schema), `src/lib/workspaces/workspaceRepository.ts` (CRUD), `src/components/os/apps/WorkspacesApp.tsx` (UI) |
+| WebContainer runtime / terminal | `src/lib/runtime/webcontainer.ts` (singleton + boot), `src/lib/runtime/terminal.ts` (xterm.js + shell stream), `src/components/os/panels/Terminal.tsx` (UI) |
 
 ## Documentation Map
 
