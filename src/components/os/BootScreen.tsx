@@ -10,7 +10,7 @@ const BOOT_MESSAGES = [
   'Conectando à NetworkTools API...',
   'Verificando modelos disponíveis...',
   'Preparando ambiente de trabalho...',
-  'Bem-vindo ao AnjosDevOS',
+  'Bem-vindo ao AnjosDevOS — by Allan Anjos',
 ];
 
 export function BootScreen() {
@@ -61,6 +61,7 @@ export function BootScreen() {
 
       <h1 className="text-2xl font-bold gradient-text mb-2">AnjosDevOS</h1>
       <p className="text-xs text-text-muted font-mono mb-8">AI Operating System v1.0</p>
+      <p className="text-[10px] text-neon-green/60 font-mono mb-4">by Allan Anjos</p>
 
       {/* Progress Bar */}
       <div className="w-64 h-1 bg-cyber-border rounded-full overflow-hidden mb-4">

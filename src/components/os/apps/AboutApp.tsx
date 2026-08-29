@@ -10,6 +10,7 @@ export function AboutApp() {
       </div>
       <h1 className="text-xl font-bold gradient-text mb-1">AnjosDevOS</h1>
       <p className="text-sm text-text-muted font-mono mb-4">AI Operating System v1.0</p>
+      <p className="text-xs text-neon-green mb-2">by <a href="https://allananjos.dev.br" target="_blank" rel="noopener noreferrer" className="underline hover:text-neon-blue">Allan Anjos</a></p>
       
       <div className="space-y-2 text-xs text-text-secondary mb-6">
         <p>Plataforma de IA baseada em navegador</p>
@@ -19,16 +20,24 @@ export function AboutApp() {
 
       <div className="flex items-center gap-3">
         <a
-          href="https://github.com/Badim41/network_tools"
+          href="https://allananjos.dev.br"
           target="_blank"
           rel="noopener noreferrer"
           className="neon-button-blue text-xs flex items-center gap-1.5"
         >
-          <Github className="w-3 h-3" /> API Docs <ExternalLink className="w-2.5 h-2.5" />
+          <ExternalLink className="w-3 h-3" /> allananjos.dev.br
+        </a>
+        <a
+          href="https://github.com/anjosdevpython/AnjosDevOS"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="neon-button-green text-xs flex items-center gap-1.5"
+        >
+          <Github className="w-3 h-3" /> GitHub
         </a>
       </div>
 
-      <p className="text-[10px] text-text-muted mt-6">© 2024 AnjosDevPlatform</p>
+      <p className="text-[10px] text-text-muted mt-6">© 2026 Allan Anjos · allananjos.dev.br</p>
     </div>
   );
 }

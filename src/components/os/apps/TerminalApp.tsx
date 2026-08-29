@@ -8,7 +8,7 @@ interface TerminalLine {
 }
 
 const NEOFETCH = `
-  ⚡ AnjosDevOS          anjosdev@os
+  ⚡ AnjosDevOS          allan@os
   ──────────────         ───────────────
   ██████╗ ███████╗       OS: AnjosDevOS v1.0
   ██╔═══██╗██╔════╝      Kernel: Next.js 15.5
@@ -17,6 +17,8 @@ const NEOFETCH = `
   ╚██████╔╝███████║       API: NetworkTools v1
    ╚═════╝ ╚══════╝      Models: 50+ AI Models
                           Theme: Cyberpunk Dark
+                          Dev: Allan Anjos
+                          Web: allananjos.dev.br
 `;
 
 const COMMANDS: Record<string, (args: string[]) => string> = {
@@ -32,9 +34,10 @@ const COMMANDS: Record<string, (args: string[]) => string> = {
   whoami    - Usuário atual`,
 
   about: () => `AnjosDevOS v1.0 — AI Operating System
-Powered by NetworkTools API (yellowfire.ru/v1)
+Desenvolvido por Allan Anjos
+https://allananjos.dev.br
 Plataforma de ferramentas de IA integrada
-© 2024 AnjosDevPlatform`,
+© 2026 Allan Anjos`,
 
   models: () => `Modelos disponíveis:
   ── OpenAI ──────── GPT-5, GPT-5.5, GPT-4o, o4-mini
@@ -54,7 +57,7 @@ Ou configure sua API key em "Configurações"`,
 
   neofetch: () => NEOFETCH,
 
-  whoami: () => 'anjosdev',
+  whoami: () => 'allan',
 };
 
 export function TerminalApp() {
@@ -86,7 +89,7 @@ export function TerminalApp() {
 
     const newLines: TerminalLine[] = [
       ...lines,
-      { type: 'input', content: `anjosdev@os:~$ ${trimmed}` },
+      { type: 'input', content: `allan@os:~$ ${trimmed}` },
     ];
 
     if (command === 'clear') {
@@ -147,7 +150,7 @@ export function TerminalApp() {
         ))}
         {/* Current input line */}
         <div className="flex items-center text-neon-green">
-          <span>anjosdev@os:~$ </span>
+          <span>allan@os:~$ </span>
           <input
             ref={inputRef}
             type="text"

@@ -1,7 +1,9 @@
 {
-  "name": "anjosdev-platform",
+  "name": "anjosdevos",
   "version": "1.0.0",
   "private": true,
+  "author": "Allan Anjos <allan@allananjos.dev.br>",
+  "homepage": "https://allananjos.dev.br",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

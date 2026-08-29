@@ -706,10 +706,11 @@ SOFTWARE.
 
 ## 🔗 Links
 
+- **Desenvolvedor**: [Allan Anjos](https://allananjos.dev.br)
 - **Repositório**: https://github.com/anjosdevpython/AnjosDevOS
 - **Demo**: http://localhost:3000
 - **Issues**: https://github.com/anjosdevpython/AnjosDevOS/issues
 
 ---
 
-Feito com ❤️ por [AnjosDev](https://github.com/anjosdevpython)
+Feito com ❤️ por [Allan Anjos](https://allananjos.dev.br)

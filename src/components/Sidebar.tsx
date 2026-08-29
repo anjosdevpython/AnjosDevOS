@@ -114,7 +114,7 @@ export function Sidebar() {
         {!collapsed && (
           <div className="flex-1 min-w-0">
             <h1 className="text-sm font-bold gradient-text truncate">ANJOSDEV</h1>
-            <p className="text-[10px] text-text-muted font-mono">PLATFORM v1.0</p>
+            <p className="text-[10px] text-text-muted font-mono">by Allan Anjos</p>
           </div>
         )}
       </div>
