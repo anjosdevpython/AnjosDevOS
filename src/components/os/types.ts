@@ -53,6 +53,7 @@ export const APP_DEFINITIONS: AppDefinition[] = [
   { id: 'agent-teams', title: 'Agent Teams', iconName: 'Users', color: 'neon-blue', defaultWidth: 1100, defaultHeight: 700, minWidth: 600, minHeight: 450, desktopIcon: true, category: 'ai' },
   { id: 'memory-system', title: 'Memória', iconName: 'Brain', color: 'neon-purple', defaultWidth: 1100, defaultHeight: 700, minWidth: 600, minHeight: 450, desktopIcon: true, category: 'ai' },
   { id: 'channel-gateway', title: 'Canais', iconName: 'Radio', color: 'neon-green', defaultWidth: 1100, defaultHeight: 700, minWidth: 600, minHeight: 450, desktopIcon: true, category: 'tools' },
+  { id: 'freebuff', title: 'Freebuff', iconName: 'Zap', color: 'neon-green', defaultWidth: 1100, defaultHeight: 700, minWidth: 600, minHeight: 450, desktopIcon: true, category: 'ai' },
   { id: 'settings', title: 'Configurações', iconName: 'Settings', color: 'text-secondary', defaultWidth: 550, defaultHeight: 500, minWidth: 400, minHeight: 350, desktopIcon: false, category: 'system' },
   { id: 'about', title: 'Sobre o Sistema', iconName: 'Info', color: 'neon-blue', defaultWidth: 450, defaultHeight: 350, minWidth: 350, minHeight: 250, desktopIcon: false, category: 'system' },
 ];

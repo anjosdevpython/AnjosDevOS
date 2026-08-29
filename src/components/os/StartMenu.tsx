@@ -31,6 +31,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Users: <Users className="w-6 h-6" />,
   Brain: <Brain className="w-6 h-6" />,
   Radio: <Radio className="w-6 h-6" />,
+  Zap: <Zap className="w-6 h-6" />,
 };
 
 const CATEGORY_LABELS: Record<string, string> = {

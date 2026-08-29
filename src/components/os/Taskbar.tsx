@@ -31,6 +31,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Users: <Users className="w-4 h-4" />,
   Brain: <Brain className="w-4 h-4" />,
   Radio: <Radio className="w-4 h-4" />,
+  Zap: <Zap className="w-4 h-4" />,
 };
 
 export function Taskbar() {
