@@ -32,6 +32,7 @@ export interface AppDefinition {
 
 export const APP_DEFINITIONS: AppDefinition[] = [
   { id: 'workspaces', title: 'Workspaces', iconName: 'Layers', color: 'neon-cyan', defaultWidth: 950, defaultHeight: 650, minWidth: 600, minHeight: 450, desktopIcon: true, category: 'tools' },
+  { id: 'dashboard', title: 'Dashboard', iconName: 'BarChart3', color: 'neon-green', defaultWidth: 1000, defaultHeight: 700, minWidth: 650, minHeight: 450, desktopIcon: true, category: 'system' },
   { id: 'chat', title: 'Chat IA', iconName: 'MessageSquare', color: 'neon-green', defaultWidth: 800, defaultHeight: 600, minWidth: 400, minHeight: 350, desktopIcon: true, category: 'ai' },
   { id: 'images', title: 'Gerador de Imagens', iconName: 'Image', color: 'neon-blue', defaultWidth: 850, defaultHeight: 650, minWidth: 500, minHeight: 400, desktopIcon: true, category: 'ai' },
   { id: 'editor', title: 'Editor de Imagens', iconName: 'Paintbrush', color: 'neon-purple', defaultWidth: 900, defaultHeight: 600, minWidth: 500, minHeight: 400, desktopIcon: true, category: 'ai' },

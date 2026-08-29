@@ -30,6 +30,7 @@ import {
   Network,
   Bot,
   Layers,
+  BarChart3,
 } from 'lucide-react';
 import { AppErrorBoundary } from './AppErrorBoundary';
 
@@ -41,6 +42,7 @@ import { AboutApp } from './apps/AboutApp';
 // Lazy-loaded apps for better performance
 import dynamic from 'next/dynamic';
 const WorkspacesApp = dynamic(() => import('./apps/WorkspacesApp').then(m => ({ default: m.WorkspacesApp })), { ssr: false });
+const AgentDashboardApp = dynamic(() => import('./apps/AgentDashboardApp').then(m => ({ default: m.AgentDashboardApp })), { ssr: false });
 const FileExplorerApp = dynamic(() => import('./apps/FileExplorerApp').then(m => ({ default: m.FileExplorerApp })), { ssr: false });
 const ToolsApp = dynamic(() => import('./apps/ToolsApp').then(m => ({ default: m.ToolsApp })), { ssr: false });
 const CodeEditorApp = dynamic(() => import('./apps/CodeEditorApp').then(m => ({ default: m.CodeEditorApp })), { ssr: false });
@@ -69,6 +71,7 @@ const BalanceApp = dynamic(() => import('@/app/balance/page'), { ssr: false });
 const SettingsApp = dynamic(() => import('@/app/settings/page'), { ssr: false });
 
 export const ICON_COMPONENTS: Record<string, ReactNode> = {
+  BarChart3: <BarChart3 className="w-4 h-4" />,
   Layers: <Layers className="w-4 h-4" />,
   MessageSquare: <MessageSquare className="w-4 h-4" />,
   Image: <Image className="w-4 h-4" />,
@@ -107,6 +110,8 @@ export function getAppContent(appId: string): ReactNode {
   switch (appId) {
     case 'workspaces':
       return wrapInBoundary(<WorkspacesApp />, 'Workspaces');
+    case 'dashboard':
+      return wrapInBoundary(<AgentDashboardApp />, 'Dashboard');
     case 'chat':
       return wrapInBoundary(
         <div className="flex flex-col h-full">
