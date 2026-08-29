@@ -1,28 +1,23 @@
 'use client';
 
-import { useState } from 'react';
-
-interface Agent {
-  id: string;
-  name: string;
-  role: string;
-  icon: string;
-  status: 'active' | 'idle' | 'error';
-  model: string;
-  skills: string[];
-  tasksCompleted: number;
-  currentTask?: string;
-}
-
-interface Team {
-  id: string;
-  name: string;
-  description: string;
-  agents: string[];
-  status: 'active' | 'paused';
-  tasks: TeamTask[];
-  messages: TeamMessage[];
-}
+import { useState, useEffect, useCallback } from 'react';
+import { getSwarmEngine } from '@/lib/agent-swarm/swarm-engine';
+import { SwarmAgentDefinition, SwarmMessage } from '@/lib/agent-swarm/types';
+import {
+  Users,
+  MessageSquare,
+  Sparkles,
+  Play,
+  CheckCircle2,
+  AlertTriangle,
+  Clock,
+  Shield,
+  Code,
+  Zap,
+  Send,
+  Loader2,
+} from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface TeamTask {
   id: string;
@@ -32,256 +27,365 @@ interface TeamTask {
   priority: 'high' | 'medium' | 'low';
 }
 
-interface TeamMessage {
-  id: string;
-  from: string;
-  content: string;
-  timestamp: string;
-  type: 'message' | 'task' | 'status' | 'error';
-}
-
-const ALL_AGENTS: Agent[] = [
-  { id: 'a1', name: 'Arquiteto', role: 'Líder Técnico', icon: '🏗️', status: 'active', model: 'claude-4-opus', skills: ['architecture', 'code-review', 'planning'], tasksCompleted: 23 },
-  { id: 'a2', name: 'Desenvolvedor', role: 'Dev Sênior', icon: '👨‍💻', status: 'active', model: 'gpt-4o', skills: ['typescript', 'react', 'node'], tasksCompleted: 45, currentTask: 'Implementando autenticação' },
-  { id: 'a3', name: 'Testador', role: 'Engenheiro QA', icon: '🧪', status: 'idle', model: 'claude-3.5-sonnet', skills: ['testing', 'debugging', 'e2e'], tasksCompleted: 18 },
-  { id: 'a4', name: 'DevOps', role: 'Infraestrutura', icon: '🔧', status: 'active', model: 'deepseek-v3', skills: ['docker', 'k8s', 'ci-cd', 'monitoring'], tasksCompleted: 12 },
-  { id: 'a5', name: 'Designer', role: 'UI/UX', icon: '🎨', status: 'idle', model: 'gpt-4o', skills: ['ui-design', 'css', 'figma'], tasksCompleted: 8 },
-  { id: 'a6', name: 'Escritor', role: 'Documentação', icon: '📝', status: 'active', model: 'claude-3.5-haiku', skills: ['documentation', 'markdown', 'api-docs'], tasksCompleted: 31, currentTask: 'Atualizando docs da API' },
-];
-
-const INITIAL_TEAMS: Team[] = [
-  {
-    id: 't1', name: 'Time Principal', description: 'Time principal de desenvolvimento', status: 'active',
-    agents: ['a1', 'a2', 'a3', 'a6'],
-    tasks: [
-      { id: 'tk1', title: 'Implementar auth system', assignee: 'a2', status: 'in-progress', priority: 'high' },
-      { id: 'tk2', title: 'Revisar arquitetura de dados', assignee: 'a1', status: 'review', priority: 'high' },
-      { id: 'tk3', title: 'Escrever testes unitários', assignee: 'a3', status: 'pending', priority: 'medium' },
-      { id: 'tk4', title: 'Documentar endpoints', assignee: 'a6', status: 'in-progress', priority: 'low' },
-    ],
-    messages: [
-      { id: 'm1', from: 'a1', content: 'Precisamos definir a estrutura do banco antes de prosseguir.', timestamp: '13:05', type: 'message' },
-      { id: 'm2', from: 'a2', content: 'Entendido, vou ajustar o schema do Prisma.', timestamp: '13:08', type: 'message' },
-      { id: 'm3', from: 'a3', content: 'Task tk1 está em progresso — % completado: 60%', timestamp: '13:10', type: 'status' },
-      { id: 'm4', from: 'a6', content: 'Docs dos endpoints de auth atualizadas.', timestamp: '13:15', type: 'status' },
-    ],
-  },
-  {
-    id: 't2', name: 'Equipe DevOps', description: 'Infraestrutura e deploy', status: 'paused',
-    agents: ['a4'],
-    tasks: [
-      { id: 'tk5', title: 'Configurar pipeline CI/CD', assignee: 'a4', status: 'done', priority: 'high' },
-      { id: 'tk6', title: 'Configurar monitoramento', assignee: 'a4', status: 'pending', priority: 'medium' },
-    ],
-    messages: [
-      { id: 'm5', from: 'a4', content: 'Pipeline configurado. Deploy automático ativo na branch main.', timestamp: '12:45', type: 'status' },
-    ],
-  },
+const INITIAL_TASKS: TeamTask[] = [
+  { id: 't1', title: 'Decompor microsserviço de autenticação JWT', assignee: 'anjos-architect', status: 'done', priority: 'high' },
+  { id: 't2', title: 'Implementar endpoints de autenticação e refresh token', assignee: 'anjos-coder', status: 'in-progress', priority: 'high' },
+  { id: 't3', title: 'Auditoria de segurança OWASP e sanitização', assignee: 'anjos-reviewer', status: 'in-progress', priority: 'high' },
+  { id: 't4', title: 'Testes de carga e regressão automática', assignee: 'anjos-debugger', status: 'pending', priority: 'medium' },
+  { id: 't5', title: 'Configurar pipeline de CI/CD no GitHub Actions', assignee: 'anjos-devops', status: 'done', priority: 'high' },
+  { id: 't6', title: 'Gerar documentação viva OpenAPI/Swagger', assignee: 'anjos-docs', status: 'pending', priority: 'low' },
 ];
 
 export function AgentTeamsApp() {
-  const [teams] = useState<Team[]>(INITIAL_TEAMS);
-  const [agents] = useState<Agent[]>(ALL_AGENTS);
-  const [selectedTeam, setSelectedTeam] = useState<Team | null>(teams[0]);
-  const [activeTab, setActiveTab] = useState<'teams' | 'agents' | 'chat'>('teams');
-  const [chatMessage, setChatMessage] = useState('');
+  const [agents, setAgents] = useState<SwarmAgentDefinition[]>([]);
+  const [selectedAgent, setSelectedAgent] = useState<SwarmAgentDefinition | null>(null);
+  const [tasks, setTasks] = useState<TeamTask[]>(INITIAL_TASKS);
+  const [messages, setMessages] = useState<SwarmMessage[]>([]);
+  const [inputMessage, setInputMessage] = useState('');
+  const [targetAgentId, setTargetAgentId] = useState<string>('anjos-architect');
+  const [activeTab, setActiveTab] = useState<'chat' | 'agents' | 'tasks'>('chat');
+  const [isProcessing, setIsProcessing] = useState(false);
 
-  const getAgent = (id: string) => agents.find(a => a.id === id);
+  useEffect(() => {
+    const engine = getSwarmEngine();
+    const allAgents = engine.getAllAgents();
+    setAgents(allAgents);
+    if (allAgents.length > 0) {
+      setSelectedAgent(allAgents[0]);
+    }
+    setMessages(engine.getMessages());
 
-  const renderTeamsList = () => (
-    <div className="flex-1 overflow-y-auto p-4 space-y-3">
-      <div className="flex items-center justify-between mb-2">
-        <div>
-          <h3 className="text-sm font-semibold text-text">👥 Agent Teams</h3>
-          <p className="text-[10px] text-text-muted mt-0.5">{teams.length} times · {teams.filter(t => t.status === 'active').length} ativos</p>
-        </div>
-        <button className="px-3 py-1.5 text-[10px] bg-neon-green/20 text-neon-green border border-neon-green/30 rounded hover:bg-neon-green/30">
-          + Novo Time
-        </button>
-      </div>
+    // Se inscreve para atualizações
+    const unsubscribe = engine.on((event, data) => {
+      if (event === 'message:new') {
+        setMessages(engine.getMessages());
+      } else if (event === 'agent:status_change') {
+        setAgents(engine.getAllAgents());
+      }
+    });
 
-      {teams.map(team => (
-        <div
-          key={team.id}
-          onClick={() => { setSelectedTeam(team); setActiveTab('chat'); }}
-          className={`bg-surface/50 border rounded-lg p-4 cursor-pointer transition-all hover:border-neon-blue/30 ${
-            selectedTeam?.id === team.id ? 'border-neon-blue/50 bg-neon-blue/5' : 'border-border'
-          }`}
-        >
-          <div className="flex items-start justify-between">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className={`w-2 h-2 rounded-full ${team.status === 'active' ? 'bg-neon-green animate-pulse' : 'bg-text-muted'}`} />
-                <span className="text-sm font-medium text-text">{team.name}</span>
-              </div>
-              <p className="text-[10px] text-text-muted mt-1 ml-4">{team.description}</p>
-              <div className="flex items-center gap-2 mt-2 ml-4">
-                {team.agents.map(aid => {
-                  const agent = getAgent(aid);
-                  return agent ? (
-                    <span key={aid} className="text-sm" title={agent.name}>{agent.icon}</span>
-                  ) : null;
-                })}
-                <span className="text-[9px] text-text-muted ml-1">{team.agents.length} agentes</span>
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-[9px] text-text-muted">{team.tasks.filter(t => t.status === 'done').length}/{team.tasks.length} tasks</div>
-              <div className="text-[9px] text-text-muted mt-0.5">💬 {team.messages.length} msgs</div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+    return unsubscribe;
+  }, []);
 
-  const renderAgentsList = () => (
-    <div className="flex-1 overflow-y-auto p-4 space-y-2">
-      <div className="mb-3">
-        <h3 className="text-sm font-semibold text-text">🤖 Agents</h3>
-        <p className="text-[10px] text-text-muted mt-0.5">{agents.length} agents · {agents.filter(a => a.status === 'active').length} ativos</p>
-      </div>
-      {agents.map(agent => (
-        <div key={agent.id} className="bg-surface/50 border border-border rounded-lg p-3 hover:border-neon-blue/30 transition-colors">
-          <div className="flex items-center gap-3">
-            <span className="text-xl">{agent.icon}</span>
-            <div className="flex-1">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-medium text-text">{agent.name}</span>
-                <span className="text-[9px] text-text-muted">({agent.role})</span>
-                <span className={`px-1.5 py-0.5 text-[8px] rounded ${
-                  agent.status === 'active' ? 'bg-neon-green/20 text-neon-green' :
-                  agent.status === 'error' ? 'bg-neon-red/20 text-neon-red' :
-                  'bg-surface text-text-muted'
-                }`}>
-                  {agent.status}
-                </span>
-              </div>
-              <div className="text-[9px] text-text-muted mt-0.5">Model: {agent.model}</div>
-              {agent.currentTask && (
-                <div className="text-[9px] text-neon-blue mt-0.5">🔄 {agent.currentTask}</div>
-              )}
-              <div className="flex gap-1 mt-1.5">
-                {agent.skills.map(skill => (
-                  <span key={skill} className="px-1.5 py-0.5 text-[8px] bg-surface border border-border rounded text-text-muted">{skill}</span>
-                ))}
-              </div>
-            </div>
-            <div className="text-right">
-              <div className="text-xs font-medium text-neon-green">{agent.tasksCompleted}</div>
-              <div className="text-[8px] text-text-muted">tasks</div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
+  const handleSendMessage = async () => {
+    if (!inputMessage.trim() || isProcessing) return;
 
-  const renderChat = () => {
-    if (!selectedTeam) return <div className="flex-1 flex items-center justify-center text-text-muted text-xs">Selecione um time</div>;
+    setIsProcessing(true);
+    const engine = getSwarmEngine();
 
-    const taskColumns = ['pending', 'in-progress', 'review', 'done'] as const;
-    const colLabels = { pending: '📝 Pendente', 'in-progress': '🔄 Em Progresso', review: '👀 Revisão', done: '✅ Concluído' };
-
-    return (
-      <div className="flex-1 flex overflow-hidden">
-        {/* Tasks Panel */}
-        <div className="w-72 border-r border-border overflow-y-auto p-3 bg-surface/20">
-          <div className="text-[10px] font-semibold text-text mb-3">📋 Tarefas ({selectedTeam.tasks.length})</div>
-          <div className="space-y-3">
-            {taskColumns.map(col => {
-              const tasks = selectedTeam.tasks.filter(t => t.status === col);
-              if (tasks.length === 0) return null;
-              return (
-                <div key={col}>
-                  <div className="text-[9px] text-text-muted mb-1.5">{colLabels[col]} ({tasks.length})</div>
-                  {tasks.map(task => (
-                    <div key={task.id} className="bg-background border border-border rounded p-2 mb-1.5 hover:border-neon-blue/30 transition-colors">
-                      <div className="text-[10px] text-text font-medium">{task.title}</div>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-[9px] text-text-muted">{getAgent(task.assignee)?.icon} {getAgent(task.assignee)?.name}</span>
-                        <span className={`px-1 py-0.5 text-[8px] rounded ml-auto ${
-                          task.priority === 'high' ? 'bg-neon-red/20 text-neon-red' :
-                          task.priority === 'medium' ? 'bg-neon-yellow/20 text-neon-yellow' :
-                          'bg-surface text-text-muted'
-                        }`}>{task.priority}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Chat Panel */}
-        <div className="flex-1 flex flex-col">
-          <div className="px-4 py-2 border-b border-border bg-surface/30">
-            <span className="text-xs font-medium text-text">💬 {selectedTeam.name} Chat</span>
-          </div>
-          <div className="flex-1 overflow-y-auto p-3 space-y-3">
-            {selectedTeam.messages.map(msg => {
-              const agent = getAgent(msg.from);
-              return (
-                <div key={msg.id} className="flex gap-2">
-                  <span className="text-sm mt-0.5">{agent?.icon}</span>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-medium text-text">{agent?.name}</span>
-                      <span className="text-[9px] text-text-muted">{msg.timestamp}</span>
-                    </div>
-                    <div className="text-[11px] text-text mt-0.5">{msg.content}</div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="p-2 border-t border-border flex gap-2">
-            <input
-              type="text"
-              value={chatMessage}
-              onChange={(e) => setChatMessage(e.target.value)}
-              placeholder="Enviar mensagem para o time..."
-              className="flex-1 px-3 py-1.5 text-[11px] bg-background border border-border rounded text-text focus:outline-none focus:border-neon-blue"
-            />
-            <button className="px-3 py-1.5 text-[10px] bg-neon-blue/20 text-neon-blue border border-neon-blue/30 rounded hover:bg-neon-blue/30">
-              📨
-            </button>
-          </div>
-        </div>
-      </div>
+    // Mensagem do usuário
+    engine.postMessage(
+      'user',
+      targetAgentId,
+      'user_query',
+      'Solicitação Direta',
+      inputMessage
     );
+
+    const userPrompt = inputMessage;
+    setInputMessage('');
+
+    // Dispara resposta autônoma do agente
+    setTimeout(() => {
+      const targetAgent = agents.find((a) => a.id === targetAgentId);
+      const agentName = targetAgent?.name || 'Agente';
+
+      engine.postMessage(
+        targetAgentId,
+        'user',
+        'task_delegation',
+        `Resposta de ${agentName}`,
+        `Entendido! Como ${agentName}, estou processando sua solicitação: "${userPrompt}". ` +
+          `Colaborando com o enxame para entregar a melhor solução com tipagem segura e validações de qualidade.`
+      );
+
+      // Simula encaminhamento de colaboração
+      if (targetAgentId === 'anjos-architect') {
+        setTimeout(() => {
+          engine.postMessage(
+            'anjos-architect',
+            'anjos-coder',
+            'task_delegation',
+            'Delegação de Implementação',
+            `AnjosCoder, por favor implemente o código referente a "${userPrompt}". Siga os padrões Clean Architecture.`
+          );
+        }, 800);
+      }
+
+      setIsProcessing(false);
+    }, 600);
   };
 
   return (
-    <div className="flex flex-col h-full bg-background text-text">
-      {/* Tab Bar */}
-      <div className="flex border-b border-border bg-surface/30">
-        {(['teams', 'agents', 'chat'] as const).map(tab => (
+    <div className="h-full flex flex-col bg-cyber-bg text-text-primary">
+      {/* Top Header */}
+      <div className="p-3 border-b border-cyber-border bg-cyber-card/60 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="p-1.5 rounded-lg bg-neon-blue/20 text-neon-blue">
+            <Users className="w-5 h-5" />
+          </div>
+          <div>
+            <h2 className="text-sm font-bold text-white flex items-center gap-2">
+              AnjosDevOS Agent Teams
+              <span className="text-[10px] px-2 py-0.5 bg-neon-green/15 text-neon-green border border-neon-green/30 rounded-full font-mono">
+                {agents.length} Especialistas Ativos
+              </span>
+            </h2>
+            <p className="text-[10px] text-text-muted">Enxame Autônomo Colaborativo para Desenvolvimento</p>
+          </div>
+        </div>
+
+        {/* Tab Switcher */}
+        <div className="flex gap-1 bg-cyber-bg p-1 rounded-lg border border-cyber-border text-xs">
           <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`px-4 py-2.5 text-xs font-medium transition-colors border-b-2 ${
-              activeTab === tab
-                ? 'text-neon-blue border-neon-blue bg-neon-blue/5'
-                : 'text-text-muted border-transparent hover:text-text hover:bg-surface/50'
-            }`}
+            onClick={() => setActiveTab('chat')}
+            className={cn(
+              'px-3 py-1 rounded-md font-medium transition-colors',
+              activeTab === 'chat' ? 'bg-neon-blue text-black font-bold' : 'text-text-muted hover:text-white'
+            )}
           >
-            {tab === 'teams' ? '👥 Times' : tab === 'agents' ? '🤖 Agentes' : '💬 Chat'}
+            💬 Feed Inter-Agentes
           </button>
-        ))}
+          <button
+            onClick={() => setActiveTab('agents')}
+            className={cn(
+              'px-3 py-1 rounded-md font-medium transition-colors',
+              activeTab === 'agents' ? 'bg-neon-blue text-black font-bold' : 'text-text-muted hover:text-white'
+            )}
+          >
+            🤖 Time ({agents.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('tasks')}
+            className={cn(
+              'px-3 py-1 rounded-md font-medium transition-colors',
+              activeTab === 'tasks' ? 'bg-neon-blue text-black font-bold' : 'text-text-muted hover:text-white'
+            )}
+          >
+            📋 Quadro de Tarefas
+          </button>
+        </div>
       </div>
 
-      {activeTab === 'teams' && renderTeamsList()}
-      {activeTab === 'agents' && renderAgentsList()}
-      {activeTab === 'chat' && renderChat()}
+      {/* Main Content Area */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* TAB 1: INTER-AGENT LIVE FEED */}
+        {activeTab === 'chat' && (
+          <div className="flex-1 flex overflow-hidden">
+            {/* Left: Agent Selection List */}
+            <div className="w-64 border-r border-cyber-border bg-cyber-card/30 flex flex-col">
+              <div className="p-2.5 border-b border-cyber-border text-[11px] font-bold text-text-secondary uppercase tracking-wider">
+                Especialistas do Enxame
+              </div>
+              <div className="flex-1 overflow-y-auto p-2 space-y-1">
+                {agents.map((agent) => (
+                  <div
+                    key={agent.id}
+                    onClick={() => {
+                      setSelectedAgent(agent);
+                      setTargetAgentId(agent.id);
+                    }}
+                    className={cn(
+                      'p-2 rounded-xl text-xs cursor-pointer transition-all border flex items-center gap-2.5',
+                      selectedAgent?.id === agent.id
+                        ? 'bg-neon-blue/15 border-neon-blue/40 text-white'
+                        : 'bg-cyber-bg/40 border-cyber-border/60 text-text-muted hover:text-text-secondary'
+                    )}
+                  >
+                    <span className="text-xl">{agent.avatar}</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold truncate text-white text-[11px]">{agent.name}</p>
+                      <p className="text-[9px] text-text-muted truncate">{agent.title}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-      {/* Status Bar */}
-      <div className="px-3 py-1.5 border-t border-border bg-surface/30 flex items-center gap-4 text-[10px] text-text-muted">
-        <span>👥 {teams.length} times</span>
-        <span>🤖 {agents.length} agents</span>
-        <span>🟢 {agents.filter(a => a.status === 'active').length} ativos</span>
-        <span className="ml-auto">Times de Agentes v0.5.52</span>
+            {/* Right: Message Stream & Input */}
+            <div className="flex-1 flex flex-col bg-cyber-bg">
+              {/* Message List */}
+              <div className="flex-1 overflow-y-auto p-4 space-y-3">
+                {messages.length === 0 ? (
+                  <div className="h-full flex flex-col items-center justify-center text-text-muted text-xs">
+                    <MessageSquare className="w-10 h-10 mb-2 opacity-20" />
+                    <p>Nenhuma mensagem no barramento ainda.</p>
+                    <p className="text-[10px]">Envie uma instrução abaixo para iniciar o diálogo entre agentes.</p>
+                  </div>
+                ) : (
+                  messages.map((msg) => {
+                    const isUser = msg.from === 'user';
+                    const fromAgent = agents.find((a) => a.id === msg.from);
+                    const toAgent = agents.find((a) => a.id === msg.to);
+
+                    return (
+                      <div
+                        key={msg.id}
+                        className={cn(
+                          'p-3 rounded-2xl border text-xs max-w-2xl space-y-1',
+                          isUser
+                            ? 'ml-auto bg-neon-green/10 border-neon-green/30 text-white'
+                            : 'mr-auto bg-cyber-card border-cyber-border text-text-primary'
+                        )}
+                      >
+                        <div className="flex items-center justify-between text-[10px] text-text-muted border-b border-white/5 pb-1">
+                          <span className="font-bold text-neon-cyan flex items-center gap-1">
+                            {isUser ? '👤 Você' : `${fromAgent?.avatar || '🤖'} ${fromAgent?.name || msg.from}`}
+                            <span className="text-text-muted font-normal">➔</span>
+                            {msg.to === '*' ? '🌐 Todos (Broadcast)' : `${toAgent?.avatar || '🤖'} ${toAgent?.name || msg.to}`}
+                          </span>
+                          <span className="font-mono">
+                            {new Date(msg.timestamp).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                        </div>
+                        <p className="font-semibold text-white text-[11px] pt-0.5">{msg.subject}</p>
+                        <p className="text-text-secondary leading-relaxed">{msg.content}</p>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+
+              {/* Chat Input */}
+              <div className="p-3 border-t border-cyber-border bg-cyber-card/60 flex items-center gap-2">
+                <select
+                  value={targetAgentId}
+                  onChange={(e) => setTargetAgentId(e.target.value)}
+                  className="text-xs px-2.5 py-2 bg-cyber-bg border border-cyber-border rounded-lg text-neon-cyan outline-none font-bold"
+                >
+                  <option value="*">🌐 Enxame Completo (*)</option>
+                  {agents.map((a) => (
+                    <option key={a.id} value={a.id}>
+                      {a.avatar} {a.name} ({a.badge})
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  type="text"
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                  placeholder="Enviar mensagem ou ordem para o agente..."
+                  className="flex-1 text-xs px-3 py-2 bg-cyber-bg border border-cyber-border rounded-lg text-white focus:border-neon-blue outline-none"
+                />
+
+                <button
+                  onClick={handleSendMessage}
+                  disabled={isProcessing || !inputMessage.trim()}
+                  className="px-4 py-2 bg-neon-blue text-black font-bold text-xs rounded-lg hover:opacity-90 disabled:opacity-40 transition-all flex items-center gap-1.5"
+                >
+                  {isProcessing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Send className="w-3.5 h-3.5" />}
+                  <span>Enviar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* TAB 2: AGENTS GRID */}
+        {activeTab === 'agents' && (
+          <div className="flex-1 overflow-y-auto p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {agents.map((agent) => (
+              <div
+                key={agent.id}
+                className="p-4 rounded-2xl bg-cyber-card border border-cyber-border flex flex-col justify-between hover:border-cyber-border-hover transition-all"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl">{agent.avatar}</span>
+                      <div>
+                        <h3 className="font-bold text-white text-sm">{agent.name}</h3>
+                        <p className="text-[10px] text-text-muted">{agent.title}</p>
+                      </div>
+                    </div>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full font-mono bg-neon-blue/20 text-neon-blue border border-neon-blue/30 font-bold">
+                      {agent.badge}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-text-secondary mb-3 line-clamp-3 leading-relaxed">
+                    {agent.systemPrompt.slice(0, 180)}...
+                  </p>
+
+                  <div className="space-y-1 mb-4">
+                    <p className="text-[10px] font-mono text-text-muted uppercase">Especialidades:</p>
+                    <div className="flex flex-wrap gap-1">
+                      {agent.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="text-[9px] px-1.5 py-0.5 bg-cyber-bg border border-cyber-border rounded text-text-muted"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-cyber-border flex items-center justify-between text-[10px] font-mono text-text-muted">
+                  <span>Tarefas: {agent.tasksCompleted}</span>
+                  <span className="text-neon-green font-bold">Precisão: {agent.rating}%</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* TAB 3: TASKS BOARD */}
+        {activeTab === 'tasks' && (
+          <div className="flex-1 overflow-y-auto p-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {['pending', 'in-progress', 'done'].map((status) => {
+                const filteredTasks = tasks.filter(
+                  (t) => (status === 'done' ? t.status === 'done' : t.status === status)
+                );
+                return (
+                  <div key={status} className="rounded-2xl bg-cyber-card/60 border border-cyber-border p-3 flex flex-col">
+                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-cyber-border">
+                      <span className="text-xs font-bold uppercase text-white font-mono">
+                        {status === 'pending' ? '⏳ Pendente' : status === 'in-progress' ? '⚡ Em Progresso' : '✅ Concluído'}
+                      </span>
+                      <span className="text-[10px] px-2 py-0.5 bg-cyber-bg rounded-full font-mono text-text-muted">
+                        {filteredTasks.length}
+                      </span>
+                    </div>
+
+                    <div className="space-y-2 flex-1">
+                      {filteredTasks.map((t) => {
+                        const assigned = agents.find((a) => a.id === t.assignee);
+                        return (
+                          <div
+                            key={t.id}
+                            className="p-3 rounded-xl bg-cyber-bg border border-cyber-border text-xs space-y-1.5"
+                          >
+                            <p className="font-semibold text-white">{t.title}</p>
+                            <div className="flex items-center justify-between text-[10px]">
+                              <span className="text-neon-cyan flex items-center gap-1 font-mono">
+                                {assigned?.avatar} {assigned?.name}
+                              </span>
+                              <span
+                                className={cn(
+                                  'px-1.5 py-0.2 rounded font-mono uppercase text-[9px]',
+                                  t.priority === 'high'
+                                    ? 'bg-neon-red/20 text-neon-red'
+                                    : 'bg-neon-yellow/20 text-neon-yellow'
+                                )}
+                              >
+                                {t.priority}
+                              </span>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

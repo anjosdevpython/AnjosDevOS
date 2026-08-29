@@ -7,18 +7,13 @@ import {
   Grid3X3,
   Settings,
   ChevronLeft,
-  Menu,
   X,
   Search,
-  Bell,
-  User,
-  Maximize2,
-  Minimize2,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useOS } from '../os/OSContext';
 import { APP_DEFINITIONS } from '../os/types';
-import { ICON_COMPONENTS, getAppContent } from '../os/AppRegistry';
+import { getAppContent } from '../os/AppRegistry';
+import { IOSAppIcon } from '../ios/IOSAppIcons';
 
 type MobileTab = 'home' | 'apps' | 'chat' | 'settings';
 
@@ -33,11 +28,10 @@ export function MobileLayout() {
   const [openApp, setOpenApp] = useState<MobileAppState | null>(null);
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
 
-  // Handle swipe gestures
+  // Gesto de deslizar para fechar app
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
     touchStartY.current = e.touches[0].clientY;
@@ -49,16 +43,14 @@ export function MobileLayout() {
     const deltaX = touchEndX - touchStartX.current;
     const deltaY = touchEndY - touchStartY.current;
 
-    // Only handle horizontal swipes
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 60) {
       if (deltaX > 0 && openApp) {
-        // Swipe right = close app
         setOpenApp(null);
       }
     }
   }, [openApp]);
 
-  // Close app on back button
+  // Botão voltar do navegador
   useEffect(() => {
     const handleBackButton = () => {
       if (openApp) {
@@ -70,7 +62,6 @@ export function MobileLayout() {
     return () => window.removeEventListener('popstate', handleBackButton);
   }, [openApp]);
 
-  // Push state when app opens
   useEffect(() => {
     if (openApp) {
       window.history.pushState({ app: openApp.appId }, '', '');
@@ -88,44 +79,44 @@ export function MobileLayout() {
     setOpenApp(null);
   };
 
-  // Filter apps for search
   const filteredApps = APP_DEFINITIONS.filter((app) =>
     !searchQuery || app.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Get quick access apps (most used)
   const quickApps = APP_DEFINITIONS.filter((a) =>
-    ['chat', 'codeeditor', 'fileexplorer', 'tools'].includes(a.id)
+    ['chat', 'codeeditor', 'automation-studio', 'agent-teams', 'terminal', 'fileexplorer'].includes(a.id)
   );
 
-  // Get all apps grouped by category
   const appsByCategory = {
     ai: APP_DEFINITIONS.filter((a) => a.category === 'ai'),
     tools: APP_DEFINITIONS.filter((a) => a.category === 'tools'),
     system: APP_DEFINITIONS.filter((a) => a.category === 'system'),
   };
 
-  // If an app is open, show it full screen
+  // Se um app estiver aberto, exibe em tela cheia com header mobile
   if (openApp) {
     return (
-      <div className="h-[100dvh] flex flex-col bg-cyber-bg">
+      <div className="h-[100dvh] flex flex-col bg-[#07090e] text-slate-100">
         {/* App Header */}
-        <div className="flex items-center gap-3 px-4 py-3 bg-cyber-card border-b border-cyber-border safe-area-top">
+        <div className="flex items-center gap-3 px-4 py-3 bg-[#0d121f] border-b border-white/10 safe-area-top">
           <button
             onClick={closeApp}
-            className="p-2 rounded-lg hover:bg-cyber-hover text-text-primary"
+            className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <h1 className="text-sm font-semibold text-text-primary flex-1 truncate">
+          <h1 className="text-sm font-bold text-white flex-1 truncate font-mono">
             {openApp.title}
           </h1>
-          <button className="p-2 rounded-lg hover:bg-cyber-hover text-text-muted">
-            <Maximize2 className="w-4 h-4" />
+          <button
+            onClick={closeApp}
+            className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400"
+          >
+            <X className="w-4 h-4" />
           </button>
         </div>
 
-        {/* App Content */}
+        {/* App Content Container */}
         <div
           className="flex-1 overflow-hidden"
           onTouchStart={handleTouchStart}
@@ -138,80 +129,76 @@ export function MobileLayout() {
   }
 
   return (
-    <div className="h-[100dvh] flex flex-col bg-cyber-bg">
-      {/* Status Bar Spacer */}
-      <div className="h-safe-area-top" />
-
+    <div className="h-[100dvh] flex flex-col bg-[#07090e] text-slate-100">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-cyber-card/80 backdrop-blur-xl border-b border-cyber-border">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-neon-green/10 border border-neon-green/30 flex items-center justify-center">
-            <span className="text-sm">⚡</span>
+      <div className="flex items-center justify-between px-4 py-3 bg-[#0d121f]/90 backdrop-blur-xl border-b border-white/10 safe-area-top">
+        <div className="flex items-center gap-2.5">
+          <div className="w-9 h-7 flex items-center justify-center">
+            <img
+              src="/logo.png"
+              alt="AnjosDevOS"
+              className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(0,210,255,0.7)]"
+            />
           </div>
           <div>
-            <h1 className="text-sm font-bold gradient-text">AnjosDevOS</h1>
-            <p className="text-[9px] text-text-muted">Mobile</p>
+            <h1 className="text-sm font-black gradient-text font-mono">AnjosDevOS</h1>
+            <p className="text-[9px] text-cyan-400 font-mono">Swarm v2.0 · 7 Agentes</p>
           </div>
         </div>
+
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowSearch(!showSearch)}
-            className="p-2 rounded-lg hover:bg-cyber-hover text-text-muted"
+            className="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 transition-colors"
           >
             <Search className="w-4 h-4" />
-          </button>
-          <button className="p-2 rounded-lg hover:bg-cyber-hover text-text-muted relative">
-            <Bell className="w-4 h-4" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-neon-red rounded-full" />
           </button>
         </div>
       </div>
 
       {/* Search Bar */}
       {showSearch && (
-        <div className="px-4 py-2 bg-cyber-card border-b border-cyber-border">
+        <div className="px-4 py-2.5 bg-[#090d18] border-b border-white/10 animate-slide-in">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Buscar apps..."
+              placeholder="Buscar apps e agentes..."
               autoFocus
-              className="w-full pl-10 pr-4 py-2.5 text-sm bg-cyber-bg border border-cyber-border rounded-xl text-text-primary placeholder:text-text-muted focus:outline-none focus:border-neon-green/50"
+              className="w-full pl-9 pr-8 py-2 text-xs bg-[#05070d] border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:border-cyan-400 outline-none"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400"
               >
-                <X className="w-4 h-4" />
+                <X className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
         </div>
       )}
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-y-auto">
+      {/* Main Tab Views */}
+      <div className="flex-1 overflow-hidden flex flex-col">
         {activeTab === 'home' && (
-          <div className="p-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-6">
             {/* Quick Access */}
-            <section className="mb-6">
-              <h2 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
-                Acesso Rápido
+            <section>
+              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 font-mono">
+                ⚡ Acesso Rápido
               </h2>
-              <div className="grid grid-cols-4 gap-3">
+              <div className="grid grid-cols-3 gap-3">
                 {quickApps.map((app) => (
                   <button
                     key={app.id}
                     onClick={() => openAppById(app.id)}
-                    className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-cyber-card border border-cyber-border hover:border-neon-green/30 transition-all active:scale-95"
+                    className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-[#0e121e] border border-white/10 hover:border-cyan-400/40 active:scale-95 transition-all shadow-sm group"
                   >
-                    <div className={`text-${app.color}`}>
-                      {ICON_COMPONENTS[app.iconName] || <Grid3X3 className="w-6 h-6" />}
-                    </div>
-                    <span className="text-[10px] text-text-secondary text-center leading-tight">
+                    <IOSAppIcon appId={app.id} size={48} className="group-hover:scale-105" />
+                    <span className="text-[11px] font-semibold text-slate-200 text-center leading-tight truncate max-w-full">
                       {app.title}
                     </span>
                   </button>
@@ -219,95 +206,83 @@ export function MobileLayout() {
               </div>
             </section>
 
-            {/* Recent */}
-            <section className="mb-6">
-              <h2 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
-                Recente
+            {/* Swarm Status Card */}
+            <section className="p-4 rounded-2xl bg-gradient-to-br from-cyan-950/40 via-[#0e1424] to-blue-950/40 border border-cyan-500/30 shadow-lg">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-bold text-cyan-300 font-mono">⚡ Swarm Engine</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono font-bold">
+                  7/7 ONLINE
+                </span>
+              </div>
+              <p className="text-xs text-slate-300 leading-relaxed mb-3">
+                Agentes autônomos prontos para planejar, codificar, auditar e automatizar tarefas.
+              </p>
+              <button
+                onClick={() => openAppById('agent-teams')}
+                className="w-full py-2 bg-cyan-500 text-black font-bold text-xs rounded-xl hover:opacity-90 transition-all font-mono"
+              >
+                Abrir Painel de Agentes
+              </button>
+            </section>
+
+            {/* All Apps Overview */}
+            <section>
+              <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 font-mono">
+                📱 Aplicativos Recentes
               </h2>
               <div className="space-y-2">
-                {APP_DEFINITIONS.slice(0, 3).map((app) => (
+                {APP_DEFINITIONS.slice(0, 5).map((app) => (
                   <button
                     key={app.id}
                     onClick={() => openAppById(app.id)}
-                    className="w-full flex items-center gap-3 p-3 rounded-xl bg-cyber-card border border-cyber-border hover:border-neon-green/30 transition-all active:scale-[0.98]"
+                    className="w-full flex items-center gap-3 p-3 rounded-xl bg-[#0e121e] border border-white/5 hover:border-white/15 transition-all active:scale-[0.98]"
                   >
-                    <div className={`text-${app.color}`}>
-                      {ICON_COMPONENTS[app.iconName] || <Grid3X3 className="w-5 h-5" />}
-                    </div>
+                    <IOSAppIcon appId={app.id} size={36} />
                     <div className="flex-1 text-left">
-                      <p className="text-xs font-medium text-text-primary">{app.title}</p>
-                      <p className="text-[10px] text-text-muted">Último uso: agora</p>
+                      <p className="text-xs font-semibold text-white">{app.title}</p>
+                      <p className="text-[10px] text-slate-400 capitalize">{app.category}</p>
                     </div>
-                    <ChevronLeft className="w-4 h-4 text-text-muted rotate-180" />
+                    <ChevronLeft className="w-4 h-4 text-slate-500 rotate-180" />
                   </button>
                 ))}
-              </div>
-            </section>
-
-            {/* Stats */}
-            <section>
-              <h2 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
-                Status do Sistema
-              </h2>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-3 rounded-xl bg-cyber-card border border-cyber-border">
-                  <p className="text-lg font-bold text-neon-green">9</p>
-                  <p className="text-[10px] text-text-muted">Providers Ativos</p>
-                </div>
-                <div className="p-3 rounded-xl bg-cyber-card border border-cyber-border">
-                  <p className="text-lg font-bold text-neon-blue">21</p>
-                  <p className="text-[10px] text-text-muted">Skills Disponíveis</p>
-                </div>
               </div>
             </section>
           </div>
         )}
 
         {activeTab === 'apps' && (
-          <div className="p-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-6">
             {searchQuery ? (
-              /* Search Results */
               <div className="space-y-2">
                 {filteredApps.map((app) => (
                   <button
                     key={app.id}
                     onClick={() => openAppById(app.id)}
-                    className="w-full flex items-center gap-3 p-3 rounded-xl bg-cyber-card border border-cyber-border hover:border-neon-green/30 transition-all active:scale-[0.98]"
+                    className="w-full flex items-center gap-3 p-3 rounded-xl bg-[#0e121e] border border-white/10 transition-all active:scale-[0.98]"
                   >
-                    <div className={`text-${app.color}`}>
-                      {ICON_COMPONENTS[app.iconName] || <Grid3X3 className="w-5 h-5" />}
-                    </div>
+                    <IOSAppIcon appId={app.id} size={38} />
                     <div className="flex-1 text-left">
-                      <p className="text-xs font-medium text-text-primary">{app.title}</p>
-                      <p className="text-[10px] text-text-muted capitalize">{app.category}</p>
+                      <p className="text-xs font-semibold text-white">{app.title}</p>
+                      <p className="text-[10px] text-slate-400 capitalize">{app.category}</p>
                     </div>
                   </button>
                 ))}
-                {filteredApps.length === 0 && (
-                  <div className="text-center py-8 text-text-muted">
-                    <Search className="w-8 h-8 mx-auto mb-2 opacity-30" />
-                    <p className="text-xs">Nenhum app encontrado</p>
-                  </div>
-                )}
               </div>
             ) : (
-              /* App Categories */
               Object.entries(appsByCategory).map(([category, apps]) => (
-                <section key={category} className="mb-6">
-                  <h2 className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-3">
-                    {category === 'ai' ? '🧠 IA' : category === 'tools' ? '🛠️ Ferramentas' : '⚙️ Sistema'}
+                <section key={category}>
+                  <h2 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 font-mono">
+                    {category === 'ai' ? '🧠 Inteligência Artificial' : category === 'tools' ? '🛠️ Desenvolvimento & Ferramentas' : '⚙️ Sistema'}
                   </h2>
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-3 gap-2.5">
                     {apps.map((app) => (
                       <button
                         key={app.id}
                         onClick={() => openAppById(app.id)}
-                        className="flex flex-col items-center gap-2 p-3 rounded-2xl bg-cyber-card border border-cyber-border hover:border-neon-green/30 transition-all active:scale-95"
+                        className="flex flex-col items-center gap-1.5 p-3 rounded-2xl bg-[#0e121e] border border-white/5 hover:border-cyan-400/30 transition-all active:scale-95 group"
                       >
-                        <div className={`text-${app.color}`}>
-                          {ICON_COMPONENTS[app.iconName] || <Grid3X3 className="w-6 h-6" />}
-                        </div>
-                        <span className="text-[10px] text-text-secondary text-center leading-tight">
+                        <IOSAppIcon appId={app.id} size={46} className="group-hover:scale-105" />
+                        <span className="text-[10px] font-semibold text-slate-200 text-center leading-tight truncate max-w-full">
                           {app.title}
                         </span>
                       </button>
@@ -320,38 +295,38 @@ export function MobileLayout() {
         )}
 
         {activeTab === 'chat' && (
-          <div className="h-full">
+          <div className="flex-1 flex flex-col overflow-hidden">
             {getAppContent('chat')}
           </div>
         )}
 
         {activeTab === 'settings' && (
-          <div className="h-full">
+          <div className="flex-1 flex flex-col overflow-hidden">
             {getAppContent('settings')}
           </div>
         )}
       </div>
 
-      {/* Bottom Navigation */}
-      <div className="flex items-center justify-around px-4 py-2 bg-cyber-card/95 backdrop-blur-xl border-t border-cyber-border safe-area-bottom">
+      {/* Bottom Navigation Dock */}
+      <div className="flex items-center justify-around px-4 py-2 bg-[#090d18]/95 backdrop-blur-2xl border-t border-white/10 safe-area-bottom">
         {[
           { id: 'home' as MobileTab, icon: Home, label: 'Início' },
           { id: 'apps' as MobileTab, icon: Grid3X3, label: 'Apps' },
-          { id: 'chat' as MobileTab, icon: MessageSquare, label: 'Chat' },
-          { id: 'settings' as MobileTab, icon: Settings, label: 'Config' },
+          { id: 'chat' as MobileTab, icon: MessageSquare, label: 'Chat IA' },
+          { id: 'settings' as MobileTab, icon: Settings, label: 'Ajustes' },
         ].map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className={cn(
-              'flex flex-col items-center gap-1 px-4 py-2 rounded-xl transition-all',
+              'flex flex-col items-center gap-1 px-4 py-1.5 rounded-xl transition-all',
               activeTab === tab.id
-                ? 'text-neon-green bg-neon-green/10'
-                : 'text-text-muted'
+                ? 'text-cyan-400 bg-cyan-500/15 font-bold'
+                : 'text-slate-400 hover:text-slate-200'
             )}
           >
             <tab.icon className="w-5 h-5" />
-            <span className="text-[10px] font-medium">{tab.label}</span>
+            <span className="text-[10px] font-mono">{tab.label}</span>
           </button>
         ))}
       </div>

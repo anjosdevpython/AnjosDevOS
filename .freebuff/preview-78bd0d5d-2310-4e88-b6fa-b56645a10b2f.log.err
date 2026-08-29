@@ -1,0 +1,1713 @@
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ ReferenceError: Zap is not defined
+    at eval (src\components\os\DesktopIcons.tsx:30:9)
+    at (ssr)/./src/components/os/DesktopIcons.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:192:1)
+    at eval (webpack-internal:///(ssr)/./src/components/os/Desktop.tsx:12:71)
+    at (ssr)/./src/components/os/Desktop.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:181:1)
+    at eval (webpack-internal:///(ssr)/./src/app/page.tsx:8:80)
+    at (ssr)/./src/app/page.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:126:1)
+  28 |   Brain: <Brain className="w-8 h-8" />,
+  29 |   Radio: <Radio className="w-8 h-8" />,
+> 30 |   Zap: <Zap className="w-8 h-8" />,
+     |         ^
+  31 | };
+  32 |
+  33 | export function DesktopIcons() { {
+  digest: '3525109710'
+}
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ ReferenceError: Zap is not defined
+    at eval (src\components\os\DesktopIcons.tsx:30:9)
+    at (ssr)/./src/components/os/DesktopIcons.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:192:1)
+    at eval (webpack-internal:///(ssr)/./src/components/os/Desktop.tsx:12:71)
+    at (ssr)/./src/components/os/Desktop.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:181:1)
+    at eval (webpack-internal:///(ssr)/./src/app/page.tsx:8:80)
+    at (ssr)/./src/app/page.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:126:1)
+  28 |   Brain: <Brain className="w-8 h-8" />,
+  29 |   Radio: <Radio className="w-8 h-8" />,
+> 30 |   Zap: <Zap className="w-8 h-8" />,
+     |         ^
+  31 | };
+  32 |
+  33 | export function DesktopIcons() { {
+  digest: '3525109710'
+}
+ ⨯ ReferenceError: Zap is not defined
+    at eval (src\components\os\DesktopIcons.tsx:30:9)
+    at (ssr)/./src/components/os/DesktopIcons.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:192:1)
+    at eval (webpack-internal:///(ssr)/./src/components/os/Desktop.tsx:12:71)
+    at (ssr)/./src/components/os/Desktop.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:181:1)
+    at eval (webpack-internal:///(ssr)/./src/app/page.tsx:8:80)
+    at (ssr)/./src/app/page.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:126:1)
+  28 |   Brain: <Brain className="w-8 h-8" />,
+  29 |   Radio: <Radio className="w-8 h-8" />,
+> 30 |   Zap: <Zap className="w-8 h-8" />,
+     |         ^
+  31 | };
+  32 |
+  33 | export function DesktopIcons() { {
+  digest: '3525109710'
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⨯ ReferenceError: Network is not defined
+    at eval (src\components\os\Taskbar.tsx:35:13)
+    at (ssr)/./src/components/os/Taskbar.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:225:1)
+    at eval (webpack-internal:///(ssr)/./src/components/os/Desktop.tsx:9:66)
+    at (ssr)/./src/components/os/Desktop.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:181:1)
+    at eval (webpack-internal:///(ssr)/./src/app/page.tsx:8:80)
+    at (ssr)/./src/app/page.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:126:1)
+  33 |   Radio: <Radio className="w-4 h-4" />,
+  34 |   Zap: <Zap className="w-4 h-4" />,
+> 35 |   Network: <Network className="w-4 h-4" />,
+     |             ^
+  36 | };
+  37 |
+  38 | export function Taskbar() { {
+  digest: '2668337019'
+}
+ ⨯ ReferenceError: Network is not defined
+    at eval (src\components\os\Taskbar.tsx:35:13)
+    at (ssr)/./src/components/os/Taskbar.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:225:1)
+    at eval (webpack-internal:///(ssr)/./src/components/os/Desktop.tsx:9:66)
+    at (ssr)/./src/components/os/Desktop.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:181:1)
+    at eval (webpack-internal:///(ssr)/./src/app/page.tsx:8:80)
+    at (ssr)/./src/app/page.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:126:1)
+  33 |   Radio: <Radio className="w-4 h-4" />,
+  34 |   Zap: <Zap className="w-4 h-4" />,
+> 35 |   Network: <Network className="w-4 h-4" />,
+     |             ^
+  36 | };
+  37 |
+  38 | export function Taskbar() { {
+  digest: '2668337019'
+}
+ ⨯ ReferenceError: Network is not defined
+    at eval (src\components\os\Taskbar.tsx:35:13)
+    at (ssr)/./src/components/os/Taskbar.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:225:1)
+    at eval (webpack-internal:///(ssr)/./src/components/os/Desktop.tsx:9:66)
+    at (ssr)/./src/components/os/Desktop.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:181:1)
+    at eval (webpack-internal:///(ssr)/./src/app/page.tsx:8:80)
+    at (ssr)/./src/app/page.tsx (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:126:1)
+  33 |   Radio: <Radio className="w-4 h-4" />,
+  34 |   Zap: <Zap className="w-4 h-4" />,
+> 35 |   Network: <Network className="w-4 h-4" />,
+     |             ^
+  36 | };
+  37 |
+  38 | export function Taskbar() { {
+  digest: '2668337019'
+}
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ [TypeError: a[d] is not a function] { digest: '1831977519' }
+[TypeError: a[d] is not a function]
+ ⨯ [TypeError: a[d] is not a function]
+ ⨯ [TypeError: a[d] is not a function]
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128013)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128073) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128013)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128073) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128013)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128073) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128013)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128073) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128013)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128073) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128013)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128073) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128013)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:63:128073) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ ./src/components/os/AppRegistry.tsx
+Module parse failed: Identifier 'dynamic' has already been declared (249:7)
+| _c22 = SettingsApp;
+| // Lazy-load heavy page components to avoid importing all at once
+> import dynamic from 'next/dynamic';
+| const ImagesApp = dynamic(()=>import('@/app/images/page'), {
+|     loadableGenerated: {
+
+Import trace for requested module:
+./src/components/os/AppRegistry.tsx
+./src/components/os/Desktop.tsx
+./src/app/page.tsx
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  digest: '2402162835'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+[TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  digest: '2402162835'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+[TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  digest: '2402162835'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+[TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  digest: '2402162835'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+[TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  digest: '2402162835'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+[TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: '4191051056'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  digest: '2402162835'
+}
+ ⨯ Error: Could not find the module "C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\next-devtools\userspace\app\segment-explorer-node.js#SegmentViewNode" in the React Client Manifest. This is probably a bug in the React Server Components bundler.
+    at stringify (<anonymous>) {
+  digest: '1907517023'
+}
+[TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function]
+ ⨯ [TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: __webpack_modules__[moduleId] is not a function] {
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: ENOENT: no such file or directory, open 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\vendor-chunks\lucide-react.js'
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:555:47)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:558:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\Users\\allan.anjos\\Downloads\\anjosdevplataform\\.next\\server\\vendor-chunks\\lucide-react.js',
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+Error: Cannot find module './331.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14499)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js:37:14559) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/'
+}
+ ⨯ Error: Cannot find module './611.js'
+Require stack:
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\webpack-runtime.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\app\page.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\require.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\load-components.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\utils.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\options.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\swc\index.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\config.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\next.js
+- C:\Users\allan.anjos\Downloads\anjosdevplataform\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:321)
+    at Object.<anonymous> (C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\server\pages\_document.js:1:366) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ [TypeError: Cannot read properties of undefined (reading '/_app')]
+[TypeError: Cannot read properties of undefined (reading '/_app')]
+ ⨯ ./src/app/globals.css:90:5
+Syntax error: C:\Users\allan.anjos\Downloads\anjosdevplataform\src\app\globals.css The `bg-neon-cyan/15` class does not exist. If `bg-neon-cyan/15` is a custom class, make sure it is defined within a `@layer` directive.
+
+ [90m 88 | [39m
+ [90m 89 | [39m  [33m.neon-button-blue[39m [33m{[39m
+[1m[31m>[39m[22m[90m 90 | [39m    [36m@apply[39m px-4 py-2 rounded-xl font-semibold transition-all duration-200
+ [90m    | [39m    [1m[31m^[39m[22m
+ [90m 91 | [39m           bg-neon-cyan/15 text-neon-cyan border border-neon-cyan/30
+ [90m 92 | [39m           hover[33m:[39mbg-neon-cyan/25 hover[33m:[39mshadow-[33m[[39m[36m0_0_20px_rgba[39m[36m(6,182,212,0.4)[39m[33m][39m
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\server-development\16.pack.gz_' -> 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\server-development\16.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\client-development\16.pack.gz_' -> 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\client-development\16.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\server-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\client-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\server-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\client-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\client-development\1.pack.gz_' -> 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\client-development\1.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\server-development\0.pack.gz_' -> 'C:\Users\allan.anjos\Downloads\anjosdevplataform\.next\cache\webpack\server-development\0.pack.gz'

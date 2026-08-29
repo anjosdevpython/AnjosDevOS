@@ -1,7 +1,38 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Zap, Wifi, Battery, MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks, Globe, FileText, Workflow, Users, Brain, Radio, Network, Bot } from 'lucide-react';
+import {
+  Wifi,
+  Battery,
+  MessageSquare,
+  Image,
+  Paintbrush,
+  Video,
+  Music,
+  Mic,
+  AudioLines,
+  Wallet,
+  Terminal,
+  Settings,
+  Info,
+  Folder,
+  Wrench,
+  FileCode,
+  Sparkles,
+  Hand,
+  Diamond,
+  Blocks,
+  Globe,
+  FileText,
+  Workflow,
+  Users,
+  Brain,
+  Radio,
+  Network,
+  Bot,
+  Cpu,
+  Layers,
+} from 'lucide-react';
 import { useOS } from './OSContext';
 import { APP_DEFINITIONS } from './types';
 import { cn } from '@/lib/utils';
@@ -31,9 +62,9 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Users: <Users className="w-4 h-4" />,
   Brain: <Brain className="w-4 h-4" />,
   Radio: <Radio className="w-4 h-4" />,
-  Zap: <Zap className="w-4 h-4" />,
   Network: <Network className="w-4 h-4" />,
   Bot: <Bot className="w-4 h-4" />,
+  Layers: <Layers className="w-4 h-4" />,
 };
 
 export function Taskbar() {
@@ -58,26 +89,34 @@ export function Taskbar() {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-12 bg-cyber-card/95 backdrop-blur-xl border-t border-cyber-border flex items-center px-2 z-[9999]">
+    <div className="fixed bottom-2.5 left-3 right-3 sm:left-6 sm:right-6 h-12 bg-[#090d17]/85 backdrop-blur-2xl border border-white/15 rounded-2xl flex items-center px-2.5 z-[9999] shadow-[0_15px_35px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.12)]">
       {/* Start Button */}
       <button
         onClick={() => setStartMenuOpen(!isStartMenuOpen)}
         className={cn(
-          'flex items-center gap-2 px-3 py-1.5 rounded-lg transition-all duration-200 mr-2',
+          'flex items-center gap-2 px-3 py-1.5 rounded-xl transition-all duration-200 mr-2 group',
           isStartMenuOpen
-            ? 'bg-neon-green/20 text-neon-green shadow-neon-green'
-            : 'text-neon-green hover:bg-neon-green/10'
+            ? 'bg-cyan-500/25 border border-cyan-400/50 shadow-[0_0_20px_rgba(6,182,212,0.4)]'
+            : 'bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-400/30'
         )}
       >
-        <Zap className="w-5 h-5" />
-        <span className="text-xs font-bold hidden sm:inline">INICIO</span>
+        <div className="w-6 h-5 flex items-center justify-center">
+          <img
+            src="/logo.png"
+            alt="AnjosDevOS"
+            className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(0,210,255,0.8)] group-hover:scale-105 transition-transform"
+          />
+        </div>
+        <span className="text-xs font-black gradient-text font-mono tracking-wider hidden sm:inline">
+          INÍCIO
+        </span>
       </button>
 
       {/* Divider */}
-      <div className="w-px h-6 bg-cyber-border mx-1" />
+      <div className="w-px h-5 bg-white/10 mx-1" />
 
       {/* Running Apps */}
-      <div className="flex-1 flex items-center gap-1 overflow-x-auto px-1">
+      <div className="flex-1 flex items-center gap-1.5 overflow-x-auto px-1">
         {windows.map((win) => {
           const appDef = APP_DEFINITIONS.find((a) => a.id === win.appId);
           const isActive = activeWindowId === win.id && !win.isMinimized;
@@ -86,33 +125,50 @@ export function Taskbar() {
               key={win.id}
               onClick={() => handleTaskClick(win.id)}
               className={cn(
-                'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 shrink-0',
+                'flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 shrink-0 border relative',
                 isActive
-                  ? `bg-${appDef?.color || 'neon-green'}/15 text-${appDef?.color || 'neon-green'} border border-${appDef?.color || 'neon-green'}/30`
+                  ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.25)]'
                   : win.isMinimized
-                  ? 'text-text-muted hover:bg-cyber-hover border border-transparent'
-                  : 'text-text-secondary hover:bg-cyber-hover border border-transparent'
+                  ? 'bg-white/5 text-slate-400 border-transparent hover:bg-white/10 hover:text-slate-200'
+                  : 'bg-white/5 text-slate-200 border-white/10 hover:bg-white/10'
               )}
             >
-              {ICON_MAP[appDef?.iconName || 'Terminal']}
-              <span className="max-w-[100px] truncate hidden md:inline">{win.title}</span>
+              <span className={`text-${appDef?.color || 'cyan-400'}`}>
+                {ICON_MAP[appDef?.iconName || 'Terminal']}
+              </span>
+              <span className="max-w-[110px] truncate hidden md:inline font-mono text-[11px]">
+                {win.title}
+              </span>
+              {/* Active Dot */}
+              <div
+                className={cn(
+                  'w-1.5 h-1.5 rounded-full',
+                  isActive ? 'bg-cyan-400 shadow-[0_0_6px_rgba(6,182,212,1)]' : 'bg-slate-500'
+                )}
+              />
             </button>
           );
         })}
       </div>
 
       {/* Divider */}
-      <div className="w-px h-6 bg-cyber-border mx-1" />
+      <div className="w-px h-5 bg-white/10 mx-1" />
 
-      {/* System Tray */}
-      <div className="flex items-center gap-3 px-2 text-text-muted">
-        <Wifi className="w-3.5 h-3.5" />
-        <Battery className="w-3.5 h-3.5" />
-        <span className="text-[11px] font-mono tabular-nums">
+      {/* System Status Tray */}
+      <div className="flex items-center gap-3 px-2.5 text-slate-300 text-xs font-mono">
+        {/* Swarm Live Pill */}
+        <div className="hidden lg:flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px]">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span>Swarm 7/7</span>
+        </div>
+
+        <div className="flex items-center gap-2 text-slate-400">
+          <Wifi className="w-3.5 h-3.5 text-cyan-400" />
+          <Battery className="w-3.5 h-3.5 text-emerald-400" />
+        </div>
+
+        <span className="text-[11px] font-semibold text-slate-100 tabular-nums">
           {time.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
-        </span>
-        <span className="text-[10px] font-mono text-text-muted hidden lg:inline">
-          {time.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}
         </span>
       </div>
     </div>

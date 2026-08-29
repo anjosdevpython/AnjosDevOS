@@ -1,72 +1,191 @@
+<div align="center">
+
+<img src="./public/logo.png" alt="AnjosDevOS Logo" width="420" />
+
 # ⚡ AnjosDevOS
+### Sistema Operacional de IA Autônomo para Desenvolvedores & Automação
 
-### Sistema Operacional de IA para Desenvolvedores
+[![Next.js](https://img.shields.io/badge/Next.js-15.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript)](https://typescriptlang.org/)
+[![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06B6D4?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/Licença-MIT-green?style=for-the-badge)](LICENSE)
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6)](https://typescriptlang.org/)
-[![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06B6D4)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/Licença-MIT-green)](LICENSE)
+> Um sistema operacional completo baseado em navegador alimentado por um **Enxame de 7 Agentes Autônomos Independentes**, **27 apps nativos**, **Monaco Code IDE com IA Integrada**, **Automation Studio Visual com Execução em Tempo Real**, **50+ modelos de IA** e interfaces comutáveis **Cyberpunk** e **iOS**.
 
-> Um sistema operacional completo baseado em navegador com **27 apps**, **9 provedores de IA**, **5 agentes inteligentes**, **20+ integrações**, automação de navegador, modo de ensino e interface iOS.
+🔗 **Repositório Oficial:** [github.com/anjosdevpython/AnjosDevOS](https://github.com/anjosdevpython/AnjosDevOS)  
+🌐 **Website do Desenvolvedor:** [allananjos.dev.br](https://allananjos.dev.br)  
+👤 **Autor:** Allan Anjos (`allan@allananjos.dev.br`)
 
-🔗 **https://github.com/anjosdevpython/AnjosDevOS**
-🌐 **https://allananjos.dev.br**
-
----
-
-## 📸 Visão Geral
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  ⚡ AnjosDevOS — Sistema Operacional de IA                       │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐          │
-│  │ 💬 Chat  │ │ 🎨 Imagens│ │ 💻 Editor│ │ 📁 Arquivos│          │
-│  │    IA    │ │   IA     │ │  Código  │ │ Explorer │          │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘          │
-│                                                                 │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐          │
-│  │ 🧠 Hermes│ │ 🌐 Browser│ │ 👥 Agent │ │ 🤖 Warmwind│          │
-│  │Raciocínio│ │ Automat. │ │  Teams   │ │Funcionári│          │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘          │
-│                                                                 │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐          │
-│  │ ⚡ Auto- │ │ 🧩 Dev-  │ │ 🔮 Deep- │ │ ⚡ Freebuff│          │
-│  │  mação   │ │  Tools   │ │  Seek    │ │  Agent   │          │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘          │
-│                                                                 │
-├─────────────────────────────────────────────────────────────────┤
-│ [INICIO] │ 💬 Chat │ 💻 Editor │ 📁 Arquivos │ 12:00 │ 📶🔋   │
-└─────────────────────────────────────────────────────────────────┘
-```
+</div>
 
 ---
 
-## 🚀 Início Rápido
+## 📑 Sumário
+
+- [Visão Geral](#-visão-geral)
+- [Arquitetura do Enxame de Agentes (Swarm Engine)](#-arquitetura-do-enxame-de-agentes-swarm-engine)
+- [Especialistas do Enxame](#-especialistas-do-enxame)
+- [Recursos Principais](#-recursos-principais)
+  - [1. Monaco IDE com IA Swarm Integrada](#1-monaco-ide-com-ia-swarm-integrada)
+  - [2. Automation Studio com Motor Visual em Tempo Real](#2-automation-studio-com-motor-visual-em-tempo-real)
+  - [3. Barramento de Comunicação Inter-Agentes](#3-barramento-de-comunicação-inter-agentes)
+  - [4. Interface Cyberpunk & Modo iOS](#4-interface-cyberpunk--modo-ios)
+- [Apps Nativos do Sistema](#-apps-nativos-do-sistema-27)
+- [Início Rápido](#-início-rápido)
+- [Comandos de Terminal](#-comandos-de-terminal)
+- [Documentação Técnica Adicional](#-documentação-técnica-adicional)
+- [Licença e Créditos](#-licença-e-créditos)
+
+---
+
+## 🌟 Visão Geral
+
+O **AnjosDevOS** é uma plataforma que transforma a experiência do desenvolvedor em um ecossistema operacional onde agentes de inteligência artificial não apenas respondem a prompts isolados, mas **colaboram ativamente entre si** em um ciclo contínuo de planejamento, escrita de código, auditoria de segurança OWASP, correção automática de bugs (auto-patch), deploy e documentação viva.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│  ⚡ AnjosDevOS — Sistema Operacional de IA Autônomo                         │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│   [ 🧠 AnjosArchitect ] ──(Delega)──> [ 💻 AnjosCoder ]                     │
+│            ▲                                  │ (Submete Código)            │
+│            │                                  ▼                             │
+│     (Coordena Enxame)                 [ 🔍 AnjosReviewer ]                  │
+│            │                                  │ (Feedback / Auditoria)      │
+│            │                                  ▼                             │
+│   [ 📝 AnjosDocs ] <──(Documenta)── [ 🛠️ AnjosDebugger ]                   │
+│            ▲                                  │ (Aplica Auto-Patch)         │
+│            │                                  ▼                             │
+│   [ 🚀 AnjosDevOps ] <──(Deploy)─── [ ⚡ AnjosAutoPilot ] (Workflows)       │
+│                                                                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ [INÍCIO] │ 💻 Code Editor │ ⚡ Automation │ 👥 Agent Teams │ 12:00 │ 📶 🔋  │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🧠 Arquitetura do Enxame de Agentes (Swarm Engine)
+
+O núcleo do **AnjosDevOS** é alimentado pelo `SwarmEngine` (`src/lib/agent-swarm/`), estruturado sobre um barramento de mensagens assíncrono com suporte a pub/sub, filas de tarefas prioritárias e memória contextual compartilhada.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Dev as 👤 Desenvolvedor
+    participant Arch as 🧠 AnjosArchitect
+    participant Coder as 💻 AnjosCoder
+    participant Rev as 🔍 AnjosReviewer
+    participant Debug as 🛠️ AnjosDebugger
+    participant Auto as ⚡ AnjosAutoPilot
+    participant Docs as 📝 AnjosDocs
+
+    Dev->>Arch: "Criar autenticação JWT com rate limit e testes"
+    Arch->>Arch: Decompõe requisitos e gera arquitetura
+    Arch->>Coder: Delega implementação em TypeScript
+    Coder->>Coder: Escreve código modular e tipado
+    Coder->>Rev: Submete código para auditoria de segurança
+    Rev->>Rev: Realiza varredura OWASP Top 10 e complexidade
+    alt Vulnerabilidade / Bug Encontrado
+        Rev->>Debug: Reporta falha e linha afetada
+        Debug->>Coder: Envia proposta de Auto-Patch direcionado
+        Coder->>Coder: Aplica correção pontual
+        Coder->>Rev: Reenvia para validação
+    end
+    Rev->>Auto: Dispara geração e execução de testes automatizados
+    Auto->>Docs: Solicita documentação viva e JSDoc
+    Docs->>Dev: Entrega código aprovado, testado e documentado
+```
+
+---
+
+## 🤖 Especialistas do Enxame
+
+| Agente | Função | Papel Principal | Ferramentas & Habilidades |
+| :--- | :--- | :--- | :--- |
+| **🧠 AnjosArchitect** | `LEAD` | Líder Técnico & Planejamento | Decomposição de tarefas, Clean Architecture, RFCs, Grafos de dependência |
+| **💻 AnjosCoder** | `DEV` | Engenheiro Fullstack | TypeScript, Python, Go, Rust, React 19, Next.js, Refatoração, SQL |
+| **🔍 AnjosReviewer** | `QA & SEC` | Auditoria & Segurança | OWASP Top 10, Análise Estática, Complexidade Ciclomática, Detecção de Smells |
+| **🛠️ AnjosDebugger** | `FIX` | Diagnóstico & Auto-Patch | Rastreamento de Stack Traces, Causa Raiz, Correção de Vazamentos, Patches |
+| **⚡ AnjosAutoPilot** | `AUTO` | Engenharia de Automação | Scraping de DOM, Pipelines REST/GraphQL, Triggers Cron, Webhooks |
+| **🚀 AnjosDevOps** | `DEVOPS` | Infraestrutura & CI/CD | Docker, Kubernetes, GitHub Actions, Nginx, Healthchecks de Uptime |
+| **📝 AnjosDocs** | `DOCS` | Redação Técnica & Manuais | JSDoc vivo, OpenAPI/Swagger, Diagramas Mermaid, Guias de Onboarding |
+
+---
+
+## 🚀 Recursos Principais
+
+### 1. Monaco IDE com IA Swarm Integrada
+- **Editor Profissional:** Editor Monaco completo com realce de sintaxe em 40+ linguagens, temas escuro/claro/alto contraste, minimap e atalhos de teclado.
+- **Painel Lateral do Enxame (✨ IA Swarm):**
+  - **Disparar Tarefas Autônomas:** Solicite refatoração, criação de módulos ou melhorias de código com feedback em tempo real de cada especialista.
+  - **Auditoria de 1 Clique:** Analise conformidade de tipos, segurança e vulnerabilidades OWASP com nota de 0 a 100.
+  - **Botão Auto-Corrigir:** Aplica patches gerados pelo `AnjosDebugger` diretamente no editor.
+  - **Gerador de Testes Unitários:** Cria suítes de teste Vitest prontas para execução em nova aba.
+
+### 2. Automation Studio com Motor Visual em Tempo Real
+- **Builder Visual de Fluxos:** Conecte nós de gatilho (Cron, Webhook, Git Push), ações de IA (Architect, Coder, Reviewer, AutoPilot) e nós de saída.
+- **Execução Interativa:** Acompanhe o fluxo executando nó a nó com animações de status e telemetria de logs no terminal integrado.
+- **Gerador por IA (Prompt-to-Flow):** Descreva o que deseja automatizar em linguagem natural e o `AnjosAutoPilot` montará o grafo de nós e conexões instantaneamente.
+
+### 3. Barramento de Comunicação Inter-Agentes
+- Comunicação bidirecional contínua entre todos os agentes via `SwarmEngine`.
+- Feed interativo em tempo real onde o usuário pode interagir diretamente com qualquer especialista ou realizar broadcasts para todo o enxame.
+- Quadro de tarefas com status Kanban (`Pendente`, `Em Progresso`, `Concluído`).
+
+### 4. Interface Cyberpunk & Modo iOS
+- **Tema Cyberpunk:** Efeitos neon glow, painéis translúcidos em glassmorphism, terminal estilo hacker e design futurista.
+- **Modo iOS:** Interface inspirada no iOS com Dynamic Island, Dock, widgets interativos de marca e suporte completo a gestos touch.
+- **Layout Mobile:** Totalmente responsivo para smartphones e tablets com navegação otimizada por gestos.
+
+---
+
+## 🖥️ Apps Nativos do Sistema (27)
+
+### 🤖 Inteligência Artificial & Agentes
+- 💬 **Chat IA** — Conversação com streaming e múltiplos provedores (OpenAI, Anthropic, Google, DeepSeek).
+- 👥 **Agent Teams** — Gestão e comunicação interativa com o Enxame de Agentes.
+- 🕸️ **Orquestrador** — Painel de coordenação, raciocínio em cadeia e aprendizado de workflows.
+- 🧠 **Memória** — Sistema de memória persistente e grafo de conhecimento.
+- 🎨 **Gerador de Imagens** — DALL-E, Flux, Stable Diffusion e Recraft.
+- 🎬 **Gerador de Vídeo** — Kling e Runway.
+- 🎵 **Gerador de Música** — Suno V5.
+- 🗣️ **Text-to-Speech** & 🔊 **Efeitos Sonoros** — Síntese de áudio.
+
+### 🛠️ Codificação & Automação
+- 💻 **Code Editor** — Monaco IDE com IA Swarm, auditoria de segurança e testes.
+- ⚡ **Automation Studio** — Builder e executor de fluxos com IA.
+- ⌨️ **Terminal** — Shell com comandos de enxame (`agents`, `swarm`, `audit`, `flows`).
+- 📁 **File Explorer** — Navegador de arquivos e árvore de diretórios.
+- 🛠️ **AI Tools** — Registro de skills e ferramentas de desenvolvimento.
+- 🧩 **DevTools Hub** — Integração com Cursor, Windsurf, Cline e Aider.
+- 🙌 **OpenHands** — Agent canvas autônomo.
+- 💎 **Theia IDE** — Ambiente integrado para desenvolvimento.
+
+---
+
+## ⚡ Início Rápido
 
 ### Pré-requisitos
-
-- Node.js 18+
-- npm ou yarn
+- Node.js 18+ ou 20+
+- npm, pnpm ou yarn
 
 ### Instalação
 
 ```bash
-# Clonar o repositório
+# 1. Clonar o repositório
 git clone https://github.com/anjosdevpython/AnjosDevOS.git
 cd AnjosDevOS
 
-# Instalar dependências
+# 2. Instalar as dependências
 npm install
 
-# Iniciar servidor de desenvolvimento
+# 3. Iniciar o servidor de desenvolvimento
 npm run dev
-
-# Acessar no navegador
-open http://localhost:3000
 ```
+
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador para acessar o **AnjosDevOS**.
 
 ### Build para Produção
 
@@ -77,476 +196,36 @@ npm start
 
 ---
 
-## 📱 Interface
+## ⌨️ Comandos de Terminal
 
-### Modos de Visualização
+Abra o app **Terminal** no AnjosDevOS para utilizar os comandos do enxame:
 
-| Modo | Descrição | Atalho |
-|------|-----------|--------|
-| 🖥️ **Cyberpunk** | Tema neon cyberpunk com efeitos de glow | Botão 🖥️ no canto superior |
-| 📱 **iOS** | Interface estilo iOS com Dynamic Island | Botão 📱 no canto superior |
-| 📱 **Mobile** | Layout responsivo para celulares | Automático em dispositivos móveis |
-
-### iOS Interface
-
-- **Dynamic Island** com hora e indicadores
-- **Dock** com 4 apps favoritos
-- **Home Screen** com grid de apps e busca
-- **Notificações** puxando da esquerda
-- **Control Center** puxando da direita
-- **Traffic Lights** (verde/amarelo/vermelho) nas janelas
+| Comando | Descrição |
+| :--- | :--- |
+| `agents` / `swarm-list` | Lista os 7 especialistas do enxame e suas habilidades |
+| `swarm <objetivo>` | Dispara o enxame para planejar, codificar, auditar e testar |
+| `audit <código>` | Executa auditoria de segurança OWASP e qualidade estática |
+| `flows` / `automation` | Lista os fluxos de automação ativos |
+| `models` | Exibe os modelos de IA disponíveis (Claude, GPT, Gemini, DeepSeek) |
+| `neofetch` | Exibe o banner e especificações técnicas do AnjosDevOS |
+| `clear` | Limpa a tela do terminal |
+| `help` | Exibe o manual de ajuda dos comandos |
 
 ---
 
-## 🖥️ Apps (27)
+## 📚 Documentação Técnica Adicional
 
-### 🤖 Inteligência Artificial
-
-| App | Descrição |
-|-----|-----------|
-| 💬 **Chat IA** | Chat com múltiplos providers de IA |
-| 🎨 **Gerador de Imagens** | Geração de imagens com DALL-E, Flux, Stable Diffusion |
-| 🖌️ **Editor de Imagens** | Edição de imagens com IA |
-| 🎬 **Gerador de Vídeo** | Geração de vídeos com Kling |
-| 🎵 **Gerador de Música** | Geração de músicas com Suno |
-| 🗣️ **Text-to-Speech** | Conversão de texto para fala |
-| 🔊 **Efeitos Sonoros** | Geração de efeitos sonoros |
-
-### 🛠️ Ferramentas
-
-| App | Descrição |
-|-----|-----------|
-| 🌐 **Browser** | Navegador in-app com automação |
-| 📋 **Workbench** | Docs, planilhas, apresentações, kanban, gráficos |
-| ⚡ **Automação** | Builder visual de fluxos com triggers e actions |
-| 📡 **Canais** | Hub de mensagens (WhatsApp, Telegram, Discord, Slack) |
-| 💰 **Saldo & Uso** | Monitoramento de uso de APIs e créditos |
-
-### 🧠 Agentes IA
-
-| App | Descrição |
-|-----|-----------|
-| 🧠 **Hermes** | Raciocínio profundo com chain-of-thought |
-| 👥 **Agent Teams** | Times de agentes com tarefas e comunicação |
-| 🕸️ **Orquestrador** | Coordenação de agentes e workflows |
-| 🧠 **Memória** | Sistema de memória persistente e knowledge graph |
-| 🤖 **Funcionários IA** | Funcionários virtuais (Warmwind style) |
-
-### 💻 Desenvolvimento
-
-| App | Descrição |
-|-----|-----------|
-| 💻 **Code Editor** | Monaco Editor com syntax highlighting e IntelliSense |
-| 📁 **Explorador** | File explorer com árvore de navegação |
-| ⌨️ **Terminal** | Terminal interativo com comandos |
-| 🛠️ **AI Tools** | 21 skills e 6 MCP servers |
-
-### 🔗 Integrações
-
-| App | Descrição |
-|-----|-----------|
-| 🧩 **DevTools Hub** | 18+ ferramentas (Cursor, Windsurf, Cline, Aider, etc.) |
-| 🙌 **OpenHands** | Agent canvas com automações |
-| 💎 **Theia IDE** | IDE com 16 extensões |
-| 🔮 **DeepSeek Harness** | Sistema de plugins (24 plugins) |
-| ⚡ **Freebuff** | Agente de IA gratuito (5 produtos, 7 modelos) |
-
-### ⚙️ Sistema
-
-| App | Descrição |
-|-----|-----------|
-| ⚙️ **Configurações** | Configuração de providers e preferências |
-| ℹ️ **Sobre** | Informações do sistema |
+- 📘 [**Arquitetura e Colaboração de Agentes**](docs/AGENT_COLLABORATION.md) — Detalhamento dos protocolos de troca de mensagens e resolução de tarefas.
+- 📗 [**Manual do Automation Studio**](docs/AUTOMATION_GUIDE.md) — Guia passo a passo para criação de pipelines de automação e triggers.
+- 📙 [**Estrutura de Diretórios**](src/STRUCTURE.md) — Mapa técnico de módulos e componentes.
+- 📕 [**Guia de Contribuição**](CONTRIBUTING.md) — Como contribuir e criar novos agentes.
+- 📓 [**Notas de Lançamento (Changelog)**](CHANGELOG.md) — Histórico de versões e novidades da v2.0.
 
 ---
 
-## 🤖 9 Provedores de IA
+## 📄 Licença e Créditos
 
-| Provedor | Modelos | Formato API |
-|----------|---------|-------------|
-| **OpenAI** | GPT-4o, GPT-4, GPT-3.5, o1, o3, DALL-E, TTS, Whisper | OpenAI |
-| **Anthropic** | Claude 4, Claude 3.5, Claude 3 | Anthropic |
-| **Google AI** | Gemini 2.5, Gemini 2.0, Imagen 3 | Google |
-| **DeepSeek** | V3, R1 | OpenAI |
-| **xAI (Grok)** | Grok 3, Grok 2 | OpenAI |
-| **Mistral AI** | Large, Medium, Small, Mixtral, Codestral | OpenAI |
-| **Groq** | Llama 3.3, Llama 3.1, Gemma 2 | OpenAI |
-| **Together AI** | Llama 3.1 405B/70B, Mixtral, Qwen | OpenAI |
-| **NetworkTools** | GPT-5, Claude 5, DeepSeek V4, etc. | OpenAI |
+Distribuído sob a licença **MIT**. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-### Configuração
-
-1. Acesse **Configurações**
-2. Clique em um provider para expandir
-3. Adicione sua API key
-4. Ative o provider
-5. Salve as configurações
-
----
-
-## 🧠 Sistema de Agentes
-
-### 5 Agentes Interconectados
-
-```
-┌─────────────────────────────────────────────────┐
-│              Orquestrador Central                │
-│         (Comunicação inter-agentes)             │
-├─────────┬─────────┬─────────┬─────────┬─────────┤
-│  🧠     │  🌐     │  💻     │  📚     │  🔎     │
-│ Hermes  │Browser  │Dev      │Pesquis. │Revisor  │
-│Raciocínio│Automação│Código   │Dados    │QA       │
-└─────────┴─────────┴─────────┴─────────┴─────────┘
-```
-
-### Hermes Agent (Raciocínio Profundo)
-
-- **Chain-of-Thought**: Observação → Raciocínio → Hipótese → Conclusão
-- **Decisões**: Avalia opções com scoring automático
-- **Árvore de Pensamentos**: Visualização completa do raciocínio
-
-### Browser Agent (Automação)
-
-- **Sessões**: Múltiplas abas simultâneas
-- **Ações**: navigate, click, type, extract, screenshot, scroll
-- **Gravação**: Grave ações do usuário para criar workflows
-- **Percepção**: Detecta elementos na tela (botões, inputs, menus)
-
-### Workflow Learner (Aprendizado)
-
-- **Observação**: Observa ações do usuário em tempo real
-- **Padrões**: Detecta processos recorrentes automaticamente
-- **Perguntas**: Pergunta ao usuário quando não tem certeza
-- **Criação**: Cria workflows reutilizáveis a partir de padrões
-
----
-
-## 🏪 20+ Integrações (App Store)
-
-| Categoria | Apps |
-|-----------|------|
-| 📧 **Email** | Gmail, Outlook |
-| 💼 **CRM** | HubSpot, Salesforce, Pipedrive |
-| 📱 **Social** | Instagram, LinkedIn, Twitter, TikTok |
-| 🛒 **E-commerce** | Shopify, Mercado Livre, Magalu |
-| 📝 **Produtividade** | Google Sheets, Notion |
-| 💬 **Comunicação** | Slack, WhatsApp Business |
-| 📦 **ERP** | Bling, Tiny |
-| 📈 **Analytics** | Google Analytics, Meta Ads |
-
----
-
-## 🤖 Funcionários IA (Warmwind Style)
-
-### 8 Funcionários Pré-configurados
-
-| Nome | Função | Habilidades |
-|------|--------|-------------|
-| 👩‍💼 Ana | Atendente | Email, Chat, WhatsApp, Resolução |
-| 📱 Marcos | Social Media | Instagram, LinkedIn, Twitter, Conteúdo |
-| 💰 Julia | Vendas | CRM, Prospecção, Follow-up, Negociação |
-| 📊 Pedro | Financeiro | Planilhas, Faturas, Relatórios, Orçamento |
-| 🔧 Carlos | Suporte Técnico | Debug, Documentação, Triagem, Remoto |
-| 🔍 Laura | Pesquisador | Web, Dados, Análise, Relatórios |
-| 📋 Maria | Assistente | Agenda, E-mails, Organização, Lembretes |
-| 💻 Rafael | Desenvolvedor | Código, API, Automação, Deploy |
-
-### Modo Ensino
-
-1. Clique em **"Iniciar Gravação"**
-2. Execute os passos da tarefa
-3. O sistema grava cada ação
-4. Pare a gravação quando terminar
-5. O funcionário aprende o padrão
-
----
-
-## 🛠️ 21 Skills (AI Tools)
-
-### Planejamento
-- Grill with Docs · To Spec · To Tickets · Wayfinder · Research
-
-### Desenvolvimento
-- Implement · Prototype · TDD · Diagnosing Bugs · Improve Codebase
-
-### Revisão
-- Code Review · Resolve Conflicts · Triage
-
-### Produtividade
-- Grill Me · Handoff · Teach · Wait What
-
-### GSD Workflow
-- Plan · Execute · Verify
-
----
-
-## 🌐 6 MCP Servers
-
-| Server | Ferramentas |
-|--------|-------------|
-| 📁 **Filesystem** | read_file, write_file, list_directory, search_files |
-| 🔀 **Git** | git_status, git_diff, git_log, git_commit |
-| 🌐 **Browser** | navigate, screenshot, click, type_text |
-| 🗄️ **Database** | query, list_tables, describe_table |
-| 🔌 **API Tester** | http_request, graphql |
-| 🔎 **Code Search** | search_code, find_definitions, find_references |
-
----
-
-## 🔗 Integrações Externas
-
-| Integração | Descrição |
-|------------|-----------|
-| 🔮 **DeepSeek Harness** | 24 plugins com arquitetura "Everything is a Plugin" |
-| 🙌 **OpenHands** | Agent canvas com 4 automações |
-| 💎 **Theia IDE** | IDE com 16 extensões do Open VSX |
-| 🧩 **DevTools Hub** | 18+ ferramentas de desenvolvimento |
-| ⚡ **Freebuff** | 5 produtos gratuitos, 7 modelos, 5 agentes |
-
----
-
-## 📁 Estrutura do Projeto
-
-```
-src/
-├── app/                          # Páginas Next.js
-│   ├── api/                      # API Routes
-│   │   ├── chat/route.ts         # Chat com providers
-│   │   ├── images/route.ts       # Geração de imagens
-│   │   ├── models/route.ts       # Lista de modelos
-│   │   └── health/route.ts       # Health check
-│   ├── settings/page.tsx         # Configurações
-│   └── page.tsx                  # Página principal (iOS/Cyber toggle)
-│
-├── components/
-│   ├── features/
-│   │   └── chat/ChatInterface.tsx  # Interface do chat
-│   ├── ios/                      # 🆕 Interface iOS
-│   │   ├── IOSLayout.tsx         # Layout principal iOS
-│   │   ├── IOSStatusBar.tsx      # Barra de status + Dynamic Island
-│   │   ├── IOSDock.tsx           # Dock inferior
-│   │   ├── IOSHomeScreen.tsx     # Tela inicial com grid de apps
-│   │   ├── IOSWindow.tsx         # Janelas estilo macOS
-│   │   ├── IOSNotificationCenter.tsx  # Central de notificações
-│   │   └── IOSControlCenter.tsx  # Central de controle
-│   ├── mobile/MobileLayout.tsx   # Layout mobile
-│   ├── os/                       # Componentes do OS
-│   │   ├── apps/                 # 18 componentes de apps
-│   │   ├── AppRegistry.tsx       # Registro de todos os apps
-│   │   ├── AppErrorBoundary.tsx  # Error boundary por app
-│   │   ├── OSContext.tsx          # Estado global do OS
-│   │   ├── Desktop.tsx           # Desktop principal
-│   │   ├── Window.tsx            # Gerenciador de janelas
-│   │   ├── Taskbar.tsx           # Barra de tarefas
-│   │   ├── StartMenu.tsx         # Menu iniciar
-│   │   ├── DesktopIcons.tsx      # Ícones do desktop
-│   │   ├── BootScreen.tsx        # Tela de boot
-│   │   └── types.ts              # Tipos e definições de apps
-│   └── Sidebar.tsx               # Sidebar (modo desktop)
-│
-├── config/app.ts                 # Configuração centralizada
-├── hooks/useDevice.ts            # Detecção de dispositivo
-│
-├── lib/
-│   ├── ai/                       # 🤖 Sistema de IA
-│   │   ├── providers.ts          # 9 provedores de IA
-│   │   ├── provider-config.ts    # Configuração de providers
-│   │   ├── models.ts             # Modelos disponíveis
-│   │   └── api-client.ts         # Cliente multi-provider
-│   │
-│   ├── agent-orchestration/      # 🕸️ Orquestração de Agentes
-│   │   ├── orchestrator.ts       # Motor central
-│   │   ├── browser-engine.ts     # Automação de navegador
-│   │   ├── hermes-agent.ts       # Agente de raciocínio
-│   │   ├── workflow-learner.ts   # Aprendizado de workflows
-│   │   └── types.ts              # Tipos de orquestração
-│   │
-│   ├── integrations/             # 🔗 Integrações externas
-│   │   ├── deepseek-harness.ts   # DeepSeek Harness (24 plugins)
-│   │   ├── openhands.ts          # OpenHands (agent canvas)
-│   │   ├── theia.ts              # Theia IDE (16 extensões)
-│   │   ├── freebuff.ts           # Freebuff (5 produtos, 7 modelos)
-│   │   ├── cowork-*.ts           # CoWork-OS (6 módulos)
-│   │
-│   ├── tools/                    # 🛠️ Ferramentas
-│   │   ├── tools.ts              # 21 skills + 6 MCP servers
-│   │   └── devtools.ts           # 18+ dev tools
-│   │
-│   ├── warmwind/                 # 🤖 Warmwind Style
-│   │   ├── ai-employees.ts       # Sistema de funcionários IA
-│   │   ├── app-store.ts          # 20+ integrações
-│   │   └── types.ts              # Tipos Warmwind
-│   │
-│   └── utils.ts                  # Utilitários
-│
-├── types/index.ts                # Tipos centralizados
-└── STRUCTURE.md                  # Documentação da estrutura
-```
-
----
-
-## 🏗️ Arquitetura
-
-### Fluxo de Comunicação
-
-```
-┌─────────────────────────────────────────────────────┐
-│                    Usuário                           │
-│                      │                               │
-│              ┌───────▼───────┐                       │
-│              │  iOS / Cyber   │                       │
-│              │   Interface    │                       │
-│              └───────┬───────┘                       │
-│                      │                               │
-│              ┌───────▼───────┐                       │
-│              │  OSContext     │                       │
-│              │  (Estado)     │                       │
-│              └───────┬───────┘                       │
-│                      │                               │
-│    ┌─────────────────┼─────────────────┐             │
-│    │                 │                 │             │
-│    ▼                 ▼                 ▼             │
-│ ┌──────────┐  ┌──────────────┐  ┌──────────┐        │
-│ │   Apps   │  │ Orquestrador │  │ Warmwind │        │
-│ │  (27)    │  │  de Agentes  │  │Employees │        │
-│ └────┬─────┘  └──────┬───────┘  └────┬─────┘        │
-│      │               │               │              │
-│      ▼               ▼               ▼              │
-│ ┌──────────┐  ┌──────────────┐  ┌──────────┐        │
-│ │Providers │  │   Hermes     │  │ App Store│        │
-│ │ IA (9)   │  │  Browser     │  │  (20+)   │        │
-│ └──────────┘  │  Workflow    │  └──────────┘        │
-│               └──────────────┘                       │
-└─────────────────────────────────────────────────────┘
-```
-
-### Orquestração de Agentes
-
-```typescript
-// Criar funcionário IA
-const manager = getAIEmployeesManager();
-const employee = manager.createEmployee(0); // Ana - Atendente
-
-// Atribuir tarefa
-manager.assignTask(employee.id, 'Responder e-mails', 'Verificar inbox', [
-  { action: 'navigate', description: 'Abrir Gmail' },
-  { action: 'click', description: 'Clicar em responder' },
-  { action: 'type', description: 'Escrever resposta' },
-]);
-
-// Hermes raciocinar
-const hermes = getHermesAgent();
-const result = await hermes.solveProblem('Como otimizar o deploy?');
-
-// Browser aprender workflow
-const learner = getWorkflowLearner();
-learner.observeAction(action, url);
-const workflow = learner.createWorkflowFromActions('Login', 'Fazer login', actions, url);
-```
-
----
-
-## 📊 API Routes
-
-| Rota | Método | Descrição |
-|------|--------|-----------|
-| `/api/chat` | POST | Chat com providers de IA |
-| `/api/images` | POST | Geração de imagens |
-| `/api/models` | GET | Lista de modelos disponíveis |
-| `/api/health` | GET | Health check do sistema |
-
----
-
-## 🎨 Customização
-
-### Adicionar Novo App
-
-1. Criar componente em `src/components/os/apps/MeuApp.tsx`
-2. Adicionar definição em `src/components/os/types.ts`
-3. Registrar em `src/components/os/AppRegistry.tsx`
-4. Adicionar ícone em todos os ICON_MAPs
-
-### Adicionar Novo Provider
-
-1. Adicionar definição em `src/lib/ai/providers.ts`
-2. Implementar formatação em `src/lib/ai/api-client.ts`
-3. Adicionar modelos em `src/lib/ai/models.ts`
-
----
-
-## 🚀 Roadmap
-
-### ✅ v1.0 (Atual)
-- [x] 27 apps funcionais
-- [x] 9 provedores de IA
-- [x] 5 agentes interconectados
-- [x] Automação de navegador
-- [x] Modo de ensino
-- [x] Interface iOS
-- [x] 20+ integrações
-- [x] Dashboard em tempo real
-- [x] Suporte mobile com PWA
-- [x] Documentação completa
-
-### 🔜 v1.1
-- [ ] Backend real para funcionários IA
-- [ ] Integração real com Gmail/WhatsApp
-- [ ] Automação de navegador real (Playwright)
-- [ ] Marketplace de workflows
-- [ ] Colaboração em tempo real
-
-### 🔮 v2.0
-- [ ] Desktop app (Electron/Tauri)
-- [ ] Suporte a múltiplos usuários
-- [ ] API pública para extensões
-- [ ] Marketplace de agentes
-
----
-
-## 🤝 Contribuindo
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/nova-feature`)
-3. Faça commit (`git commit -m 'Adicionar nova feature'`)
-4. Push para a branch (`git push origin feature/nova-feature`)
-5. Abra um Pull Request
-
-### Padrões de Código
-
-- TypeScript estrito
-- Componentes funcionais com hooks
-- Tailwind CSS para estilos
-- Convencional Commits para mensagens
-
----
-
-## 📄 Licença
-
-MIT License - veja [LICENSE](LICENSE) para detalhes.
-
----
-
-## 👨‍💻 Desenvolvedor
-
-**Allan Anjos**
-- 🌐 [allananjos.dev.br](https://allananjos.dev.br)
-- 🐙 [GitHub](https://github.com/anjosdevpython)
-- 📧 allan@allananjos.dev.br
-
----
-
-## 🙏 Agradecimentos
-
-- [Next.js](https://nextjs.org/) - Framework React
-- [Tailwind CSS](https://tailwindcss.com/) - Utilitários CSS
-- [Lucide React](https://lucide.dev/) - Ícones
-- [Monaco Editor](https://microsoft.github.io/monaco-editor/) - Editor de código
-- [Warmwind OS](https://warmwind.com/) - Inspiração para funcionários IA
-- [CoWork-OS](https://github.com/CoWork-OS/CoWork-OS) - Inspiração para workbench
-- [Freebuff](https://github.com/CodebuffAI/freebuff) - Framework de agentes
-- [OpenHands](https://github.com/OpenHands/OpenHands) - Agent canvas
-- [Theia IDE](https://theia-ide.org/) - IDE extensível
-
----
-
-> Feito com ❤️ por [Allan Anjos](https://allananjos.dev.br)
+Desenvolvido com 💙 e inovação por **Allan Anjos**.  
+🌐 [allananjos.dev.br](https://allananjos.dev.br) · 🐙 [GitHub](https://github.com/anjosdevpython)

@@ -1,550 +1,687 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
-import Editor, { OnMount, OnChange } from '@monaco-editor/react';
+import { useState, useEffect } from 'react';
+import Editor, { DiffEditor } from '@monaco-editor/react';
 import {
-  FileCode,
+  Play,
   Save,
-  Undo,
-  Redo,
-  Copy,
-  Scissors,
-  Clipboard,
-  Search,
-  Replace,
-  Settings,
-  Maximize2,
-  Minimize2,
-  ChevronDown,
+  Sparkles,
+  Terminal as TerminalIcon,
+  ShieldAlert,
+  FileCode,
+  Folder,
+  Layers,
   X,
   Plus,
-  FolderOpen,
-  Braces,
-  WrapText,
-  Eye,
-  EyeOff,
-  Sun,
-  Moon,
+  Zap,
+  Trash2,
 } from 'lucide-react';
+import {
+  getSwarmEngine,
+  type SwarmCollaborationSession,
+  type SwarmTaskStep,
+  type SwarmAgentDefinition,
+} from '@/lib/agent-swarm';
+import { llmAudit, type LLMAuditResult } from '@/lib/agent-swarm/llm-audit';
+import { VitestRunner, type VitestRunSummary } from '@/lib/runtime/vitest-runner';
+import { WorkspaceRepository, type Workspace } from '@/lib/workspaces';
+import { TerminalPanel } from '../panels/Terminal';
 import { cn } from '@/lib/utils';
 
-// Language mapping based on file extension
-const LANGUAGE_MAP: Record<string, string> = {
-  ts: 'typescript',
-  tsx: 'typescript',
-  js: 'javascript',
-  jsx: 'javascript',
-  py: 'python',
-  rb: 'ruby',
-  go: 'go',
-  rs: 'rust',
-  java: 'java',
-  c: 'c',
-  cpp: 'cpp',
-  h: 'c',
-  hpp: 'cpp',
-  cs: 'csharp',
-  php: 'php',
-  swift: 'swift',
-  kt: 'kotlin',
-  scala: 'scala',
-  html: 'html',
-  htm: 'html',
-  css: 'css',
-  scss: 'scss',
-  less: 'less',
-  json: 'json',
-  yaml: 'yaml',
-  yml: 'yaml',
-  xml: 'xml',
-  md: 'markdown',
-  txt: 'plaintext',
-  sh: 'shell',
-  bash: 'shell',
-  zsh: 'shell',
-  sql: 'sql',
-  graphql: 'graphql',
-  gql: 'graphql',
-  dockerfile: 'dockerfile',
-  toml: 'toml',
-  ini: 'ini',
-  env: 'plaintext',
-  gitignore: 'plaintext',
-  mdx: 'markdown',
-};
+export function CodeEditorApp() {
+  const [workspace, setWorkspace] = useState<Workspace | null>(null);
+  const [openFiles, setOpenFiles] = useState<string[]>(['src/index.ts']);
+  const [activeFile, setActiveFile] = useState<string>('src/index.ts');
+  const [fileContents, setFileContents] = useState<Record<string, string>>({
+    'src/index.ts': `// AnjosDevOS — Autonomous AI Swarm IDE
+import { getSwarmEngine } from '@/lib/agent-swarm';
 
-// Theme options
-const THEMES = [
-  { id: 'vs-dark', label: 'Dark', icon: Moon },
-  { id: 'vs-light', label: 'Light', icon: Sun },
-  { id: 'hc-black', label: 'High Contrast', icon: Eye },
-];
-
-// Font size options
-const FONT_SIZES = [12, 13, 14, 15, 16, 18, 20, 24];
-
-interface FileTab {
-  id: string;
-  name: string;
-  path: string;
-  content: string;
-  language: string;
-  isModified: boolean;
+async function bootstrap() {
+  console.log("⚡ AnjosDevOS IDE inicializado com sucesso.");
+  const swarm = getSwarmEngine();
+  console.log("👥 7 Agentes Especialistas prontos para colaborar.");
 }
 
-export function CodeEditorApp() {
-  const [tabs, setTabs] = useState<FileTab[]>([]);
-  const [activeTabId, setActiveTabId] = useState<string | null>(null);
-  const [theme, setTheme] = useState('vs-dark');
-  const [fontSize, setFontSize] = useState(14);
-  const [wordWrap, setWordWrap] = useState<'off' | 'on'>('off');
-  const [minimap, setMinimap] = useState(true);
-  const [showSettings, setShowSettings] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const editorRef = useRef<any>(null);
-
-  const activeTab = tabs.find((t) => t.id === activeTabId);
-
-  // Get language from filename
-  const getLanguage = (filename: string): string => {
-    const ext = filename.split('.').pop()?.toLowerCase() || '';
-    return LANGUAGE_MAP[ext] || 'plaintext';
-  };
-
-  // Open a file in a new tab
-  const openFile = useCallback(
-    (name: string, path: string, content: string) => {
-      // Check if file is already open
-      const existing = tabs.find((t) => t.path === path);
-      if (existing) {
-        setActiveTabId(existing.id);
-        return;
-      }
-
-      const newTab: FileTab = {
-        id: `tab-${Date.now()}`,
-        name,
-        path,
-        content,
-        language: getLanguage(name),
-        isModified: false,
-      };
-
-      setTabs((prev) => [...prev, newTab]);
-      setActiveTabId(newTab.id);
-    },
-    [tabs]
-  );
-
-  // Close a tab
-  const closeTab = useCallback(
-    (tabId: string) => {
-      setTabs((prev) => prev.filter((t) => t.id !== tabId));
-      if (activeTabId === tabId) {
-        const remaining = tabs.filter((t) => t.id !== tabId);
-        setActiveTabId(remaining.length > 0 ? remaining[remaining.length - 1].id : null);
-      }
-    },
-    [tabs, activeTabId]
-  );
-
-  // Handle editor mount
-  const handleEditorMount: OnMount = (editor, monaco) => {
-    editorRef.current = editor;
-
-    // Add keyboard shortcuts
-    editor.addAction({
-      id: 'save-file',
-      label: 'Save File',
-      keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS],
-      run: () => {
-        // Save current file
-        if (activeTab) {
-          setTabs((prev) =>
-            prev.map((t) =>
-              t.id === activeTab.id ? { ...t, isModified: false } : t
-            )
-          );
-        }
+bootstrap().catch(console.error);
+`,
+    'package.json': JSON.stringify(
+      {
+        name: 'anjosdev-workspace',
+        version: '1.0.0',
+        main: 'src/index.ts',
+        scripts: { start: 'node src/index.ts', test: 'vitest run' },
       },
-    });
+      null,
+      2
+    ),
+    'README.md': '# AnjosDevOS IDE\nDesenvolvimento autônomo com IA.\n',
+  });
 
-    editor.addAction({
-      id: 'close-tab',
-      label: 'Close Tab',
-      keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyW],
-      run: () => {
-        if (activeTabId) {
-          closeTab(activeTabId);
-        }
-      },
-    });
-  };
+  const [activeTab, setActiveTab] = useState<'swarm' | 'audit' | 'tests' | 'agents'>('swarm');
+  const [swarmGoal, setSwarmGoal] = useState('');
+  const [isRunningSwarm, setIsRunningSwarm] = useState(false);
+  const [currentSession, setCurrentSession] = useState<SwarmCollaborationSession | null>(null);
 
-  // Handle content change
-  const handleContentChange: OnChange = (value) => {
-    if (!activeTabId) return;
+  const [auditResult, setAuditResult] = useState<LLMAuditResult | null>(null);
+  const [isAuditing, setIsAuditing] = useState(false);
 
-    setTabs((prev) =>
-      prev.map((t) =>
-        t.id === activeTabId
-          ? { ...t, content: value || '', isModified: true }
-          : t
-      )
-    );
-  };
+  const [testResult, setTestResult] = useState<VitestRunSummary | null>(null);
+  const [isRunningTests, setIsRunningTests] = useState(false);
 
-  // Save current file
-  const saveFile = () => {
-    if (!activeTab) return;
+  const [showTerminal, setShowTerminal] = useState(true);
+  const [showSwarmPanel, setShowSwarmPanel] = useState(true);
+  const [showDiffView, setShowDiffView] = useState(false);
+  const [diffOriginal, setDiffOriginal] = useState('');
+  const [diffModified, setDiffModified] = useState('');
 
-    // In a real app, this would save to the file system
-    setTabs((prev) =>
-      prev.map((t) =>
-        t.id === activeTab.id ? { ...t, isModified: false } : t
-      )
-    );
-  };
+  const [newFileName, setNewFileName] = useState('');
+  const [isCreatingFile, setIsCreatingFile] = useState(false);
 
-  // Save all files
-  const saveAllFiles = () => {
-    setTabs((prev) => prev.map((t) => ({ ...t, isModified: false })));
-  };
+  // Carrega o workspace ativo
+  const loadActiveWorkspace = async () => {
+    const activeId = WorkspaceRepository.getActiveWorkspaceId();
+    let ws: Workspace | null = null;
 
-  // Create new file
-  const createNewFile = () => {
-    const name = prompt('Nome do arquivo:', 'new-file.ts');
-    if (!name) return;
+    if (activeId) {
+      ws = await WorkspaceRepository.getWorkspace(activeId);
+    }
 
-    openFile(name, `/${name}`, '');
-  };
+    if (!ws) {
+      const all = await WorkspaceRepository.getAllWorkspaces();
+      ws = all[0] || null;
+    }
 
-  // Format document
-  const formatDocument = () => {
-    if (editorRef.current) {
-      editorRef.current.getAction('editor.action.formatDocument')?.run();
+    if (ws) {
+      setWorkspace(ws);
+      setFileContents(ws.files || {});
+      const files = Object.keys(ws.files || {});
+      if (files.length > 0) {
+        setOpenFiles(ws.openTabs && ws.openTabs.length > 0 ? ws.openTabs : [files[0]]);
+        setActiveFile(ws.activeFilePath || files[0]);
+      }
     }
   };
 
-  // Toggle word wrap
-  const toggleWordWrap = () => {
-    setWordWrap((prev) => (prev === 'off' ? 'on' : 'off'));
+  useEffect(() => {
+    loadActiveWorkspace();
+  }, []);
+
+  const currentCode = fileContents[activeFile] || '';
+
+  const handleCodeChange = (value: string | undefined) => {
+    if (value === undefined) return;
+    setFileContents((prev) => ({ ...prev, [activeFile]: value }));
   };
 
-  // Keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Ctrl+S - Save
-      if (e.ctrlKey && e.key === 's') {
-        e.preventDefault();
-        saveFile();
-      }
-      // Ctrl+Shift+S - Save All
-      if (e.ctrlKey && e.shiftKey && e.key === 'S') {
-        e.preventDefault();
-        saveAllFiles();
-      }
-      // Ctrl+N - New File
-      if (e.ctrlKey && e.key === 'n') {
-        e.preventDefault();
-        createNewFile();
-      }
-      // Ctrl+W - Close Tab
-      if (e.ctrlKey && e.key === 'w') {
-        e.preventDefault();
-        if (activeTabId) closeTab(activeTabId);
-      }
-    };
+  const handleSave = async () => {
+    if (!workspace) return;
+    await WorkspaceRepository.saveFile(workspace.id, activeFile, currentCode);
+  };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeTabId, closeTab]);
+  const handleCreateFile = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newFileName.trim() || !workspace) return;
+
+    const path = newFileName.startsWith('src/') ? newFileName : `src/${newFileName}`;
+    const initialContent = path.endsWith('.json') ? '{\n  \n}' : '// Novo arquivo\n';
+
+    await WorkspaceRepository.saveFile(workspace.id, path, initialContent);
+    setFileContents((prev) => ({ ...prev, [path]: initialContent }));
+    if (!openFiles.includes(path)) {
+      setOpenFiles((prev) => [...prev, path]);
+    }
+    setActiveFile(path);
+    setNewFileName('');
+    setIsCreatingFile(false);
+  };
+
+  const handleDeleteFile = async (path: string) => {
+    if (!workspace || confirm(`Excluir ${path}?`)) {
+      if (workspace) await WorkspaceRepository.deleteFile(workspace.id, path);
+      setFileContents((prev) => {
+        const next = { ...prev };
+        delete next[path];
+        return next;
+      });
+      setOpenFiles((prev) => prev.filter((p) => p !== path));
+      const remaining = Object.keys(fileContents).filter((p) => p !== path);
+      if (remaining.length > 0) setActiveFile(remaining[0]);
+    }
+  };
+
+  // Dispara o Swarm Engine
+  const runSwarm = async () => {
+    if (!swarmGoal.trim() || isRunningSwarm) return;
+    setIsRunningSwarm(true);
+    const engine = getSwarmEngine();
+
+    const unsubscribe = engine.subscribe((event: { type: string; payload: any }) => {
+      if (event.type === 'session:start') setCurrentSession(event.payload);
+      if (event.type === 'message:new' || event.type === 'task:complete') {
+        const active = engine.getActiveSession();
+        if (active) setCurrentSession({ ...active });
+      }
+    });
+
+    try {
+      const session = await engine.executeCollaborativeCodingTask(swarmGoal, currentCode, activeFile);
+      setCurrentSession(session);
+
+      // Se houver código gerado pelo Coder, atualiza o arquivo com Diff
+      if (session.finalResult?.code) {
+        setDiffOriginal(currentCode);
+        setDiffModified(session.finalResult.code);
+        setShowDiffView(true);
+      }
+    } finally {
+      unsubscribe();
+      setIsRunningSwarm(false);
+    }
+  };
+
+  // Executa Auditoria LLM Real
+  const runAudit = async () => {
+    setIsAuditing(true);
+    try {
+      const result = await llmAudit({
+        code: currentCode,
+        fileName: activeFile,
+      });
+      setAuditResult(result);
+    } finally {
+      setIsAuditing(false);
+    }
+  };
+
+  // Executa Testes Vitest Reais
+  const runTests = async () => {
+    setIsRunningTests(true);
+    try {
+      const summary = await VitestRunner.runTests(currentCode, activeFile);
+      setTestResult(summary);
+    } finally {
+      setIsRunningTests(false);
+    }
+  };
+
+  const applyPatch = () => {
+    if (diffModified) {
+      setFileContents((prev) => ({ ...prev, [activeFile]: diffModified }));
+      handleSave();
+      setShowDiffView(false);
+    }
+  };
 
   return (
-    <div className="h-full flex flex-col bg-cyber-bg text-text-primary">
-      {/* Toolbar */}
-      <div className="flex items-center gap-1 px-2 py-1.5 border-b border-cyber-border bg-cyber-card/50">
-        {/* File Actions */}
-        <button
-          onClick={createNewFile}
-          className="p-1.5 rounded hover:bg-cyber-hover text-text-muted hover:text-neon-green transition-colors"
-          title="Novo arquivo (Ctrl+N)"
-        >
-          <Plus className="w-4 h-4" />
-        </button>
-        <button
-          onClick={saveFile}
-          disabled={!activeTab}
-          className={cn(
-            'p-1.5 rounded transition-colors',
-            activeTab
-              ? 'hover:bg-cyber-hover text-text-muted hover:text-neon-green'
-              : 'text-text-muted/30 cursor-not-allowed'
-          )}
-          title="Salvar (Ctrl+S)"
-        >
-          <Save className="w-4 h-4" />
-        </button>
-        <button
-          onClick={saveAllFiles}
-          className="p-1.5 rounded hover:bg-cyber-hover text-text-muted hover:text-neon-green transition-colors"
-          title="Salvar tudo (Ctrl+Shift+S)"
-        >
-          <Save className="w-4 h-4" />
-          <span className="text-[9px] ml-0.5">All</span>
-        </button>
+    <div className="h-full flex flex-col bg-[#07090e] text-slate-100 overflow-hidden font-sans">
+      {/* Top IDE Toolbar */}
+      <div className="h-10 px-3 bg-[#0d121f] border-b border-white/10 flex items-center justify-between shrink-0 select-none">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-[11px] font-mono font-bold">
+            <Layers className="w-3.5 h-3.5" />
+            <span className="truncate max-w-[140px]">{workspace?.name || 'Workspace'}</span>
+          </div>
 
-        <div className="w-px h-5 bg-cyber-border mx-1" />
+          <div className="h-4 w-px bg-white/10" />
 
-        {/* Edit Actions */}
-        <button
-          onClick={() => editorRef.current?.trigger('keyboard', 'undo', null)}
-          className="p-1.5 rounded hover:bg-cyber-hover text-text-muted hover:text-text-primary transition-colors"
-          title="Desfazer"
-        >
-          <Undo className="w-4 h-4" />
-        </button>
-        <button
-          onClick={() => editorRef.current?.trigger('keyboard', 'redo', null)}
-          className="p-1.5 rounded hover:bg-cyber-hover text-text-muted hover:text-text-primary transition-colors"
-          title="Refazer"
-        >
-          <Redo className="w-4 h-4" />
-        </button>
-
-        <div className="w-px h-5 bg-cyber-border mx-1" />
-
-        {/* Format */}
-        <button
-          onClick={formatDocument}
-          disabled={!activeTab}
-          className={cn(
-            'p-1.5 rounded transition-colors',
-            activeTab
-              ? 'hover:bg-cyber-hover text-text-muted hover:text-text-primary'
-              : 'text-text-muted/30 cursor-not-allowed'
-          )}
-          title="Formatar documento"
-        >
-          <Braces className="w-4 h-4" />
-        </button>
-        <button
-          onClick={toggleWordWrap}
-          className={cn(
-            'p-1.5 rounded transition-colors',
-            wordWrap === 'on'
-              ? 'bg-neon-green/10 text-neon-green'
-              : 'text-text-muted hover:bg-cyber-hover hover:text-text-primary'
-          )}
-          title="Toggle Word Wrap"
-        >
-          <WrapText className="w-4 h-4" />
-        </button>
-
-        <div className="flex-1" />
-
-        {/* Settings */}
-        <div className="relative">
+          {/* Quick Actions */}
           <button
-            onClick={() => setShowSettings(!showSettings)}
-            className="p-1.5 rounded hover:bg-cyber-hover text-text-muted hover:text-text-primary transition-colors"
-            title="Configurações do editor"
+            onClick={handleSave}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-mono transition-colors"
           >
-            <Settings className="w-4 h-4" />
+            <Save className="w-3.5 h-3.5 text-cyan-400" /> Salvar
           </button>
 
-          {showSettings && (
-            <div className="absolute right-0 top-full mt-1 w-56 py-2 bg-cyber-card border border-cyber-border rounded-lg shadow-xl z-50">
-              {/* Theme */}
-              <div className="px-3 py-1.5">
-                <p className="text-[10px] text-text-muted uppercase tracking-wider mb-1.5">Tema</p>
-                <div className="flex gap-1">
-                  {THEMES.map((t) => (
-                    <button
-                      key={t.id}
-                      onClick={() => setTheme(t.id)}
-                      className={cn(
-                        'flex-1 flex items-center justify-center gap-1 py-1.5 text-[10px] rounded transition-colors',
-                        theme === t.id
-                          ? 'bg-neon-green/10 text-neon-green border border-neon-green/30'
-                          : 'text-text-muted hover:bg-cyber-hover border border-transparent'
-                      )}
-                    >
-                      <t.icon className="w-3 h-3" />
-                      {t.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
+          <button
+            onClick={runAudit}
+            disabled={isAuditing}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-mono transition-colors"
+          >
+            <ShieldAlert className={`w-3.5 h-3.5 ${isAuditing ? 'animate-spin text-amber-400' : 'text-emerald-400'}`} />
+            <span>{isAuditing ? 'Auditando...' : 'Auditar'}</span>
+          </button>
 
-              {/* Font Size */}
-              <div className="px-3 py-1.5 border-t border-cyber-border">
-                <p className="text-[10px] text-text-muted uppercase tracking-wider mb-1.5">
-                  Tamanho da fonte
-                </p>
-                <div className="flex gap-1 flex-wrap">
-                  {FONT_SIZES.map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setFontSize(size)}
-                      className={cn(
-                        'px-2 py-1 text-[10px] rounded transition-colors',
-                        fontSize === size
-                          ? 'bg-neon-green/10 text-neon-green border border-neon-green/30'
-                          : 'text-text-muted hover:bg-cyber-hover border border-transparent'
-                      )}
-                    >
-                      {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
+          <button
+            onClick={runTests}
+            disabled={isRunningTests}
+            className="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-mono transition-colors"
+          >
+            <Zap className={`w-3.5 h-3.5 ${isRunningTests ? 'animate-spin text-cyan-400' : 'text-purple-400'}`} />
+            <span>{isRunningTests ? 'Testando...' : 'Rodar Testes'}</span>
+          </button>
+        </div>
 
-              {/* Minimap */}
-              <div className="px-3 py-1.5 border-t border-cyber-border">
-                <button
-                  onClick={() => setMinimap(!minimap)}
-                  className="flex items-center gap-2 w-full text-left text-xs text-text-secondary hover:text-text-primary"
+        {/* Right Controls */}
+        <div className="flex items-center gap-2">
+          {showDiffView && (
+            <div className="flex items-center gap-2 mr-2">
+              <span className="text-[10px] text-amber-400 font-mono">Modo Diff Ativo</span>
+              <button
+                onClick={applyPatch}
+                className="px-2.5 py-1 rounded-lg bg-emerald-500 text-black font-bold text-xs font-mono hover:opacity-90"
+              >
+                Aplicar Patch
+              </button>
+              <button
+                onClick={() => setShowDiffView(false)}
+                className="px-2 py-1 rounded-lg bg-white/10 text-slate-300 text-xs hover:bg-white/20"
+              >
+                Fechar Diff
+              </button>
+            </div>
+          )}
+
+          <button
+            onClick={() => setShowTerminal(!showTerminal)}
+            className={cn(
+              'p-1.5 rounded-lg border text-xs transition-colors',
+              showTerminal ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40' : 'bg-white/5 text-slate-400 border-transparent hover:bg-white/10'
+            )}
+            title="Alternar Terminal"
+          >
+            <TerminalIcon className="w-4 h-4" />
+          </button>
+
+          <button
+            onClick={() => setShowSwarmPanel(!showSwarmPanel)}
+            className={cn(
+              'flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs font-mono font-bold transition-all',
+              showSwarmPanel
+                ? 'bg-gradient-to-r from-cyan-500/30 to-blue-600/30 text-cyan-300 border-cyan-400/50 shadow-[0_0_12px_rgba(6,182,212,0.3)]'
+                : 'bg-white/5 text-slate-400 border-transparent hover:bg-white/10'
+            )}
+          >
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            <span>IA Swarm</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Main 4-Panel Grid Area */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Panel 1: File Tree Sidebar */}
+        <div className="w-56 bg-[#090d18] border-r border-white/10 flex flex-col shrink-0">
+          <div className="p-2.5 border-b border-white/10 flex items-center justify-between">
+            <span className="text-[11px] font-bold text-slate-300 uppercase tracking-wider font-mono flex items-center gap-1.5">
+              <Folder className="w-3.5 h-3.5 text-cyan-400" /> Arquivos
+            </span>
+            <button
+              onClick={() => setIsCreatingFile(!isCreatingFile)}
+              className="p-1 rounded hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+              title="Novo Arquivo"
+            >
+              <Plus className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* Form novo arquivo */}
+          {isCreatingFile && (
+            <form onSubmit={handleCreateFile} className="p-2 border-b border-white/10 bg-white/5">
+              <input
+                type="text"
+                value={newFileName}
+                onChange={(e) => setNewFileName(e.target.value)}
+                placeholder="nome-arquivo.ts"
+                className="w-full px-2 py-1 text-xs bg-[#05070c] border border-cyan-500/40 rounded text-white outline-none font-mono"
+                autoFocus
+              />
+            </form>
+          )}
+
+          {/* Lista de Arquivos */}
+          <div className="flex-1 overflow-y-auto p-1.5 space-y-0.5 font-mono text-xs">
+            {Object.keys(fileContents).map((filePath) => {
+              const isActive = activeFile === filePath;
+              return (
+                <div
+                  key={filePath}
+                  onClick={() => {
+                    if (!openFiles.includes(filePath)) setOpenFiles((prev) => [...prev, filePath]);
+                    setActiveFile(filePath);
+                  }}
+                  className={cn(
+                    'flex items-center justify-between px-2 py-1.5 rounded-lg cursor-pointer transition-colors group',
+                    isActive ? 'bg-cyan-500/20 text-cyan-300 font-semibold' : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
+                  )}
                 >
-                  {minimap ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
-                  <span>Minimap</span>
-                  <span className="ml-auto text-[10px] text-text-muted">
-                    {minimap ? 'On' : 'Off'}
-                  </span>
+                  <div className="flex items-center gap-2 truncate">
+                    <FileCode className={`w-3.5 h-3.5 ${isActive ? 'text-cyan-400' : 'text-slate-500'}`} />
+                    <span className="truncate">{filePath}</span>
+                  </div>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteFile(filePath);
+                    }}
+                    className="opacity-0 group-hover:opacity-100 hover:text-red-400 p-0.5 transition-opacity"
+                  >
+                    <Trash2 className="w-3 h-3" />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Center Section: Editor & Terminal */}
+        <div className="flex-1 flex flex-col overflow-hidden">
+          {/* Editor Tabs Bar */}
+          <div className="h-9 bg-[#0b0f1d] border-b border-white/10 flex items-center overflow-x-auto px-1 gap-1 select-none">
+            {openFiles.map((file) => {
+              const isActive = activeFile === file;
+              return (
+                <div
+                  key={file}
+                  onClick={() => setActiveFile(file)}
+                  className={cn(
+                    'flex items-center gap-2 px-3 py-1.5 rounded-t-lg text-xs font-mono cursor-pointer border-t border-x transition-colors shrink-0',
+                    isActive
+                      ? 'bg-[#07090e] border-white/15 text-cyan-300 font-bold border-t-cyan-400'
+                      : 'bg-[#0e1322] border-transparent text-slate-400 hover:bg-[#11172a]'
+                  )}
+                >
+                  <span>{file.split('/').pop()}</span>
+                  {openFiles.length > 1 && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setOpenFiles((prev) => prev.filter((f) => f !== file));
+                        if (activeFile === file) {
+                          const remaining = openFiles.filter((f) => f !== file);
+                          if (remaining.length > 0) setActiveFile(remaining[0]);
+                        }
+                      }}
+                      className="hover:text-red-400 rounded"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Monaco Editor / Diff Editor Container */}
+          <div className="flex-1 overflow-hidden relative">
+            {showDiffView ? (
+              <DiffEditor
+                original={diffOriginal}
+                modified={diffModified}
+                language={activeFile.endsWith('.json') ? 'json' : 'typescript'}
+                theme="vs-dark"
+                options={{
+                  minimap: { enabled: false },
+                  fontSize: 13,
+                  fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+                  renderSideBySide: true,
+                }}
+              />
+            ) : (
+              <Editor
+                value={currentCode}
+                onChange={handleCodeChange}
+                language={
+                  activeFile.endsWith('.json')
+                    ? 'json'
+                    : activeFile.endsWith('.md')
+                    ? 'markdown'
+                    : 'typescript'
+                }
+                theme="vs-dark"
+                options={{
+                  minimap: { enabled: false },
+                  fontSize: 13,
+                  fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
+                  lineNumbers: 'on',
+                  scrollBeyondLastLine: false,
+                  automaticLayout: true,
+                  tabSize: 2,
+                }}
+              />
+            )}
+          </div>
+
+          {/* Panel 4: Bottom Terminal */}
+          {showTerminal && (
+            <div className="h-48 border-t border-white/10 bg-[#07090e] flex flex-col shrink-0">
+              <div className="h-7 px-3 bg-[#0d121f] border-b border-white/10 flex items-center justify-between select-none">
+                <span className="text-[11px] font-bold text-slate-300 font-mono flex items-center gap-1.5">
+                  <TerminalIcon className="w-3.5 h-3.5 text-cyan-400" /> Terminal do Workspace
+                </span>
+                <button
+                  onClick={() => setShowTerminal(false)}
+                  className="text-slate-400 hover:text-white"
+                >
+                  <X className="w-3 h-3" />
                 </button>
+              </div>
+              <div className="flex-1 overflow-hidden">
+                <TerminalPanel workspaceFiles={fileContents} />
               </div>
             </div>
           )}
         </div>
-      </div>
 
-      {/* Tabs */}
-      <div className="flex items-center border-b border-cyber-border bg-cyber-card/30 overflow-x-auto">
-        {tabs.map((tab) => (
-          <div
-            key={tab.id}
-            onClick={() => setActiveTabId(tab.id)}
-            className={cn(
-              'flex items-center gap-1.5 px-3 py-2 text-xs cursor-pointer border-r border-cyber-border min-w-[120px] max-w-[180px] group',
-              activeTabId === tab.id
-                ? 'bg-cyber-bg text-text-primary'
-                : 'text-text-muted hover:bg-cyber-hover hover:text-text-secondary'
-            )}
-          >
-            <FileCode className="w-3 h-3 flex-shrink-0" />
-            <span className="truncate flex-1">
-              {tab.name}
-              {tab.isModified && <span className="text-neon-yellow ml-1">●</span>}
-            </span>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                closeTab(tab.id);
-              }}
-              className="p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-cyber-hover text-text-muted hover:text-text-primary transition-all"
-            >
-              <X className="w-3 h-3" />
-            </button>
-          </div>
-        ))}
+        {/* Panel 3: Right AI Swarm Panel */}
+        {showSwarmPanel && (
+          <div className="w-96 bg-[#090d18] border-l border-white/10 flex flex-col shrink-0">
+            {/* Swarm Tabs */}
+            <div className="flex border-b border-white/10 bg-[#0c101e] p-1 gap-1">
+              {[
+                { id: 'swarm', label: '⚡ Enxame' },
+                { id: 'audit', label: '🛡️ Auditoria' },
+                { id: 'tests', label: '🧪 Testes' },
+                { id: 'agents', label: '👥 Time' },
+              ].map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as any)}
+                  className={cn(
+                    'flex-1 py-1.5 text-[11px] font-mono rounded-lg transition-all',
+                    activeTab === tab.id
+                      ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold'
+                      : 'text-slate-400 hover:bg-white/5 hover:text-slate-200'
+                  )}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
 
-        {tabs.length === 0 && (
-          <div className="flex-1 flex items-center justify-center py-3 text-xs text-text-muted">
-            Nenhum arquivo aberto — clique em + para criar ou abra pelo Explorador
-          </div>
-        )}
-      </div>
+            {/* Tab Contents */}
+            <div className="flex-1 overflow-y-auto p-3 space-y-3">
+              {activeTab === 'swarm' && (
+                <div className="space-y-3">
+                  <div>
+                    <label className="text-[11px] font-bold text-cyan-300 font-mono block mb-1">
+                      Objetivo de Codificação
+                    </label>
+                    <textarea
+                      value={swarmGoal}
+                      onChange={(e) => setSwarmGoal(e.target.value)}
+                      placeholder="ex: Criar endpoint REST de autenticação com validação Zod e testes unitários..."
+                      className="w-full h-20 p-2.5 text-xs bg-[#05070c] border border-white/10 rounded-xl text-white outline-none focus:border-cyan-400 font-sans resize-none"
+                    />
+                  </div>
 
-      {/* Editor */}
-      <div className="flex-1 overflow-hidden">
-        {activeTab ? (
-          <Editor
-            key={activeTab.id}
-            height="100%"
-            language={activeTab.language}
-            theme={theme}
-            value={activeTab.content}
-            onChange={handleContentChange}
-            onMount={handleEditorMount}
-            options={{
-              fontSize,
-              wordWrap,
-              minimap: { enabled: minimap },
-              padding: { top: 10, bottom: 10 },
-              scrollBeyondLastLine: false,
-              renderLineHighlight: 'all',
-              cursorBlinking: 'smooth',
-              cursorSmoothCaretAnimation: 'on',
-              smoothScrolling: true,
-              bracketPairColorization: { enabled: true },
-              autoClosingBrackets: 'always',
-              autoClosingQuotes: 'always',
-              autoIndent: 'full',
-              formatOnPaste: true,
-              formatOnType: true,
-              suggestOnTriggerCharacters: true,
-              quickSuggestions: true,
-              tabSize: 2,
-              fontFamily: "'JetBrains Mono', 'Fira Code', monospace",
-              fontLigatures: true,
-            }}
-            loading={
-              <div className="flex items-center justify-center h-full text-text-muted">
-                <div className="typing-indicator">
-                  <span />
-                  <span />
-                  <span />
+                  <button
+                    onClick={runSwarm}
+                    disabled={isRunningSwarm || !swarmGoal.trim()}
+                    className="w-full py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold text-xs hover:opacity-90 transition-opacity font-mono flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
+                  >
+                    <Play className={`w-3.5 h-3.5 ${isRunningSwarm ? 'animate-spin' : ''}`} />
+                    <span>{isRunningSwarm ? 'Enxame Executando...' : 'Disparar Enxame'}</span>
+                  </button>
+
+                  {/* Sessão Ativa / Progresso */}
+                  {currentSession && (
+                    <div className="p-3 rounded-xl bg-[#0e1424] border border-cyan-500/30 space-y-2 text-xs">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold text-cyan-300 font-mono">Status do Plano</span>
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono font-bold">
+                          {currentSession.status.toUpperCase()}
+                        </span>
+                      </div>
+
+                      <div className="space-y-1.5 pt-1">
+                        {currentSession.steps.map((task: SwarmTaskStep) => (
+                          <div
+                            key={task.id}
+                            className="flex items-center justify-between p-2 rounded-lg bg-black/40 text-[11px]"
+                          >
+                            <div className="flex items-center gap-2 truncate">
+                              <span className="text-cyan-400 font-mono">{task.agentName}:</span>
+                              <span className="text-slate-300 truncate">{task.action}</span>
+                            </div>
+                            <span
+                              className={cn(
+                                'text-[9px] font-mono px-1.5 py-0.5 rounded',
+                                task.status === 'completed' ? 'text-emerald-400 bg-emerald-500/10' : 'text-amber-400'
+                              )}
+                            >
+                              {task.status}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-            }
-          />
-        ) : (
-          <div className="flex flex-col items-center justify-center h-full text-text-muted">
-            <FileCode className="w-16 h-16 mb-4 opacity-20" />
-            <p className="text-sm mb-2">Nenhum arquivo aberto</p>
-            <p className="text-xs mb-4">
-              Abra um arquivo pelo Explorador ou crie um novo
-            </p>
-            <button
-              onClick={createNewFile}
-              className="flex items-center gap-2 px-4 py-2 text-xs text-neon-green bg-neon-green/10 border border-neon-green/30 rounded-lg hover:bg-neon-green/20 transition-colors"
-            >
-              <Plus className="w-4 h-4" />
-              Novo arquivo
-            </button>
+              )}
+
+              {activeTab === 'audit' && (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-white font-mono">Auditoria OWASP & Qualidade</span>
+                    <button
+                      onClick={runAudit}
+                      disabled={isAuditing}
+                      className="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-xs font-mono hover:bg-cyan-500/30"
+                    >
+                      {isAuditing ? 'Auditando...' : 'Reauditar'}
+                    </button>
+                  </div>
+
+                  {auditResult ? (
+                    <div className="space-y-3">
+                      {/* Score Card */}
+                      <div className="p-3.5 rounded-xl bg-[#0e1424] border border-cyan-500/30 flex items-center justify-between">
+                        <div>
+                          <p className="text-[10px] text-slate-400 font-mono">Índice de Qualidade</p>
+                          <h3 className="text-2xl font-black text-emerald-400 font-mono">
+                            {auditResult.score}/100
+                          </h3>
+                        </div>
+                        <div className="text-right">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono font-bold">
+                            Risco: {auditResult.securityAnalysis.riskLevel}
+                          </span>
+                          <p className="text-[10px] text-slate-400 mt-1 font-mono">{auditResult.source.toUpperCase()}</p>
+                        </div>
+                      </div>
+
+                      {/* Lista de Achados */}
+                      <div className="space-y-2">
+                        {auditResult.issues.map((issue, idx) => (
+                          <div key={idx} className="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-1">
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs font-bold text-red-400">{issue.title}</span>
+                              <span className="text-[9px] px-1.5 py-0.5 rounded bg-red-500/20 text-red-300 font-mono">
+                                Linha {issue.line || 1}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-slate-300">{issue.description}</p>
+                            <p className="text-[10px] text-cyan-300 italic">Sugestão: {issue.suggestion}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="p-6 text-center text-slate-400 text-xs">
+                      Clique em "Auditar" para rodar a análise de segurança estática e OWASP com IA.
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {activeTab === 'tests' && (
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-white font-mono">Suíte Vitest Unitária</span>
+                    <button
+                      onClick={runTests}
+                      disabled={isRunningTests}
+                      className="px-2.5 py-1 rounded-lg bg-purple-500/20 text-purple-300 text-xs font-mono hover:bg-purple-500/30"
+                    >
+                      {isRunningTests ? 'Executando...' : 'Rodar Testes'}
+                    </button>
+                  </div>
+
+                  {testResult ? (
+                    <div className="space-y-3">
+                      <div className="p-3.5 rounded-xl bg-[#0e1424] border border-purple-500/30 flex items-center justify-between">
+                        <div>
+                          <p className="text-[10px] text-slate-400 font-mono">Status dos Testes</p>
+                          <h3 className="text-xl font-bold text-emerald-400 font-mono">
+                            {testResult.passedCount}/{testResult.total} Passaram
+                          </h3>
+                        </div>
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-mono font-bold">
+                          {testResult.durationMs}ms
+                        </span>
+                      </div>
+
+                      <div className="space-y-1.5">
+                        {testResult.tests.map((t, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-center justify-between p-2 rounded-lg bg-black/40 text-xs"
+                          >
+                            <span className="text-slate-200 truncate">✓ {t.name}</span>
+                            <span className="text-[10px] text-slate-400 font-mono">{t.durationMs}ms</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="p-6 text-center text-slate-400 text-xs">
+                      Clique em "Rodar Testes" para gerar e executar a suíte de testes Vitest no WebContainer.
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {activeTab === 'agents' && (
+                <div className="space-y-2">
+                  <span className="text-xs font-bold text-cyan-300 font-mono block mb-2">
+                    7 Agentes Especialistas (Multi-Model)
+                  </span>
+                  {getSwarmEngine()
+                    .getAllAgents()
+                    .map((agent: SwarmAgentDefinition) => (
+                      <div
+                        key={agent.id}
+                        className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between"
+                      >
+                        <div>
+                          <div className="flex items-center gap-1.5">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                            <h4 className="text-xs font-bold text-white font-mono">{agent.name}</h4>
+                          </div>
+                          <p className="text-[10px] text-slate-400">{agent.role}</p>
+                        </div>
+                        <span className="text-[9px] px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 font-mono">
+                          {agent.model}
+                        </span>
+                      </div>
+                    ))}
+                </div>
+              )}
+            </div>
           </div>
         )}
-      </div>
-
-      {/* Status Bar */}
-      <div className="flex items-center justify-between px-3 py-1 border-t border-cyber-border bg-cyber-card/50 text-[10px] text-text-muted">
-        <div className="flex items-center gap-3">
-          {activeTab && (
-            <>
-              <span className="flex items-center gap-1">
-                <FileCode className="w-3 h-3" />
-                {activeTab.language}
-              </span>
-              <span>UTF-8</span>
-              <span>Spaces: 2</span>
-            </>
-          )}
-        </div>
-        <div className="flex items-center gap-3">
-          {activeTab && <span>{activeTab.path}</span>}
-          <span>Ln 1, Col 1</span>
-        </div>
       </div>
     </div>
   );
-}
-
-// Export a function to open files from outside (e.g., File Explorer)
-export function useCodeEditor() {
-  return {
-    openFile: (name: string, path: string, content: string) => {
-      // This would be implemented with a global state or event system
-      // For now, files can be opened by the File Explorer component
-    },
-  };
 }

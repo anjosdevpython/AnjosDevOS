@@ -1,7 +1,36 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { MessageSquare, Image, Paintbrush, Video, Music, Mic, AudioLines, Wallet, Terminal, Settings, Info, Folder, Wrench, FileCode, Sparkles, Hand, Diamond, Blocks, Globe, FileText, Workflow, Users, Brain, Radio, Zap, Network, Bot } from 'lucide-react';
+import {
+  MessageSquare,
+  Image,
+  Paintbrush,
+  Video,
+  Music,
+  Mic,
+  AudioLines,
+  Wallet,
+  Terminal,
+  Settings,
+  Info,
+  Folder,
+  Wrench,
+  FileCode,
+  Sparkles,
+  Hand,
+  Diamond,
+  Blocks,
+  Globe,
+  FileText,
+  Workflow,
+  Users,
+  Brain,
+  Radio,
+  Zap,
+  Network,
+  Bot,
+  Layers,
+} from 'lucide-react';
 import { AppErrorBoundary } from './AppErrorBoundary';
 
 // Direct imports for frequently used apps
@@ -11,6 +40,7 @@ import { AboutApp } from './apps/AboutApp';
 
 // Lazy-loaded apps for better performance
 import dynamic from 'next/dynamic';
+const WorkspacesApp = dynamic(() => import('./apps/WorkspacesApp').then(m => ({ default: m.WorkspacesApp })), { ssr: false });
 const FileExplorerApp = dynamic(() => import('./apps/FileExplorerApp').then(m => ({ default: m.FileExplorerApp })), { ssr: false });
 const ToolsApp = dynamic(() => import('./apps/ToolsApp').then(m => ({ default: m.ToolsApp })), { ssr: false });
 const CodeEditorApp = dynamic(() => import('./apps/CodeEditorApp').then(m => ({ default: m.CodeEditorApp })), { ssr: false });
@@ -39,6 +69,7 @@ const BalanceApp = dynamic(() => import('@/app/balance/page'), { ssr: false });
 const SettingsApp = dynamic(() => import('@/app/settings/page'), { ssr: false });
 
 export const ICON_COMPONENTS: Record<string, ReactNode> = {
+  Layers: <Layers className="w-4 h-4" />,
   MessageSquare: <MessageSquare className="w-4 h-4" />,
   Image: <Image className="w-4 h-4" />,
   Paintbrush: <Paintbrush className="w-4 h-4" />,
@@ -74,6 +105,8 @@ function wrapInBoundary(app: ReactNode, name: string): ReactNode {
 
 export function getAppContent(appId: string): ReactNode {
   switch (appId) {
+    case 'workspaces':
+      return wrapInBoundary(<WorkspacesApp />, 'Workspaces');
     case 'chat':
       return wrapInBoundary(
         <div className="flex flex-col h-full">

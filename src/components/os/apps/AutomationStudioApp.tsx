@@ -1,322 +1,345 @@
 'use client';
 
-import { useState, useCallback } from 'react';
-
-interface FlowNode {
-  id: string;
-  type: 'trigger' | 'action' | 'condition' | 'output';
-  label: string;
-  icon: string;
-  x: number;
-  y: number;
-  config: Record<string, string>;
-}
-
-interface FlowConnection {
-  id: string;
-  from: string;
-  to: string;
-  fromPort: string;
-  toPort: string;
-}
-
-interface Flow {
-  id: string;
-  name: string;
-  description: string;
-  nodes: FlowNode[];
-  connections: FlowConnection[];
-  active: boolean;
-  lastRun?: string;
-  runs: number;
-}
-
-const TRIGGER_TEMPLATES = [
-  { label: 'Agendamento', icon: '⏰', desc: 'Executar em horário definido' },
-  { label: 'Webhook', icon: '🔗', desc: 'Quando receber requisição HTTP' },
-  { label: 'Mudança de Arquivo', icon: '📁', desc: 'Quando arquivo mudar' },
-  { label: 'Git Push', icon: '🔀', desc: 'Quando fazer push' },
-  { label: 'PR Criado', icon: '📋', desc: 'Quando PR for criado' },
-  { label: 'Issue Criada', icon: '🐛', desc: 'Quando issue for criada' },
-  { label: 'Comando no Chat', icon: '💬', desc: 'Comando no chat' },
-  { label: 'Manual', icon: '▶️', desc: 'Executar manualmente' },
-];
-
-const ACTION_TEMPLATES = [
-  { label: 'Executar Código', icon: '💻', desc: 'Executar código' },
-  { label: 'Chamada API', icon: '🌐', desc: 'Fazer requisição HTTP' },
-  { label: 'Agente IA', icon: '🤖', desc: 'Chamar agente de IA' },
-  { label: 'Enviar Email', icon: '📧', desc: 'Enviar email' },
-  { label: 'Operação de Arquivo', icon: '📂', desc: 'Ler/escrever arquivo' },
-  { label: 'Git Commit', icon: '📝', desc: 'Fazer commit' },
-  { label: 'Deploy', icon: '🚀', desc: 'Deploy da aplicação' },
-  { label: 'Banco de Dados', icon: '🗄️', desc: 'Query no banco' },
-  { label: 'Mensagem Slack', icon: '💬', desc: 'Enviar mensagem Slack' },
-  { label: 'GitHub Action', icon: '⚡', desc: 'Acionar GitHub Action' },
-];
-
-const INITIAL_FLOWS: Flow[] = [
-  {
-    id: 'f1', name: 'Auto Deploy', description: 'Deploy automático quando push na main',
-    active: true, runs: 47, lastRun: '2026-08-28 12:30',
-    nodes: [
-      { id: 'n1', type: 'trigger', label: 'Git Push (main)', icon: '🔀', x: 50, y: 150, config: {} },
-      { id: 'n2', type: 'condition', label: 'Build OK?', icon: '❓', x: 250, y: 150, config: {} },
-      { id: 'n3', type: 'action', label: 'Rodar Testes', icon: '🧪', x: 450, y: 100, config: {} },
-      { id: 'n4', type: 'action', label: 'Deploy em Produção', icon: '🚀', x: 450, y: 200, config: {} },
-      { id: 'n5', type: 'output', label: 'Notificar Time', icon: '📢', x: 650, y: 150, config: {} },
-    ],
-    connections: [
-      { id: 'c1', from: 'n1', to: 'n2', fromPort: 'out', toPort: 'in' },
-      { id: 'c2', from: 'n2', to: 'n3', fromPort: 'yes', toPort: 'in' },
-      { id: 'c3', from: 'n2', to: 'n4', fromPort: 'yes', toPort: 'in' },
-      { id: 'c4', from: 'n3', to: 'n5', fromPort: 'out', toPort: 'in' },
-    ],
-  },
-  {
-    id: 'f2', name: 'Relatório Diário', description: 'Gerar relatório diário com IA',
-    active: true, runs: 30, lastRun: '2026-08-28 08:00',
-    nodes: [
-      { id: 'n1', type: 'trigger', label: 'Schedule (8:00)', icon: '⏰', x: 50, y: 150, config: {} },
-      { id: 'n2', type: 'action', label: 'Coletar Métricas', icon: '📊', x: 250, y: 150, config: {} },
-      { id: 'n3', type: 'action', label: 'Análise com IA', icon: '🤖', x: 450, y: 150, config: {} },
-      { id: 'n4', type: 'output', label: 'Enviar Relatório', icon: '📧', x: 650, y: 150, config: {} },
-    ],
-    connections: [
-      { id: 'c1', from: 'n1', to: 'n2', fromPort: 'out', toPort: 'in' },
-      { id: 'c2', from: 'n2', to: 'n3', fromPort: 'out', toPort: 'in' },
-      { id: 'c3', from: 'n3', to: 'n4', fromPort: 'out', toPort: 'in' },
-    ],
-  },
-  {
-    id: 'f3', name: 'Bot de Revisão de PR', description: 'Revisão automática de PRs com IA',
-    active: false, runs: 12, lastRun: '2026-08-25 16:45',
-    nodes: [
-      { id: 'n1', type: 'trigger', label: 'PR Created', icon: '📋', x: 50, y: 150, config: {} },
-      { id: 'n2', type: 'action', label: 'Revisão de Código IA', icon: '🤖', x: 250, y: 150, config: {} },
-      { id: 'n3', type: 'output', label: 'Postar Comentários', icon: '💬', x: 450, y: 150, config: {} },
-    ],
-    connections: [
-      { id: 'c1', from: 'n1', to: 'n2', fromPort: 'out', toPort: 'in' },
-      { id: 'c2', from: 'n2', to: 'n3', fromPort: 'out', toPort: 'in' },
-    ],
-  },
-];
+import { useState, useEffect, useRef } from 'react';
+import {
+  Play,
+  Plus,
+  Trash2,
+  Sparkles,
+  CheckCircle2,
+  Terminal,
+  RotateCcw,
+  Zap,
+  Layers,
+  Send,
+  Loader2,
+  Workflow,
+  Globe,
+  Radio,
+  FileCode,
+} from 'lucide-react';
+import { FlowRepository } from '@/lib/automation/flowRepository';
+import { FlowExecutor } from '@/lib/automation/flowExecutor';
+import type { Flow, FlowNode, FlowRunLogItem } from '@/lib/automation/types';
+import { cn } from '@/lib/utils';
 
 export function AutomationStudioApp() {
-  const [flows, setFlows] = useState<Flow[]>(INITIAL_FLOWS);
-  const [selectedFlow, setSelectedFlow] = useState<Flow | null>(flows[0]);
-  const [view, setView] = useState<'list' | 'editor'>('list');
-  const [showTemplates, setShowTemplates] = useState(false);
-  const [templateTab, setTemplateTab] = useState<'triggers' | 'actions'>('triggers');
+  const [flows, setFlows] = useState<Flow[]>([]);
+  const [selectedFlowId, setSelectedFlowId] = useState<string>('');
+  const [isRunning, setIsRunning] = useState(false);
+  const [aiPrompt, setAiPrompt] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [terminalLogs, setTerminalLogs] = useState<FlowRunLogItem[]>([]);
+  const [showLogs, setShowLogs] = useState(true);
 
-  const toggleFlow = useCallback((flowId: string) => {
-    setFlows(prev => prev.map(f => f.id === flowId ? { ...f, active: !f.active } : f));
-    setSelectedFlow(prev => prev && prev.id === flowId ? { ...prev, active: !prev.active } : prev);
+  // Carrega os fluxos do Dexie
+  const loadFlows = async () => {
+    const list = await FlowRepository.getAllFlows();
+    setFlows(list);
+    if (list.length > 0 && !selectedFlowId) {
+      setSelectedFlowId(list[0].id);
+    }
+  };
+
+  useEffect(() => {
+    loadFlows();
   }, []);
 
-  const runFlow = useCallback((flowId: string) => {
-    setFlows(prev => prev.map(f => f.id === flowId ? { ...f, runs: f.runs + 1, lastRun: new Date().toISOString().slice(0, 16).replace('T', ' ') } : f));
-  }, []);
+  const currentFlow = flows.find((f) => f.id === selectedFlowId) || flows[0];
 
-  const renderFlowList = () => (
-    <div className="p-4 space-y-3 overflow-y-auto h-full">
-      <div className="flex items-center justify-between mb-2">
-        <div>
-          <h3 className="text-sm font-semibold text-text">⚡ Automações</h3>
-          <p className="text-[10px] text-text-muted mt-0.5">{flows.length} fluxos · {flows.filter(f => f.active).length} ativos</p>
+  // Executa o fluxo de automação com FlowExecutor
+  const handleExecuteFlow = async () => {
+    if (!currentFlow || isRunning) return;
+    setIsRunning(true);
+    setTerminalLogs([]);
+
+    // Reset status dos nós
+    const updatedNodes = currentFlow.nodes.map((n) => ({ ...n, status: 'idle' as const }));
+    setFlows((prev) =>
+      prev.map((f) => (f.id === currentFlow.id ? { ...f, nodes: updatedNodes } : f))
+    );
+
+    try {
+      await FlowExecutor.executeFlow(currentFlow, {}, ({ nodeId, status, log }) => {
+        setTerminalLogs((prev) => [...prev, log]);
+        setFlows((prev) =>
+          prev.map((f) => {
+            if (f.id !== currentFlow.id) return f;
+            return {
+              ...f,
+              nodes: f.nodes.map((n) => (n.id === nodeId ? { ...n, status } : n)),
+            };
+          })
+        );
+      });
+    } finally {
+      setIsRunning(false);
+      await loadFlows();
+    }
+  };
+
+  // Gerador de Fluxo por IA (Prompt-to-Flow)
+  const handleGenerateFlow = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!aiPrompt.trim() || isGenerating) return;
+
+    setIsGenerating(true);
+    try {
+      const res = await fetch('/api/automation/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: aiPrompt.trim() }),
+      });
+
+      const data = await res.json();
+      if (data.success && data.flow) {
+        await FlowRepository.saveFlow(data.flow);
+        await loadFlows();
+        setSelectedFlowId(data.flow.id);
+        setAiPrompt('');
+      }
+    } catch (err) {
+      console.error('Erro ao gerar fluxo:', err);
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+  const handleDeleteFlow = async (id: string) => {
+    if (confirm('Tem certeza que deseja excluir este fluxo?')) {
+      await FlowRepository.deleteFlow(id);
+      await loadFlows();
+      const remaining = flows.filter((f) => f.id !== id);
+      if (remaining.length > 0) setSelectedFlowId(remaining[0].id);
+    }
+  };
+
+  return (
+    <div className="h-full flex flex-col bg-[#07090e] text-slate-100 overflow-hidden font-sans">
+      {/* Top Header */}
+      <div className="h-11 px-4 bg-[#0d121f] border-b border-white/10 flex items-center justify-between shrink-0 select-none">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <Workflow className="w-5 h-5 text-cyan-400" />
+            <h1 className="text-sm font-bold text-white font-mono">Automation Studio v2.0</h1>
+          </div>
+          <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 font-mono font-bold">
+            PROMPT-TO-FLOW + DEXIE RUNNER
+          </span>
         </div>
-        <button className="px-3 py-1.5 text-[10px] bg-neon-green/20 text-neon-green border border-neon-green/30 rounded hover:bg-neon-green/30 transition-colors">
-          + Novo Fluxo
-        </button>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleExecuteFlow}
+            disabled={isRunning || !currentFlow}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-black font-bold text-xs hover:opacity-90 transition-opacity font-mono shadow-md disabled:opacity-50"
+          >
+            <Play className={`w-3.5 h-3.5 ${isRunning ? 'animate-spin' : ''}`} />
+            <span>{isRunning ? 'Executando...' : 'Executar Fluxo'}</span>
+          </button>
+        </div>
       </div>
 
-      {flows.map(flow => (
-        <div
-          key={flow.id}
-          onClick={() => { setSelectedFlow(flow); setView('editor'); }}
-          className="bg-surface/50 border border-border rounded-lg p-4 hover:border-neon-blue/30 transition-colors cursor-pointer group"
-        >
-          <div className="flex items-start justify-between">
-            <div className="flex-1">
-              <div className="flex items-center gap-2">
-                <span className={`w-2 h-2 rounded-full ${flow.active ? 'bg-neon-green animate-pulse' : 'bg-text-muted'}`} />
-                <span className="text-sm font-medium text-text">{flow.name}</span>
-                <span className={`px-1.5 py-0.5 text-[9px] rounded ${flow.active ? 'bg-neon-green/20 text-neon-green' : 'bg-surface text-text-muted'}`}>
-                  {flow.active ? 'Ativo' : 'Inativo'}
-                </span>
-              </div>
-              <p className="text-[10px] text-text-muted mt-1">{flow.description}</p>
-              <div className="flex items-center gap-3 mt-2 text-[9px] text-text-muted">
-                <span>📊 {flow.runs} execuções</span>
-                {flow.lastRun && <span>🕐 Última: {flow.lastRun}</span>}
-                <span>🔗 {flow.nodes.length} nodes</span>
-              </div>
-            </div>
-            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+      {/* Main Studio Area */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Left Sidebar: Flows List & Prompt-to-Flow */}
+        <div className="w-80 bg-[#090d18] border-r border-white/10 flex flex-col shrink-0">
+          {/* Prompt-to-Flow AI Generator */}
+          <div className="p-3 border-b border-white/10 bg-gradient-to-br from-cyan-950/20 to-blue-950/20">
+            <span className="text-[11px] font-bold text-cyan-300 font-mono flex items-center gap-1 mb-1.5">
+              <Sparkles className="w-3.5 h-3.5" /> Gerar Fluxo com IA
+            </span>
+            <form onSubmit={handleGenerateFlow} className="space-y-2">
+              <textarea
+                value={aiPrompt}
+                onChange={(e) => setAiPrompt(e.target.value)}
+                placeholder="Descreva o fluxo: ex: Monitorar commits, auditar com IA e notificar..."
+                className="w-full h-16 p-2 text-xs bg-[#05070c] border border-white/10 rounded-xl text-white outline-none focus:border-cyan-400 resize-none font-sans"
+              />
               <button
-                onClick={(e) => { e.stopPropagation(); toggleFlow(flow.id); }}
-                className="px-2 py-1 text-[9px] border border-border rounded hover:bg-surface/80"
+                type="submit"
+                disabled={isGenerating || !aiPrompt.trim()}
+                className="w-full py-1.5 rounded-xl bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/30 border border-cyan-500/40 text-xs font-mono font-bold flex items-center justify-center gap-1.5 transition-colors disabled:opacity-50"
               >
-                {flow.active ? '⏸️' : '▶️'}
+                {isGenerating ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Send className="w-3.5 h-3.5" />}
+                <span>{isGenerating ? 'Criando Nós...' : 'Gerar Grafo'}</span>
               </button>
-              <button
-                onClick={(e) => { e.stopPropagation(); runFlow(flow.id); }}
-                className="px-2 py-1 text-[9px] bg-neon-blue/20 text-neon-blue border border-neon-blue/30 rounded hover:bg-neon-blue/30"
-              >
-                ⚡ Run
-              </button>
-            </div>
+            </form>
           </div>
-        </div>
-      ))}
-    </div>
-  );
 
-  const renderFlowEditor = () => {
-    if (!selectedFlow) return null;
-
-    return (
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Editor Header */}
-        <div className="px-4 py-2 border-b border-border flex items-center gap-3 bg-surface/30">
-          <button onClick={() => setView('list')} className="text-text-muted hover:text-text text-xs">← Voltar</button>
-          <div className="w-px h-4 bg-border" />
-          <span className="text-sm font-medium text-text">{selectedFlow.name}</span>
-          <span className={`px-1.5 py-0.5 text-[9px] rounded ${selectedFlow.active ? 'bg-neon-green/20 text-neon-green' : 'bg-surface text-text-muted'}`}>
-            {selectedFlow.active ? '🟢 Ativo' : '⏸️ Inativo'}
-          </span>
-          <div className="ml-auto flex gap-2">
-            <button
-              onClick={() => setShowTemplates(!showTemplates)}
-              className="px-2 py-1 text-[10px] bg-surface border border-border rounded hover:bg-surface/80"
-            >
-              🧩 Templates
-            </button>
-            <button
-              onClick={() => toggleFlow(selectedFlow.id)}
-              className={`px-2 py-1 text-[10px] border rounded ${selectedFlow.active ? 'border-neon-yellow/30 text-neon-yellow' : 'border-neon-green/30 text-neon-green'}`}
-            >
-              {selectedFlow.active ? '⏸️ Pausar' : '▶️ Ativar'}
-            </button>
-            <button
-              onClick={() => runFlow(selectedFlow.id)}
-              className="px-2 py-1 text-[10px] bg-neon-blue/20 text-neon-blue border border-neon-blue/30 rounded"
-            >
-              ⚡ Executar
-            </button>
+          {/* Flows List */}
+          <div className="p-2 border-b border-white/10 flex items-center justify-between">
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider font-mono">
+              Meus Fluxos ({flows.length})
+            </span>
           </div>
-        </div>
 
-        {/* Canvas Area */}
-        <div className="flex-1 relative overflow-auto bg-[#0a0a0f]">
-          {/* Grid Background */}
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle, #1a1a2e 1px, transparent 1px)',
-            backgroundSize: '20px 20px'
-          }} />
-
-          {/* Flow Nodes */}
-          <div className="relative w-full h-full min-h-[400px]">
-            {selectedFlow.nodes.map(node => {
-              const typeColors = {
-                trigger: 'border-neon-green/50 bg-neon-green/5',
-                action: 'border-neon-blue/50 bg-neon-blue/5',
-                condition: 'border-neon-yellow/50 bg-neon-yellow/5',
-                output: 'border-neon-purple/50 bg-neon-purple/5',
-              };
+          <div className="flex-1 overflow-y-auto p-2 space-y-1.5">
+            {flows.map((flow) => {
+              const isSelected = flow.id === (currentFlow?.id || '');
               return (
                 <div
-                  key={node.id}
-                  className={`absolute w-40 border rounded-lg p-3 ${typeColors[node.type]} hover:scale-105 transition-transform cursor-move shadow-lg`}
-                  style={{ left: node.x, top: node.y }}
+                  key={flow.id}
+                  onClick={() => setSelectedFlowId(flow.id)}
+                  className={cn(
+                    'p-2.5 rounded-xl border cursor-pointer transition-all flex flex-col justify-between group',
+                    isSelected
+                      ? 'bg-[#0e1526] border-cyan-500/50 shadow-md'
+                      : 'bg-white/[0.02] border-white/5 hover:border-white/15'
+                  )}
                 >
-                  <div className="text-lg mb-1">{node.icon}</div>
-                  <div className="text-[10px] font-medium text-text">{node.label}</div>
-                  <div className="text-[9px] text-text-muted capitalize mt-0.5">{node.type}</div>
-                  {/* Connection ports */}
-                  <div className="absolute left-0 top-1/2 -translate-x-1 -translate-y-1/2 w-2 h-2 rounded-full bg-border border border-text-muted" />
-                  <div className="absolute right-0 top-1/2 translate-x-1 -translate-y-1/2 w-2 h-2 rounded-full bg-neon-blue border border-neon-blue" />
+                  <div className="flex items-start justify-between">
+                    <h4 className="text-xs font-bold text-white truncate max-w-[180px] font-mono">
+                      {flow.name}
+                    </h4>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteFlow(flow.id);
+                      }}
+                      className="opacity-0 group-hover:opacity-100 hover:text-red-400 p-0.5 transition-opacity"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  </div>
+                  <p className="text-[10px] text-slate-400 line-clamp-2 mt-1">{flow.description}</p>
+                  <div className="flex items-center justify-between text-[9px] font-mono text-cyan-400/80 mt-2">
+                    <span>{flow.nodes.length} nós</span>
+                    <span className="capitalize">{flow.triggerType}</span>
+                  </div>
                 </div>
               );
             })}
+          </div>
+        </div>
 
-            {/* Connection Lines (SVG) */}
-            <svg className="absolute inset-0 w-full h-full pointer-events-none">
-              {selectedFlow.connections.map(conn => {
-                const fromNode = selectedFlow.nodes.find(n => n.id === conn.from);
-                const toNode = selectedFlow.nodes.find(n => n.id === conn.to);
-                if (!fromNode || !toNode) return null;
-                const x1 = fromNode.x + 160;
-                const y1 = fromNode.y + 30;
-                const x2 = toNode.x;
-                const y2 = toNode.y + 30;
-                return (
-                  <path
-                    key={conn.id}
-                    d={`M ${x1} ${y1} C ${(x1 + x2) / 2} ${y1}, ${(x1 + x2) / 2} ${y2}, ${x2} ${y2}`}
-                    fill="none"
-                    stroke="#3b82f6"
-                    strokeWidth="2"
-                    strokeDasharray="5,5"
-                  />
-                );
-              })}
-            </svg>
+        {/* Center Canvas Area */}
+        <div className="flex-1 flex flex-col overflow-hidden bg-[#05070d] relative">
+          {/* Canvas Background Dot Matrix */}
+          <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+
+          {/* Flow Info Bar */}
+          <div className="h-10 px-4 bg-[#080c16]/90 border-b border-white/10 flex items-center justify-between z-10">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-white font-mono">{currentFlow?.name}</span>
+              <span className="text-[10px] text-slate-400 hidden sm:inline">
+                ({currentFlow?.nodes.length} nós conectados)
+              </span>
+            </div>
+
+            <button
+              onClick={() => setShowLogs(!showLogs)}
+              className="text-xs text-cyan-400 font-mono hover:underline flex items-center gap-1"
+            >
+              <Terminal className="w-3.5 h-3.5" /> {showLogs ? 'Ocultar Terminal' : 'Ver Logs'}
+            </button>
           </div>
 
-          {/* Templates Panel */}
-          {showTemplates && (
-            <div className="absolute right-0 top-0 w-56 h-full bg-surface/95 backdrop-blur border-l border-border p-3 overflow-y-auto">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold text-text">🧩 Templates</span>
-                <button onClick={() => setShowTemplates(false)} className="text-text-muted hover:text-text text-xs">✕</button>
-              </div>
-              <div className="flex gap-1 mb-3">
-                <button
-                  onClick={() => setTemplateTab('triggers')}
-                  className={`flex-1 px-2 py-1 text-[10px] rounded ${templateTab === 'triggers' ? 'bg-neon-green/20 text-neon-green' : 'bg-surface text-text-muted'}`}
-                >
-                  Triggers
-                </button>
-                <button
-                  onClick={() => setTemplateTab('actions')}
-                  className={`flex-1 px-2 py-1 text-[10px] rounded ${templateTab === 'actions' ? 'bg-neon-blue/20 text-neon-blue' : 'bg-surface text-text-muted'}`}
-                >
-                  Actions
-                </button>
-              </div>
-              <div className="space-y-1.5">
-                {(templateTab === 'triggers' ? TRIGGER_TEMPLATES : ACTION_TEMPLATES).map((tpl, i) => (
-                  <div key={i} className="px-2.5 py-2 bg-background border border-border rounded hover:border-neon-blue/30 cursor-pointer transition-colors">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm">{tpl.icon}</span>
-                      <div>
-                        <div className="text-[10px] font-medium text-text">{tpl.label}</div>
-                        <div className="text-[9px] text-text-muted">{tpl.desc}</div>
+          {/* Interactive Flow Nodes Canvas */}
+          <div className="flex-1 overflow-auto p-8 relative flex items-center justify-center">
+            <div className="flex items-center gap-6 overflow-x-auto p-4">
+              {currentFlow?.nodes.map((node, index) => {
+                const isNodeRunning = node.status === 'running';
+                const isNodeSuccess = node.status === 'success';
+                const isNodeFailed = node.status === 'failed';
+
+                return (
+                  <div key={node.id} className="flex items-center gap-6 shrink-0">
+                    {/* Node Card */}
+                    <div
+                      className={cn(
+                        'w-56 p-3.5 rounded-2xl border backdrop-blur-2xl transition-all relative overflow-hidden shadow-xl',
+                        isNodeRunning
+                          ? 'bg-cyan-950/40 border-cyan-400 shadow-[0_0_25px_rgba(6,182,212,0.4)] animate-pulse'
+                          : isNodeSuccess
+                          ? 'bg-emerald-950/30 border-emerald-500/60 shadow-[0_0_20px_rgba(16,185,129,0.25)]'
+                          : isNodeFailed
+                          ? 'bg-red-950/30 border-red-500/60'
+                          : 'bg-[#0d121f]/90 border-white/15'
+                      )}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 font-mono uppercase text-cyan-300 font-bold">
+                          {node.type}
+                        </span>
+                        {isNodeSuccess && <CheckCircle2 className="w-4 h-4 text-emerald-400" />}
+                        {isNodeRunning && <Loader2 className="w-4 h-4 text-cyan-400 animate-spin" />}
                       </div>
+
+                      <h4 className="text-xs font-bold text-white font-mono">{node.name}</h4>
+
+                      {node.config.prompt && (
+                        <p className="text-[10px] text-slate-300 mt-1 line-clamp-2 italic">
+                          "{node.config.prompt}"
+                        </p>
+                      )}
+
+                      {node.config.url && (
+                        <p className="text-[10px] text-cyan-300 mt-1 truncate font-mono">
+                          {node.config.method} {node.config.url}
+                        </p>
+                      )}
+
+                      {node.durationMs !== undefined && (
+                        <div className="mt-2 text-[9px] text-emerald-300 font-mono">
+                          Tempo: {node.durationMs}ms
+                        </div>
+                      )}
                     </div>
+
+                    {/* Arrow to Next Node */}
+                    {index < currentFlow.nodes.length - 1 && (
+                      <div className="text-cyan-500 animate-pulse">
+                        <Zap className="w-5 h-5" />
+                      </div>
+                    )}
                   </div>
-                ))}
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Bottom Execution Telemetry Terminal */}
+          {showLogs && (
+            <div className="h-44 border-t border-white/10 bg-[#07090e] p-3 flex flex-col shrink-0 font-mono text-xs z-10">
+              <div className="flex items-center justify-between pb-1.5 border-b border-white/10 mb-2">
+                <span className="text-[11px] font-bold text-slate-300 flex items-center gap-1.5">
+                  <Terminal className="w-3.5 h-3.5 text-cyan-400" /> Telemetria de Execução do Fluxo
+                </span>
+                <span className="text-[10px] text-slate-500">{terminalLogs.length} eventos</span>
+              </div>
+
+              <div className="flex-1 overflow-y-auto space-y-1 text-[11px]">
+                {terminalLogs.length === 0 ? (
+                  <p className="text-slate-500">
+                    Aguardando execução... Clique em "Executar Fluxo" para rodar os nós.
+                  </p>
+                ) : (
+                  terminalLogs.map((log, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <span className="text-slate-500">[{log.timestamp}]</span>
+                      <span className="text-cyan-400 font-bold">[{log.nodeName}]</span>
+                      <span
+                        className={
+                          log.level === 'error'
+                            ? 'text-red-400'
+                            : log.level === 'warn'
+                            ? 'text-amber-400'
+                            : log.level === 'success'
+                            ? 'text-emerald-400'
+                            : 'text-slate-300'
+                        }
+                      >
+                        {log.message}
+                      </span>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           )}
         </div>
-
-        {/* Status Bar */}
-        <div className="px-3 py-1.5 border-t border-border bg-surface/30 flex items-center gap-4 text-[10px] text-text-muted">
-          <span>🔗 {selectedFlow.connections.length} conexões</span>
-          <span>📦 {selectedFlow.nodes.length} nodes</span>
-          <span>📊 {selectedFlow.runs} execuções</span>
-          <span className="ml-auto">Automation Studio v0.5.52</span>
-        </div>
       </div>
-    );
-  };
-
-  return (
-    <div className="flex flex-col h-full bg-background text-text">
-      {view === 'list' ? renderFlowList() : renderFlowEditor()}
     </div>
   );
 }

@@ -1,0 +1,237 @@
+
+> anjosdev-platform@1.0.0 dev
+> next dev
+
+   ▲ Next.js 15.5.24
+   - Local:        http://localhost:47789
+   - Network:      http://192.168.56.1:47789
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 3.5s
+[?25h
+mpiling / ...
+ ✓ Compiled / in 26.1s (923 modules)
+ GET / 200 in 27682ms
+ ✓ Compiled in 1996ms (421 modules)
+ GET / 200 in 191ms
+ GET / 200 in 226ms
+ ✓ Compiled in 2.2s (923 modules)
+ GET / 200 in 470ms
+ ✓ Compiled in 1042ms (923 modules)
+ GET / 200 in 229ms
+ GET / 200 in 506ms
+ GET / 200 in 218ms
+ ✓ Compiled in 530ms (421 modules)
+ GET / 200 in 118ms
+ GET / 200 in 199ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1538ms (914 modules)
+ GET /icon-192.png 404 in 2084ms
+ ✓ Compiled in 1828ms (923 modules)
+ GET / 200 in 338ms
+ GET / 200 in 94ms
+ ✓ Compiled /_not-found in 427ms (914 modules)
+ GET /icon-192.png 404 in 770ms
+ ✓ Compiled in 1241ms (928 modules)
+ GET / 200 in 232ms
+ GET / 200 in 385ms
+ GET /icon-192.png 404 in 257ms
+ ✓ Compiled in 2.1s (928 modules)
+ GET / 200 in 286ms
+ GET / 200 in 101ms
+ GET /icon-192.png 404 in 265ms
+ ✓ Compiled in 1944ms (928 modules)
+ GET / 200 in 275ms
+ GET / 200 in 127ms
+ GET /icon-192.png 404 in 257ms
+ ✓ Compiled in 1301ms (928 modules)
+ GET / 200 in 401ms
+ GET / 200 in 86ms
+ GET /icon-192.png 404 in 365ms
+ ✓ Compiled in 1143ms (928 modules)
+ GET / 200 in 335ms
+ GET / 200 in 163ms
+ GET /icon-192.png 404 in 357ms
+ ✓ Compiled in 1100ms (928 modules)
+ GET / 200 in 311ms
+ GET / 200 in 73ms
+ GET /icon-192.png 404 in 221ms
+ ✓ Compiled in 853ms (421 modules)
+ GET / 200 in 142ms
+ GET / 200 in 102ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1160ms (928 modules)
+ GET /icon-192.png 404 in 1936ms
+ GET / 200 in 227ms
+ GET / 200 in 773ms
+ GET /icon-192.png 404 in 147ms
+ ✓ Compiled in 4.1s (930 modules)
+ GET / 200 in 473ms
+ GET / 200 in 84ms
+ GET /icon-192.png 404 in 242ms
+ ✓ Compiled in 1545ms (930 modules)
+ GET / 200 in 1445ms
+ GET / 500 in 1593ms
+ GET / 200 in 198ms
+ GET / 500 in 737ms
+ GET / 500 in 731ms
+ ✓ Compiled in 996ms (930 modules)
+ GET / 200 in 1009ms
+ GET / 200 in 428ms
+ GET / 200 in 320ms
+ GET / 200 in 280ms
+ GET / 200 in 320ms
+ GET / 200 in 205ms
+ GET / 200 in 206ms
+ ✓ Compiled in 818ms (422 modules)
+ GET / 200 in 144ms
+ GET / 200 in 97ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 753ms (930 modules)
+ GET /icon-192.png 404 in 1437ms
+ GET / 200 in 163ms
+ GET / 200 in 168ms
+ GET /icon-192.png 404 in 99ms
+ ✓ Compiled in 877ms (930 modules)
+ GET / 200 in 291ms
+ GET / 200 in 119ms
+ GET /icon-192.png 404 in 158ms
+ ✓ Compiled in 3.8s (944 modules)
+ GET / 200 in 403ms
+ GET / 200 in 185ms
+ GET /icon-192.png 404 in 179ms
+ ✓ Compiled in 1983ms (944 modules)
+ GET / 200 in 1168ms
+ GET / 500 in 1705ms
+ GET / 500 in 2281ms
+ GET / 500 in 658ms
+ ✓ Compiled in 1599ms (942 modules)
+ GET / 200 in 1319ms
+ GET / 200 in 464ms
+ GET / 200 in 373ms
+ GET / 200 in 289ms
+ GET / 200 in 277ms
+ ✓ Compiled in 1098ms (428 modules)
+ ✓ Compiled in 634ms (428 modules)
+ GET / 200 in 61ms
+ GET / 200 in 64ms
+ GET / 200 in 54ms
+ GET / 200 in 182ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 902ms (928 modules)
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 6.1s (1275 modules)
+ GET /icon-192.png 500 in 13153ms
+ GET / 500 in 2811ms
+ GET / 500 in 2848ms
+ GET / 500 in 380ms
+ GET / 500 in 678ms
+ GET / 500 in 349ms
+ GET / 500 in 376ms
+ GET / 500 in 361ms
+ ✓ Compiled in 3.2s (1288 modules)
+ GET / 200 in 650ms
+ GET / 200 in 748ms
+ GET / 200 in 272ms
+ GET / 500 in 9026ms
+ GET / 500 in 156ms
+ GET / 500 in 7869ms
+ GET / 500 in 142ms
+ GET / 500 in 8614ms
+ GET / 500 in 118ms
+ GET / 500 in 11188ms
+ GET / 500 in 147ms
+ GET / 500 in 9486ms
+ GET / 500 in 185ms
+ GET / 500 in 7539ms
+ GET / 500 in 116ms
+ ✓ Compiled in 1602ms (583 modules)
+ ✓ Compiled in 1230ms (583 modules)
+ ✓ Compiled in 870ms (583 modules)
+ ✓ Compiled in 543ms (583 modules)
+ ✓ Compiled in 675ms (583 modules)
+ ✓ Compiled in 2.4s (583 modules)
+ ✓ Compiled in 1421ms (583 modules)
+ ✓ Compiled in 978ms (583 modules)
+ GET / 200 in 335ms
+ GET / 200 in 314ms
+ GET / 200 in 405ms
+ GET / 200 in 597ms
+ ✓ Compiled in 1450ms (583 modules)
+ ✓ Compiled in 482ms (583 modules)
+ ✓ Compiled in 403ms (583 modules)
+ ✓ Compiled in 6.3s (1320 modules)
+ ✓ Compiled in 1011ms (1320 modules)
+ GET / 200 in 368ms
+ GET / 200 in 139ms
+ GET / 200 in 75ms
+ GET / 200 in 95ms
+ ✓ Compiled in 984ms (599 modules)
+ ✓ Compiled in 1774ms (1320 modules)
+ ✓ Compiled in 3.3s (1328 modules)
+ ✓ Compiled in 2.8s (1326 modules)
+ GET / 500 in 542ms
+ GET / 500 in 150ms
+ GET / 500 in 412ms
+ GET / 500 in 139ms
+ GET / 500 in 357ms
+ GET / 500 in 122ms
+ GET / 500 in 572ms
+ GET / 500 in 315ms
+ GET / 500 in 304ms
+ GET / 500 in 74ms
+ GET / 500 in 280ms
+ GET / 500 in 98ms
+ GET / 500 in 237ms
+ GET / 500 in 84ms
+ GET / 500 in 339ms
+ GET / 500 in 151ms
+ GET / 500 in 303ms
+ GET / 500 in 77ms
+ GET / 500 in 287ms
+ GET / 500 in 90ms
+ GET / 500 in 229ms
+ GET / 500 in 85ms
+ GET / 500 in 302ms
+ GET / 500 in 101ms
+ GET / 500 in 807ms
+ GET / 500 in 126ms
+ GET / 500 in 250ms
+ GET / 500 in 70ms
+ ✓ Compiled in 5.2s (1340 modules)
+ ✓ Compiled in 1032ms (1344 modules)
+ ✓ Compiled in 1131ms (1344 modules)
+ ✓ Compiled in 818ms (1346 modules)
+ ✓ Compiled in 1697ms (1344 modules)
+ ✓ Compiled in 678ms (1346 modules)
+ ✓ Compiled in 1951ms (1346 modules)
+ ✓ Compiled in 799ms (1346 modules)
+ ✓ Compiled in 2.2s (1346 modules)
+ ✓ Compiled in 945ms (1346 modules)
+ ✓ Compiled in 793ms (1346 modules)
+ ✓ Compiled in 3s (1346 modules)
+ ✓ Compiled in 335ms (612 modules)
+ ✓ Compiled in 1121ms (1342 modules)
+ ✓ Compiled in 2.2s (1342 modules)
+ ✓ Compiled in 614ms (1344 modules)
+ ✓ Compiled in 510ms (1344 modules)
+ ✓ Compiled in 1737ms (1348 modules)
+ ✓ Compiled in 2.9s (1350 modules)
+ ✓ Compiled in 3.4s (1346 modules)
+ ✓ Compiled in 1764ms (1344 modules)
+ ✓ Compiled in 2.1s (1344 modules)
+ ✓ Compiled in 1239ms (1346 modules)
+ ✓ Compiled in 1001ms (1348 modules)
+ ✓ Compiled in 2s (1350 modules)
+ ✓ Compiled in 1001ms (1352 modules)
+ ✓ Compiled in 1107ms (1354 modules)
+ ✓ Compiled in 832ms (616 modules)
+ ✓ Compiled in 455ms (616 modules)
+ ✓ Compiled in 1288ms (1356 modules)
+ ✓ Compiled in 2.5s (1356 modules)
+ ✓ Compiled in 1399ms (1356 modules)
+ ✓ Compiled in 1286ms (1356 modules)
+ ✓ Compiled in 1390ms (1356 modules)
+ ✓ Compiled in 876ms (1356 modules)
+ ✓ Compiled in 5.4s (1417 modules)

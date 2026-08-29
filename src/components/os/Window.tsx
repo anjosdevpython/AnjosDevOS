@@ -1,7 +1,6 @@
 'use client';
 
-import { useRef, useCallback, useEffect, ReactNode } from 'react';
-import { X, Minus, Square, Maximize2 } from 'lucide-react';
+import { useRef, useCallback, ReactNode } from 'react';
 import { useOS } from './OSContext';
 import { WindowState } from './types';
 import { cn } from '@/lib/utils';
@@ -82,10 +81,10 @@ export function Window({ windowState, icon, iconColor, children }: WindowProps) 
   return (
     <div
       className={cn(
-        'absolute flex flex-col rounded-xl overflow-hidden shadow-2xl border transition-shadow duration-200',
+        'absolute flex flex-col rounded-2xl overflow-hidden backdrop-blur-3xl transition-all duration-200 group',
         isActive
-          ? 'border-neon-green/30 shadow-[0_0_30px_rgba(0,255,136,0.1)]'
-          : 'border-cyber-border shadow-[0_0_15px_rgba(0,0,0,0.5)]'
+          ? 'border border-cyan-500/40 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_25px_rgba(6,182,212,0.15)] ring-1 ring-cyan-400/20'
+          : 'border border-white/10 shadow-[0_20px_45px_rgba(0,0,0,0.7)] opacity-95 hover:opacity-100'
       )}
       style={{
         left: windowState.x,
@@ -96,55 +95,73 @@ export function Window({ windowState, icon, iconColor, children }: WindowProps) 
       }}
       onMouseDown={() => focusWindow(windowState.id)}
     >
-      {/* Title Bar */}
+      {/* Sleek Modern Window Titlebar */}
       <div
         className={cn(
-          'flex items-center gap-2 h-10 px-3 select-none shrink-0 cursor-grab active:cursor-grabbing',
-          isActive ? 'bg-cyber-card' : 'bg-cyber-card/80'
+          'flex items-center justify-between h-10 px-3.5 select-none shrink-0 cursor-grab active:cursor-grabbing border-b transition-colors',
+          isActive
+            ? 'bg-[#0d121f]/95 border-white/10'
+            : 'bg-[#0a0d16]/90 border-white/5'
         )}
         onMouseDown={handleDragStart}
         onDoubleClick={() => toggleMaximize(windowState.id)}
       >
-        <span className={`flex-shrink-0 ${iconColor}`}>{icon}</span>
-        <span className="text-xs font-medium text-text-primary truncate flex-1">{windowState.title}</span>
-
-        {/* Window controls */}
-        <div className="flex items-center gap-0.5" onMouseDown={(e) => e.stopPropagation()}>
+        {/* Left: Traffic Lights (macOS / VisionOS style) */}
+        <div className="flex items-center gap-2 group/lights" onMouseDown={(e) => e.stopPropagation()}>
+          <button
+            onClick={() => closeWindow(windowState.id)}
+            className="w-3 h-3 rounded-full bg-[#ff5f56] hover:bg-[#ff453a] border border-[#e0443e] flex items-center justify-center text-black/70 hover:text-black transition-all shadow-sm active:scale-90"
+            title="Fechar"
+          >
+            <span className="opacity-0 group-hover/lights:opacity-100 text-[8px] font-black leading-none">✕</span>
+          </button>
           <button
             onClick={() => minimizeWindow(windowState.id)}
-            className="p-1.5 rounded hover:bg-neon-yellow/20 text-text-muted hover:text-neon-yellow transition-colors"
+            className="w-3 h-3 rounded-full bg-[#ffbd2e] hover:bg-[#ffb020] border border-[#dea123] flex items-center justify-center text-black/70 hover:text-black transition-all shadow-sm active:scale-90"
+            title="Minimizar"
           >
-            <Minus className="w-3 h-3" />
+            <span className="opacity-0 group-hover/lights:opacity-100 text-[8px] font-black leading-none">−</span>
           </button>
           <button
             onClick={() => toggleMaximize(windowState.id)}
-            className="p-1.5 rounded hover:bg-neon-green/20 text-text-muted hover:text-neon-green transition-colors"
+            className="w-3 h-3 rounded-full bg-[#27c93f] hover:bg-[#20b835] border border-[#1aab29] flex items-center justify-center text-black/70 hover:text-black transition-all shadow-sm active:scale-90"
+            title={windowState.isMaximized ? "Restaurar" : "Maximizar"}
           >
-            {windowState.isMaximized ? <Square className="w-3 h-3" /> : <Maximize2 className="w-3 h-3" />}
+            <span className="opacity-0 group-hover/lights:opacity-100 text-[8px] font-black leading-none">+</span>
           </button>
-          <button
-            onClick={() => closeWindow(windowState.id)}
-            className="p-1.5 rounded hover:bg-neon-red/20 text-text-muted hover:text-neon-red transition-colors"
-          >
-            <X className="w-3 h-3" />
-          </button>
+        </div>
+
+        {/* Center: Title & Icon */}
+        <div className="flex items-center gap-2 max-w-[60%] truncate">
+          <span className={`flex-shrink-0 text-sm ${iconColor}`}>{icon}</span>
+          <span className="text-xs font-semibold text-slate-200 truncate tracking-wide font-mono">
+            {windowState.title}
+          </span>
+        </div>
+
+        {/* Right: Active Status Indicator */}
+        <div className="flex items-center gap-1.5">
+          <div
+            className={cn(
+              'w-2 h-2 rounded-full transition-all',
+              isActive ? 'bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.9)] animate-pulse' : 'bg-slate-600'
+            )}
+          />
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 overflow-auto bg-cyber-bg">
+      {/* Window Body */}
+      <div className="flex-1 overflow-auto bg-[#07090e]/95 text-slate-100">
         {children}
       </div>
 
       {/* Resize Handle (bottom-right corner) */}
       {!windowState.isMaximized && (
         <div
-          className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize z-10"
+          className="absolute bottom-0 right-0 w-4 h-4 cursor-se-resize z-20 flex items-end justify-end p-0.5"
           onMouseDown={handleResizeStart}
         >
-          <svg viewBox="0 0 16 16" className="w-full h-full text-text-muted/30">
-            <path d="M14 16L16 14M10 16L16 10M6 16L16 6" stroke="currentColor" strokeWidth="1.5" fill="none" />
-          </svg>
+          <div className="w-2 h-2 border-r-2 border-b-2 border-white/20 rounded-br-sm" />
         </div>
       )}
     </div>
