@@ -1,9 +1,10 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, useMemo, ReactNode } from 'react';
 import { WindowState, AppDefinition, APP_DEFINITIONS } from './types';
+import { getOSContextAdapter } from '@/application/os';
 
-interface OSContextType {
+export interface OSContextType {
   windows: WindowState[];
   activeWindowId: string | null;
   isStartMenuOpen: boolean;
@@ -163,6 +164,25 @@ export function OSProvider({ children }: { children: ReactNode }) {
     );
   }, []);
 
+  // --- Integração gradual com o Event Bus (Fase 1) -------------------------
+  // O adapter apenas envelopa os callbacks: o comportamento original é sempre
+  // executado. Os wrappers são memoizados para preservar a identidade das
+  // funções (BootScreen depende de `setBooted` estável no array de deps).
+  const osEventsAdapter = useMemo(() => getOSContextAdapter(), []);
+
+  const observedOpenApp = useMemo(
+    () => osEventsAdapter.wrapOpenApp(openApp),
+    [osEventsAdapter, openApp]
+  );
+  const observedCloseWindow = useMemo(
+    () => osEventsAdapter.wrapCloseWindow(closeWindow),
+    [osEventsAdapter, closeWindow]
+  );
+  const observedSetBooted = useMemo(
+    () => osEventsAdapter.wrapSetBooted(setBooted),
+    [osEventsAdapter]
+  );
+
   return (
     <OSContext.Provider
       value={{
@@ -170,15 +190,15 @@ export function OSProvider({ children }: { children: ReactNode }) {
         activeWindowId,
         isStartMenuOpen,
         isBooted,
-        openApp,
-        closeWindow,
+        openApp: observedOpenApp,
+        closeWindow: observedCloseWindow,
         minimizeWindow,
         toggleMaximize,
         focusWindow,
         moveWindow,
         resizeWindow,
         setStartMenuOpen,
-        setBooted,
+        setBooted: observedSetBooted,
         getAppDef,
       }}
     >

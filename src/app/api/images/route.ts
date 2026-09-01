@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateImage } from '@/lib/ai/api-client';
+import { getAIService } from '@/application/ai';
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,7 +13,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const result = await generateImage({ model, prompt, size, n });
+    const ai = getAIService();
+    const result = await ai.generateImage({ model, prompt, size, n });
     return NextResponse.json(result);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Erro interno do servidor';

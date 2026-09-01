@@ -7,6 +7,8 @@ import type {
   AgentMessage, OrchestratorAgent, TaskRequest, TaskResult,
   Workflow, WorkflowStep, TaskArtifact,
 } from './types';
+import { getAgentRuntime } from '@/application/agents';
+import { adaptOrchestratorAgent } from '@/core/agents/adapters/LegacyOrchestratorAdapter';
 
 type MessageHandler = (msg: AgentMessage) => void;
 type TaskHandler = (task: TaskRequest) => Promise<TaskResult>;
@@ -133,8 +135,8 @@ class AgentOrchestratorImpl {
       if (handler) {
         result = await handler(task);
       } else {
-        // Simular execução para agentes sem handler real
-        result = await this.simulateTaskExecution(task, agent);
+        // Execução real via AgentRuntime (AI Core) — sem simulação
+        result = await this.executeTaskViaRuntime(task, agent);
       }
 
       result.duration = Date.now() - startTime;
@@ -184,21 +186,51 @@ class AgentOrchestratorImpl {
     return candidates.sort((a, b) => a.currentTasks.length - b.currentTasks.length)[0];
   }
 
-  private async simulateTaskExecution(task: TaskRequest, agent: OrchestratorAgent): Promise<TaskResult> {
-    // Simular processamento
-    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+  private async executeTaskViaRuntime(task: TaskRequest, agent: OrchestratorAgent): Promise<TaskResult> {
+    const runtime = getAgentRuntime();
+
+    // Registra o agente do Orchestrator no runtime como AgentDefinition
+    // (idempotente — registra/atualiza por id)
+    const definition = adaptOrchestratorAgent({
+      id: agent.id,
+      name: agent.name,
+      type: agent.type,
+      capabilities: agent.capabilities.map((c) => ({ name: c.name, description: c.description })),
+    });
+    runtime.getRegistry().register(definition);
+
+    // Monta o input da tarefa como descrição + payload
+    const input = task.description
+      + (task.input && Object.keys(task.input).length > 0
+        ? `\n\nDados de entrada:\n${JSON.stringify(task.input, null, 2)}`
+        : '');
+
+    const result = await runtime.execute(agent.id, input);
+
+    if (result.state === 'COMPLETED') {
+      return {
+        taskId: task.id,
+        agentId: agent.id,
+        status: 'completed',
+        output: {
+          message: result.output,
+          agentName: agent.name,
+          model: result.model,
+          provider: result.provider,
+        },
+        duration: result.duration,
+        stepsExecuted: result.iterations,
+      };
+    }
 
     return {
       taskId: task.id,
       agentId: agent.id,
-      status: 'completed',
-      output: {
-        message: `Tarefa "${task.description}" executada com sucesso por ${agent.name}`,
-        agentName: agent.name,
-        capabilities: agent.capabilities.map(c => c.name),
-      },
-      duration: 0,
-      stepsExecuted: 1,
+      status: 'failed',
+      output: {},
+      error: result.error ?? 'Falha na execução do agente',
+      duration: result.duration,
+      stepsExecuted: result.iterations,
     };
   }
 

@@ -16,6 +16,7 @@ import {
   analyzeCodeQuality,
   generateUnitTestsForCode,
 } from './collaboration-protocols';
+import { getAgentRuntime } from '@/application/agents';
 
 type SwarmEventListener = (event: string, data: unknown) => void;
 
@@ -196,17 +197,30 @@ class SwarmEngineImpl {
     onProgress?.(session);
     await this.delay(800);
 
-    // Gera ou aprimora o código
+    // Gera ou aprimora o código — via AgentRuntime (LLM real) quando possível
     let generatedCode = contextCode;
-    if (!generatedCode || generatedCode.trim().length === 0) {
-      generatedCode = this.generateBoilerplateForGoal(goal, contextFile);
-    } else {
-      generatedCode = this.enhanceCodeWithGoal(generatedCode, goal);
+    try {
+      const result = await getAgentRuntime().execute('anjos-coder', goal);
+      if (result.state === 'COMPLETED' && result.output && result.output.trim().length > 0) {
+        generatedCode = result.output;
+        step2.outputSummary = `Código gerado por AnjosCoder via AgentRuntime (${result.output.split('\n').length} linhas, modelo ${result.model ?? 'default'}).`;
+      } else if (!generatedCode || generatedCode.trim().length === 0) {
+        // Fallback determinístico apenas quando o LLM não produziu output
+        generatedCode = this.generateBoilerplateForGoal(goal, contextFile);
+        step2.outputSummary = 'Fallback determinístico aplicado (sem resposta do LLM).';
+      }
+    } catch {
+      if (!generatedCode || generatedCode.trim().length === 0) {
+        generatedCode = this.generateBoilerplateForGoal(goal, contextFile);
+      }
+      step2.outputSummary = 'Fallback determinístico aplicado (LLM indisponível).';
     }
 
     step2.status = 'completed';
     step2.completedAt = new Date();
-    step2.outputSummary = `Geradas ${generatedCode.split('\n').length} linhas de código limpo e tipado.`;
+    if (!step2.outputSummary) {
+      step2.outputSummary = `Geradas ${generatedCode.split('\n').length} linhas de código.`;
+    }
     step2.codeSnippet = generatedCode;
     this.updateAgentStatus('anjos-coder', 'idle');
 
@@ -470,13 +484,6 @@ export class TaskAutomationEngine {
     };
   }
 }
-`;
-  }
-
-  private enhanceCodeWithGoal(originalCode: string, goal: string): string {
-    return `// [AnjosDevOS Swarm Enhancement - Objetivo: ${goal}]
-// Código revisado e enriquecido com tipagem segura e tratamento de exceções
-${originalCode}
 `;
   }
 

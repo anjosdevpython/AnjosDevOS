@@ -24,7 +24,7 @@ import {
   setSelectedProvider,
   setTemperature as saveTemperature,
 } from '@/lib/ai/provider-config';
-import { chatCompletionStream } from '@/lib/ai/api-client';
+import { getAIService } from '@/application/ai';
 
 interface Message {
   id: string;
@@ -184,7 +184,7 @@ export function ChatInterface() {
         content: m.content,
       }));
 
-      const stream = await chatCompletionStream({
+      const stream = await getAIService().chatStream({
         model: selectedModel,
         messages: chatHistory,
         temperature,

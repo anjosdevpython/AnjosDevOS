@@ -1,6 +1,7 @@
-import { chatCompletion } from '@/lib/ai/api-client';
+import { getAIService } from '@/application/ai';
 import { analyzeCodeQuality } from './collaboration-protocols';
 import { SWARM_SPECIALISTS } from './agent-specialists';
+import { getLogger } from '@/infrastructure/observability/logger';
 
 export interface LLMAuditIssue {
   severity: 'critical' | 'high' | 'medium' | 'low';
@@ -61,7 +62,8 @@ Sua resposta DEVE ser estritamente um JSON no seguinte formato:
   const userPrompt = `Realize a auditoria estática rigorosa de segurança (OWASP), tipagem TypeScript e performance no arquivo "${fileName}":\n\n\`\`\`typescript\n${params.code}\n\`\`\``;
 
   try {
-    const response = await chatCompletion({
+    const ai = getAIService();
+    const response = await ai.chat({
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },
@@ -90,7 +92,7 @@ Sua resposta DEVE ser estritamente um JSON no seguinte formato:
       };
     }
   } catch (err) {
-    console.warn('⚠️ Chamada LLM direta falhou, utilizando auditor estático heurístico:', err);
+    getLogger().warn('Chamada LLM falhou, utilizando auditor estático heurístico', { fileName }, err);
   }
 
   // Fallback heurístico em caso de falha de conexão/API key

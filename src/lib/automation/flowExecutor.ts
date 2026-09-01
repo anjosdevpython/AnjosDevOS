@@ -1,5 +1,5 @@
 import { Flow, FlowNode, FlowRun, FlowRunLogItem } from './types';
-import { chatCompletion } from '@/lib/ai/api-client';
+import { getAIService } from '@/application/ai';
 import { FlowRepository } from './flowRepository';
 
 export type FlowExecutionCallback = (event: {
@@ -105,55 +105,50 @@ export class FlowExecutor {
         let output: unknown = null;
 
         switch (node.type) {
-          case 'trigger':
+          case 'trigger': {
             output = { triggeredAt: Date.now(), context: triggerContext || 'Manual / Webhook trigger' };
             addLog(node.id, node.name, 'success', `Gatilho disparado com sucesso.`);
             break;
+          }
 
-          case 'llm':
+          case 'llm': {
             const prompt = node.config.prompt || 'Execute a tarefa de automação solicitada.';
             const model = node.config.model || 'gpt-4o';
             addLog(node.id, node.name, 'info', `Chamando modelo de IA: ${model}...`);
 
-            try {
-              const res = await chatCompletion({
-                model,
-                messages: [{ role: 'user', content: prompt }],
-                max_tokens: 1500,
-              });
-              output = res.choices?.[0]?.message?.content || 'Concluído.';
-              addLog(node.id, node.name, 'success', `Resposta de IA recebida.`);
-            } catch (err: any) {
-              output = `[Simulação de IA] Resposta para: "${prompt.slice(0, 40)}..."`;
-              addLog(node.id, node.name, 'warn', `Fallback de IA aplicado.`);
-            }
+            const ai = getAIService();
+            const llmRes = await ai.chat({
+              model,
+              messages: [{ role: 'user', content: prompt }],
+              max_tokens: 1500,
+            });
+            output = llmRes.choices?.[0]?.message?.content || 'Concluído.';
+            addLog(node.id, node.name, 'success', `Resposta de IA recebida.`);
             break;
+          }
 
-          case 'http':
+          case 'http': {
             const url = node.config.url || 'https://api.github.com/zen';
             const method = node.config.method || 'GET';
             addLog(node.id, node.name, 'info', `Requisição HTTP ${method} para ${url}...`);
 
+            const res = await fetch(url, { method });
+            const text = await res.text();
             try {
-              const res = await fetch(url, { method });
-              const text = await res.text();
-              try {
-                output = JSON.parse(text);
-              } catch {
-                output = text;
-              }
-              addLog(node.id, node.name, 'success', `HTTP ${res.status} OK.`);
-            } catch (err: any) {
-              output = { status: 200, mockData: 'Feed obtido com sucesso.' };
-              addLog(node.id, node.name, 'warn', `Mock HTTP retornado.`);
+              output = JSON.parse(text);
+            } catch {
+              output = text;
             }
+            addLog(node.id, node.name, 'success', `HTTP ${res.status} OK.`);
             break;
+          }
 
-          case 'condition':
+          case 'condition': {
             const expr = node.config.conditionExpression || 'true';
             output = true;
             addLog(node.id, node.name, 'success', `Condição avaliada como verdadeira: ${expr}`);
             break;
+          }
 
           case 'notification':
           case 'action':

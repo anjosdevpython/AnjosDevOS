@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { chatCompletion } from '@/lib/ai/api-client';
+import { getAIService } from '@/application/ai';
 import { Flow } from '@/lib/automation/types';
+import { getLogger } from '@/infrastructure/observability/logger';
 
 export async function POST(req: NextRequest) {
   try {
@@ -38,7 +39,8 @@ Formato de saída estritamente JSON:
 }`;
 
     try {
-      const response = await chatCompletion({
+      const ai = getAIService();
+      const response = await ai.chat({
         model,
         messages: [
           { role: 'system', content: systemPrompt },
@@ -58,7 +60,7 @@ Formato de saída estritamente JSON:
         return NextResponse.json({ success: true, flow: flowData });
       }
     } catch (llmErr) {
-      console.warn('Fallback local para geração de fluxo:', llmErr);
+      getLogger().warn('Fallback local para geração de fluxo', { prompt: prompt.slice(0, 80) }, llmErr);
     }
 
     // Fallback estruturado inteligente

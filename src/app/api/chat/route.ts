@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { chatCompletion, chatCompletionStream } from '@/lib/ai/api-client';
+import { getAIService } from '@/application/ai';
 import { rateLimiter } from '@/lib/security/rateLimiter';
 
 export async function POST(request: NextRequest) {
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { model, messages, temperature = 0.7, stream = false } = body;
+    const { model, messages, temperature = 0.7, stream = false, provider } = body;
 
     if (!model || !messages || !Array.isArray(messages)) {
       return NextResponse.json(
@@ -35,11 +35,13 @@ export async function POST(request: NextRequest) {
     }
 
     if (stream) {
-      const streamResponse = await chatCompletionStream({
+      const ai = getAIService();
+      const streamResponse = await ai.chatStream({
         model,
         messages,
         temperature,
         stream: true,
+        provider,
       });
 
       rateLimiter.logAudit({
@@ -60,10 +62,12 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const result = await chatCompletion({
+    const ai = getAIService();
+    const result = await ai.chat({
       model,
       messages,
       temperature,
+      provider,
     });
 
     rateLimiter.logAudit({

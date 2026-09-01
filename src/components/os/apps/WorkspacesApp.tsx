@@ -3,9 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { WorkspaceRepository, type Workspace } from '@/lib/workspaces';
 import { WorkspaceExporter } from '@/lib/workspaces/workspaceExporter';
-import { useOS } from '../OSContext';
-import {
-  FolderPlus,
+import { useOS } from '../OSContext';import { FolderPlus,
   Trash2,
   FolderOpen,
   Layers,
@@ -21,6 +19,7 @@ import {
   RefreshCw,
   X,
 } from 'lucide-react';
+import { saveGitHubPAT, getGitHubPAT } from '@/infrastructure/security';
 
 interface GitHubModalState {
   open: boolean;
@@ -62,9 +61,10 @@ export function WorkspacesApp() {
 
   useEffect(() => {
     loadWorkspaces();
-    // Restore saved GitHub token (only token, never stored on server)
-    const savedToken = localStorage.getItem('gh_pat');
-    if (savedToken) setGh((prev) => ({ ...prev, token: savedToken }));
+    // Restore saved GitHub token via CredentialService
+    getGitHubPAT().then((token) => {
+      if (token) setGh((prev) => ({ ...prev, token }));
+    });
   }, []);
 
   const handleCreate = async (e: React.FormEvent) => {
@@ -108,16 +108,16 @@ export function WorkspacesApp() {
     openApp('codeeditor');
   };
 
-  const openGitHubModal = (ws: Workspace, e: React.MouseEvent) => {
+  const openGitHubModal = async (ws: Workspace, e: React.MouseEvent) => {
     e.stopPropagation();
-    const saved = localStorage.getItem('gh_pat') ?? '';
+    const saved = await getGitHubPAT();
     setGh((prev) => ({
       ...prev,
       open: true,
       workspace: ws,
       repoName: ws.name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
       commitMessage: `feat: sync workspace "${ws.name}" via AnjosDevOS`,
-      token: saved,
+      token: saved ?? '',
       result: null,
       loading: false,
     }));
@@ -127,8 +127,10 @@ export function WorkspacesApp() {
     e.preventDefault();
     if (!gh.workspace || !gh.token || !gh.repoName) return;
 
-    // Salvar token localmente (apenas no browser do usuário)
-    localStorage.setItem('gh_pat', gh.token);
+    // Salvar token via CredentialService
+    if (gh.token) {
+      saveGitHubPAT(gh.token).catch(() => {});
+    }
 
     setGh((prev) => ({ ...prev, loading: true, result: null }));
 
@@ -212,7 +214,7 @@ export function WorkspacesApp() {
                 className="w-full px-3 py-2 text-xs bg-[#05070c] border border-white/10 rounded-xl text-white outline-none focus:border-cyan-400 font-mono"
                 required
               />
-              <p className="text-[10px] text-slate-500">Salvo no seu browser (localStorage). Nunca vai ao servidor.</p>
+              <p className="text-[10px] text-slate-500">Token armazenado de forma criptografada no navegador.</p>
             </div>
 
             <div className="space-y-1">

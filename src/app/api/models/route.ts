@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getModels } from '@/lib/ai/api-client';
+import { getAIService } from '@/application/ai';
 
 export async function GET() {
   try {
-    const result = await getModels();
+    const ai = getAIService();
+    const result = await ai.getModels();
     return NextResponse.json(result);
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : 'Erro interno do servidor';

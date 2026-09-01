@@ -2,43 +2,51 @@ import { ProviderId } from '@/lib/ai/providers';
 
 /**
  * Server-Side Security Vault
- * Gerencia credenciais de provedores no servidor com proteção contra vazamento client-side
+ * Gerencia credenciais de provedores no servidor com proteção contra vazamento client-side.
+ *
+ * As chaves são lidas de `process.env` de forma totalmente LAZY (a cada chamada),
+ * para que alterações de ambiente sejam refletidas sem recarregar o módulo.
  */
 export class SecurityVault {
-  private static keyMap: Record<ProviderId, string | undefined> = {
-    networktools: process.env.NETWORK_TOOLS_API_KEY || process.env.NEXT_PUBLIC_NETWORK_TOOLS_API_KEY,
-    openai: process.env.OPENAI_API_KEY,
-    anthropic: process.env.ANTHROPIC_API_KEY,
-    google: process.env.GOOGLE_AI_API_KEY,
-    deepseek: process.env.DEEPSEEK_API_KEY,
-    xai: process.env.XAI_API_KEY,
-    mistral: process.env.MISTRAL_API_KEY,
-    groq: process.env.GROQ_API_KEY,
-    together: process.env.TOGETHER_API_KEY,
-    openrouter: process.env.OPENROUTER_API_KEY,
-    cohere: process.env.COHERE_API_KEY,
-    aimlapi: process.env.AIMLAPI_API_KEY || '4d551bf61623df07ae345d23afb78f44',
-    custom: process.env.CUSTOM_API_KEY,
+  /** Mapa ProviderId → nome da env var (sem valores). */
+  private static readonly ENV_VAR_BY_PROVIDER: Record<ProviderId, string> = {
+    networktools: 'NETWORK_TOOLS_API_KEY',
+    openai: 'OPENAI_API_KEY',
+    anthropic: 'ANTHROPIC_API_KEY',
+    google: 'GOOGLE_AI_API_KEY',
+    deepseek: 'DEEPSEEK_API_KEY',
+    xai: 'XAI_API_KEY',
+    mistral: 'MISTRAL_API_KEY',
+    groq: 'GROQ_API_KEY',
+    together: 'TOGETHER_API_KEY',
+    openrouter: 'OPENROUTER_API_KEY',
+    cohere: 'COHERE_API_KEY',
+    aimlapi: 'AIMLAPI_API_KEY',
+    custom: 'CUSTOM_API_KEY',
   };
 
   /**
-   * Obtém a chave de API segura no servidor para o provedor solicitado
+   * Obtém a chave de API segura no servidor para o provedor solicitado.
+   * Lazy: lê `process.env` no momento da chamada.
    */
   public static getApiKey(provider: ProviderId): string {
-    const key = this.keyMap[provider];
-    if (key) return key;
+    const envName = this.ENV_VAR_BY_PROVIDER[provider];
+    if (envName) {
+      const value = process.env[envName];
+      if (value) return value;
+    }
 
     // Fallback para NetworkTools
     return process.env.NETWORK_TOOLS_API_KEY || '';
   }
 
   /**
-   * Retorna apenas metadados públicos dos provedores disponíveis (sem expor segredos)
+   * Retorna apenas metadados públicos dos provedores disponíveis (sem expor segredos).
    */
   public static getPublicProviderStatus(): Record<ProviderId, boolean> {
     const status: Record<string, boolean> = {};
-    for (const [provider, key] of Object.entries(this.keyMap)) {
-      status[provider] = Boolean(key && key.length > 0);
+    for (const provider of Object.keys(this.ENV_VAR_BY_PROVIDER) as ProviderId[]) {
+      status[provider] = Boolean(this.getApiKey(provider));
     }
     return status as Record<ProviderId, boolean>;
   }

@@ -59,8 +59,14 @@ const AgentTeamsApp = dynamic(() => import('./apps/AgentTeamsApp').then(m => ({ 
 const MemorySystemApp = dynamic(() => import('./apps/MemorySystemApp').then(m => ({ default: m.MemorySystemApp })), { ssr: false });
 const ChannelGatewayApp = dynamic(() => import('./apps/ChannelGatewayApp').then(m => ({ default: m.ChannelGatewayApp })), { ssr: false });
 const FreebuffApp = dynamic(() => import('./apps/FreebuffApp').then(m => ({ default: m.FreebuffApp })), { ssr: false });
-const AgentOrchestratorApp = dynamic(() => import('./apps/AgentOrchestratorApp').then(m => ({ default: m.AgentOrchestratorApp })), { ssr: false });
 const WarmwindApp = dynamic(() => import('./apps/WarmwindApp').then(m => ({ default: m.WarmwindApp })), { ssr: false });
+const JupyterApp = dynamic(() => import('./apps/JupyterApp').then(m => ({ default: m.JupyterApp })), { ssr: false });
+const LivePlaygroundApp = dynamic(() => import('./apps/LivePlaygroundApp').then(m => ({ default: m.LivePlaygroundApp })), { ssr: false });
+const DocStudioApp = dynamic(() => import('./apps/DocStudioApp').then(m => ({ default: m.DocStudioApp })), { ssr: false });
+const DatabaseStudioApp = dynamic(() => import('./apps/DatabaseStudioApp').then(m => ({ default: m.DatabaseStudioApp })), { ssr: false });
+const APILabApp = dynamic(() => import('./apps/APILabApp').then(m => ({ default: m.APILabApp })), { ssr: false });
+const BillingApp = dynamic(() => import('./apps/BillingApp').then(m => ({ default: m.BillingApp })), { ssr: false });
+const AgentOrchestratorApp = dynamic(() => import('./apps/AgentOrchestratorApp').then(m => ({ default: m.AgentOrchestratorApp })), { ssr: false });
 
 // Dynamic page imports
 const ImagesApp = dynamic(() => import('@/app/images/page'), { ssr: false });
@@ -137,7 +143,17 @@ export function getAppContent(appId: string): ReactNode {
     case 'audio':
       return wrapInBoundary(<div className="overflow-auto h-full"><AudioApp /></div>, 'Efeitos Sonoros');
     case 'balance':
-      return wrapInBoundary(<div className="overflow-auto h-full"><BalanceApp /></div>, 'Saldo & Uso');
+      return wrapInBoundary(<BillingApp />, 'Planos & Faturamento');
+    case 'jupyter-lab':
+      return wrapInBoundary(<JupyterApp />, 'Jupyter Notebook');
+    case 'live-playground':
+      return wrapInBoundary(<LivePlaygroundApp />, 'Live Playground');
+    case 'doc-studio':
+      return wrapInBoundary(<DocStudioApp />, 'Doc Studio');
+    case 'database-studio':
+      return wrapInBoundary(<DatabaseStudioApp />, 'Database SQL Studio');
+    case 'api-lab':
+      return wrapInBoundary(<APILabApp />, 'API Lab');
     case 'settings':
       return wrapInBoundary(<div className="overflow-auto h-full"><SettingsApp /></div>, 'Configurações');
     case 'terminal':

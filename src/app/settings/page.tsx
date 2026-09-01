@@ -322,10 +322,9 @@ export default function SettingsPage() {
             <div className="flex items-start gap-3">
               <AlertTriangle className="w-4 h-4 text-neon-yellow flex-shrink-0 mt-0.5" />
               <div>
-                <p className="text-xs text-neon-yellow font-medium">Configuração rápida</p>
-                <p className="text-xs text-text-muted mt-1">
+                <p className="text-xs text-neon-yellow font-medium">Configuração rápida</p>                  <p className="text-xs text-text-muted mt-1">
                   Para usar múltiplos provedores, adicione suas API keys acima. Cada provedor tem seu próprio
-                  endpoint e formatação de API. Suas chaves são salvas localmente no navegador.
+                  endpoint e formatação de API. Suas chaves são armazenadas de forma criptografada no navegador.
                 </p>
               </div>
             </div>

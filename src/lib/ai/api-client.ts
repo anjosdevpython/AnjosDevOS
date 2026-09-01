@@ -3,9 +3,8 @@
 import { ProviderId, PROVIDERS } from './providers';
 import { getProviderApiKey, getProviderBaseUrl } from './provider-config';
 
-// Legacy NetworkTools config (fallback)
-const LEGACY_BASE_URL = process.env.NEXT_PUBLIC_NETWORK_TOOLS_BASE_URL || 'https://yellowfire.ru/v1';
-const LEGACY_API_KEY = process.env.NEXT_PUBLIC_NETWORK_TOOLS_API_KEY || '';
+// Legacy NetworkTools config (fallback — NO API key in client bundle)
+const LEGACY_BASE_URL = 'https://yellowfire.ru/v1';
 
 export interface ChatMessage {
   role: 'system' | 'user' | 'assistant';
@@ -73,10 +72,10 @@ function getProviderApiConfig(providerId?: ProviderId): { baseUrl: string; apiKe
     };
   }
 
-  // Fallback to legacy NetworkTools
+  // Fallback to legacy NetworkTools (no API key — user must configure)
   return {
     baseUrl: LEGACY_BASE_URL,
-    apiKey: LEGACY_API_KEY,
+    apiKey: '',
     apiFormat: 'openai',
   };
 }
